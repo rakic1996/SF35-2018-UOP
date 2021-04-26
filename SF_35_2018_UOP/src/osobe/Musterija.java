@@ -1,6 +1,6 @@
 package osobe;
 
-public class Dispeceri {
+public class Musterija {
 	
 	private String korIme;
 	private String lozinka;
@@ -11,8 +11,7 @@ public class Dispeceri {
 	private Pol pol;
 	private String brTelefona;
 	
-	
-	public Dispeceri() {
+	public Musterija() {
 		this.ime = "";
 		this.prezime = "";
 		this.pol = Pol.ZENSKI;
@@ -21,11 +20,11 @@ public class Dispeceri {
 		this.jmbg = "";
 		this.adresa = "";
 		this.brTelefona = "";
-
-
+		
+		
 	}
 
-	public Dispeceri(String korIme, String lozinka, String ime, String prezime, String jmbg, String adresa, Pol pol,
+	public Musterija(String korIme, String lozinka, String ime, String prezime, String jmbg, String adresa, Pol pol,
 			String brTelefona) {
 		super();
 		this.korIme = korIme;
@@ -104,17 +103,10 @@ public class Dispeceri {
 
 	@Override
 	public String toString() {
-		return "Dispeceri [korIme=" + korIme + ", lozinka=" + lozinka + ", ime=" + ime + ", prezime=" + prezime
+		return "Musterije [korIme=" + korIme + ", lozinka=" + lozinka + ", ime=" + ime + ", prezime=" + prezime
 				+ ", jmbg=" + jmbg + ", adresa=" + adresa + ", pol=" + pol + ", brTelefona=" + brTelefona + "]";
 	}
-
-	//OVO POGLEDAJ DA LI JE DOBRO U TAXI_SLUZBA.JAVA KOD DISPECERI LOGIN ISOBRISAN
-	public boolean isObrisan() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	
 	
 	
 }
-
-

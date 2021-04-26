@@ -1,6 +1,6 @@
 package osobe;
 
-public class Musterije {
+public class Vozac {
 	
 	private String korIme;
 	private String lozinka;
@@ -11,20 +11,20 @@ public class Musterije {
 	private Pol pol;
 	private String brTelefona;
 	
-	public Musterije() {
+	public Vozac() {
 		this.ime = "";
 		this.prezime = "";
-		this.pol = Pol.ZENSKI;
+		this.pol = Pol.MUSKI;
 		this.korIme = "";
 		this.lozinka = "";
 		this.jmbg = "";
 		this.adresa = "";
 		this.brTelefona = "";
-		
-		
-	}
 
-	public Musterije(String korIme, String lozinka, String ime, String prezime, String jmbg, String adresa, Pol pol,
+}
+	
+	
+	public Vozac(String korIme, String lozinka, String ime, String prezime, String jmbg, String adresa, Pol pol,
 			String brTelefona) {
 		super();
 		this.korIme = korIme;
@@ -36,77 +36,94 @@ public class Musterije {
 		this.pol = pol;
 		this.brTelefona = brTelefona;
 	}
+	
+	
 
 	public String getKorIme() {
 		return korIme;
 	}
 
+
 	public void setKorIme(String korIme) {
 		this.korIme = korIme;
 	}
+
 
 	public String getLozinka() {
 		return lozinka;
 	}
 
+
 	public void setLozinka(String lozinka) {
 		this.lozinka = lozinka;
 	}
+
 
 	public String getIme() {
 		return ime;
 	}
 
+
 	public void setIme(String ime) {
 		this.ime = ime;
 	}
+
 
 	public String getPrezime() {
 		return prezime;
 	}
 
+
 	public void setPrezime(String prezime) {
 		this.prezime = prezime;
 	}
+
 
 	public String getJmbg() {
 		return jmbg;
 	}
 
+
 	public void setJmbg(String jmbg) {
 		this.jmbg = jmbg;
 	}
+
 
 	public String getAdresa() {
 		return adresa;
 	}
 
+
 	public void setAdresa(String adresa) {
 		this.adresa = adresa;
 	}
+
 
 	public Pol getPol() {
 		return pol;
 	}
 
+
 	public void setPol(Pol pol) {
 		this.pol = pol;
 	}
+
 
 	public String getBrTelefona() {
 		return brTelefona;
 	}
 
+
 	public void setBrTelefona(String brTelefona) {
 		this.brTelefona = brTelefona;
 	}
 
+
 	@Override
 	public String toString() {
-		return "Musterije [korIme=" + korIme + ", lozinka=" + lozinka + ", ime=" + ime + ", prezime=" + prezime
-				+ ", jmbg=" + jmbg + ", adresa=" + adresa + ", pol=" + pol + ", brTelefona=" + brTelefona + "]";
+		return "Vozaci [korIme=" + korIme + ", lozinka=" + lozinka + ", ime=" + ime + ", prezime=" + prezime + ", jmbg="
+				+ jmbg + ", adresa=" + adresa + ", pol=" + pol + ", brTelefona=" + brTelefona + "]";
 	}
-	
 	
 	
 }

@@ -2,10 +2,9 @@ package taxi_sluzba;
 
 import java.util.ArrayList;
 
-
-import osobe.Dispeceri;
-import osobe.Musterije;
-import osobe.Vozaci;
+import osobe.Dispecer;
+import osobe.Musterija;
+import osobe.Vozac;
 
 public class Taxi_sluzba {
 	
@@ -15,40 +14,41 @@ public class Taxi_sluzba {
 	public int cena_start;
 	public int cena_km;
 	
-	private ArrayList<Dispeceri> dispeceri;
-	private ArrayList<Musterije> musterije;
-	private ArrayList<Vozaci> vozaci;
+	private ArrayList<Dispecer> dispeceri;
+	private ArrayList<Musterija> musterije;
+	private ArrayList<Vozac> vozaci;
+	private Vozac vozac;
 	
 	
 	public Taxi_sluzba() {
 		
-		this.dispeceri= new ArrayList<Dispeceri>();
-		this.musterije = new ArrayList<Musterije>();
-		this.vozaci = new ArrayList<Vozaci>();
+		this.dispeceri= new ArrayList<Dispecer>();
+		this.musterije = new ArrayList<Musterija>();
+		this.vozaci = new ArrayList<Vozac>();
 	}
 	
-	public ArrayList<Dispeceri> getDispeceri() {
+	public ArrayList<Dispecer> getDispeceri() {
 		return dispeceri;
 	}
 	
-	public void dodajDispecere(Dispeceri dispeceri) {
+	public void dodajDispecere(Dispecer dispeceri) {
 		this.dispeceri.add(dispeceri);
 	}
 	
-	public void obrisiDispecere(Dispeceri dispeceri) {
+	public void obrisiDispecere(Dispecer dispeceri) {
 		this.dispeceri.remove(dispeceri);
 	}
 	
-	public Dispeceri nadjiDispecera(String korIme) {
-		for(Dispeceri dispecer : dispeceri) {
+	public Dispecer nadjiDispecera(String korIme) {
+		for(Dispecer dispecer : dispeceri) {
 			if(dispeceri).getKorIme().equals(korIme)) {
 				return dispecer;
 			}
 		}
 		return null;
 	}
-	public Dispeceri login(String korIme, String lozinka) {
-		for(Dispeceri dispecer : dispeceri) {
+	public Dispecer login(String korIme, String lozinka) {
+		for(Dispecer dispecer : dispeceri) {
 			if(dispecer.getKorIme().equalsIgnoreCase(korIme) &&
 					dispecer.getLozinka().equals(lozinka) && !dispecer.isObrisan()) {
 				return dispecer;
@@ -56,21 +56,57 @@ public class Taxi_sluzba {
 		}
 		return null;
 	}
-	
-	public ArrayList<Musterije> getMusterije() {
-		return musterije; 
+
+	public ArrayList<Musterija> getMusterije() {
+		return musterije;
 	}
-	
-	public void dodajMusteriju(Musterije musterije) {
+
+	public void dodajMusteriju(Musterija musterije) {
 		this.musterije.add(musterije);
 	}
-	
-	public void obrisiMusteriju(Musterije musterije) {
+
+	public void obrisiMusteriju(Musterija musterije) {
 		this.musterije.remove(musterije);
 	}
+
+	public ArrayList<Vozac> getVozaci() {
+		return vozaci;
+	}
+
+	public void dodajVozaca(Vozac vozaci) {
+		this.vozaci.add(vozac);
+	}
+
+	public void obrisiVozaca(Vozac vozac) {
+		this.vozaci.remove(vozac);
+	}
+
+	public void ucitajDispecera(String DISPECER_FAJL) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void ucitajVozaca(String VOZAC_FAJL) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
-	public void 
+
 	
+	
+
+	
+	
+
+
+	
+
+
+		
+	}
+	
+
 	
 	
 	

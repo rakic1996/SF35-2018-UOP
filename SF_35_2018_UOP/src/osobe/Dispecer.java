@@ -1,6 +1,6 @@
 package osobe;
 
-public class Vozaci {
+public class Dispecer {
 	
 	private String korIme;
 	private String lozinka;
@@ -11,20 +11,21 @@ public class Vozaci {
 	private Pol pol;
 	private String brTelefona;
 	
-	public Vozaci() {
+	
+	public Dispecer() {
 		this.ime = "";
 		this.prezime = "";
-		this.pol = Pol.MUSKI;
+		this.pol = Pol.ZENSKI;
 		this.korIme = "";
 		this.lozinka = "";
 		this.jmbg = "";
 		this.adresa = "";
 		this.brTelefona = "";
 
-}
-	
-	
-	public Vozaci(String korIme, String lozinka, String ime, String prezime, String jmbg, String adresa, Pol pol,
+
+	}
+
+	public Dispecer(String korIme, String lozinka, String ime, String prezime, String jmbg, String adresa, Pol pol,
 			String brTelefona) {
 		super();
 		this.korIme = korIme;
@@ -36,94 +37,84 @@ public class Vozaci {
 		this.pol = pol;
 		this.brTelefona = brTelefona;
 	}
-	
-	
 
 	public String getKorIme() {
 		return korIme;
 	}
 
-
 	public void setKorIme(String korIme) {
 		this.korIme = korIme;
 	}
-
 
 	public String getLozinka() {
 		return lozinka;
 	}
 
-
 	public void setLozinka(String lozinka) {
 		this.lozinka = lozinka;
 	}
-
 
 	public String getIme() {
 		return ime;
 	}
 
-
 	public void setIme(String ime) {
 		this.ime = ime;
 	}
-
 
 	public String getPrezime() {
 		return prezime;
 	}
 
-
 	public void setPrezime(String prezime) {
 		this.prezime = prezime;
 	}
-
 
 	public String getJmbg() {
 		return jmbg;
 	}
 
-
 	public void setJmbg(String jmbg) {
 		this.jmbg = jmbg;
 	}
-
 
 	public String getAdresa() {
 		return adresa;
 	}
 
-
 	public void setAdresa(String adresa) {
 		this.adresa = adresa;
 	}
-
 
 	public Pol getPol() {
 		return pol;
 	}
 
-
 	public void setPol(Pol pol) {
 		this.pol = pol;
 	}
-
 
 	public String getBrTelefona() {
 		return brTelefona;
 	}
 
-
 	public void setBrTelefona(String brTelefona) {
 		this.brTelefona = brTelefona;
 	}
 
-
 	@Override
 	public String toString() {
-		return "Vozaci [korIme=" + korIme + ", lozinka=" + lozinka + ", ime=" + ime + ", prezime=" + prezime + ", jmbg="
-				+ jmbg + ", adresa=" + adresa + ", pol=" + pol + ", brTelefona=" + brTelefona + "]";
+		return "Dispeceri [korIme=" + korIme + ", lozinka=" + lozinka + ", ime=" + ime + ", prezime=" + prezime
+				+ ", jmbg=" + jmbg + ", adresa=" + adresa + ", pol=" + pol + ", brTelefona=" + brTelefona + "]";
+	}
+
+	//OVO POGLEDAJ DA LI JE DOBRO U TAXI_SLUZBA.JAVA KOD DISPECERI LOGIN ISOBRISAN
+	public boolean isObrisan() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 	
 }
+
+
