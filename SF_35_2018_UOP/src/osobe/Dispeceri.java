@@ -107,8 +107,12 @@ public class Dispeceri {
 		return "Dispeceri [korIme=" + korIme + ", lozinka=" + lozinka + ", ime=" + ime + ", prezime=" + prezime
 				+ ", jmbg=" + jmbg + ", adresa=" + adresa + ", pol=" + pol + ", brTelefona=" + brTelefona + "]";
 	}
-	
-	
+
+	//OVO POGLEDAJ DA LI JE DOBRO U TAXI_SLUZBA.JAVA KOD DISPECERI LOGIN ISOBRISAN
+	public boolean isObrisan() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 	
 }
