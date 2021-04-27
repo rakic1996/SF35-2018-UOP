@@ -1,1 +1,2 @@
-pera|peric|peraperic|123
+Perap|123|Pera|Peric|MUSKI|1|1000.0|0211234|Odeljenje_za_prijem_voznji|Narodnog fronta 2|123456
+Mikam|456|Mika|Mikic|ZENSKI|2|2000.0|0211234|Odeljenje_za_prijem_voznji|Modene 2|978545

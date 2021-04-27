@@ -4,19 +4,17 @@ public class Automobil {
 	
 	private String model;
 	private String poizvodjac;
-	private String godProizvodnje;
+	private int godProizvodnje;
 	private String registracija;
 	private String brVozila;
-	private String vrstaA;
-}
+	private VrstaAutomobila vrstaAutomobila;
+
 
    	public Automobil() {
    		this.model = "";
    		this.poizvodjac = "";
-   		this.godProizvodnje = "";
    		this.registracija = "";
    		this.brVozila = "";
-   		this.vrstaA = "";
    		
    	}
 
@@ -25,10 +23,8 @@ public class Automobil {
 		super();
 		this.model = model;
 		this.poizvodjac = poizvodjac;
-		this.godProizvodnje = godProizvodnje;
 		this.registracija = registracija;
 		this.brVozila = brVozila;
-		this.vrstaA = vrstaA;
 	}
 
 	public String getModel() {
@@ -47,14 +43,6 @@ public class Automobil {
 		this.poizvodjac = poizvodjac;
 	}
 
-	public String getGodProizvodnje() {
-		return godProizvodnje;
-	}
-
-	public void setGodProizvodnje(String godProizvodnje) {
-		this.godProizvodnje = godProizvodnje;
-	}
-
 	public String getRegistracija() {
 		return registracija;
 	}
@@ -70,21 +58,4 @@ public class Automobil {
 	public void setBrVozila(String brVozila) {
 		this.brVozila = brVozila;
 	}
-
-	public String getVrstaA() {
-		return vrstaA;
-	}
-
-	public void setVrstaA(String vrstaA) {
-		this.vrstaA = vrstaA;
-	}
-
-	@Override
-	public String toString() {
-		return "Automobil [model=" + model + ", poizvodjac=" + poizvodjac + ", godProizvodnje=" + godProizvodnje
-				+ ", registracija=" + registracija + ", brVozila=" + brVozila + ", vrstaA=" + vrstaA + "]";
-	}
-   	
-	
-   	
 }

@@ -2,6 +2,8 @@ package main;
 
 import osobe.Dispecer;
 import osobe.Musterija;
+import osobe.Odeljenje;
+import osobe.Pol;
 import osobe.Vozac;
 import taxi_sluzba.Taxi_sluzba;
 import automobil.Automobil;
@@ -15,42 +17,23 @@ public class Taxi_sluzbaMain {
 
 	
 	public static void main(String[] args) {
-		Taxi_sluzba taxi_sluzba = new Taxi_sluzba();
-		taxi_sluzba.ucitajDispecera(DISPECER_FAJL);
-		taxi_sluzba.ucitajMusterija(MUSTERIJA_FAJL);
-		taxi_sluzba.ucitajVozaca(VOZAC_FAJL);
+		System.out.println("Run");
 		
-		System.out.println("PODACI UCITANI IZ DATOTEKA: ");
-		System.out.println("----------------------------------------");
-		ispisiSvePodatke(taxi_sluzba);
-		System.out.println("----------------------------------------");
+		Taxi_sluzba taxi_sluzba = new Taxi_sluzba(1, 123, "Crveni taxi", "Fruskogorska 1", 90, 40 );
+		System.out.println(taxi_sluzba.toString());
+		taxi_sluzba.ucitajDispecere(DISPECER_FAJL);
 		
-		System.out.println("Dodavanje test podataka...");
-		Dispecer testDispeceri = new Dispecer("jova", "jovic", "jovaj", "1234", DISPECERI_FAJL, DISPECERI_FAJL, null, DISPECERI_FAJL);
-		taxi_sluzba.dodajDispecere(testDispeceri);
 		
-		Musterija testMusterija = new Musterija("aaa", "bbb", "ab", "5678", DISPECERI_FAJL, DISPECERI_FAJL, null, DISPECERI_FAJL);
-		
-
-	}
-
-
-	private static void ispisiSvePodatke(Taxi_sluzba taxi_sluzba) {
-		for(Dispecer dispeceri : taxi_sluzba.getDispeceri()) {
-			System.out.println(dispeceri + "\n");
-		}
-	
-		for(Musterija musterije : taxi_sluzba.getMusterije()) {
-			System.out.println(musterije + "\n");
-			
-		}
-		for(Vozac vozaci : taxi_sluzba.getVozaci()) {
-			System.out.println(vozaci + "\n");
-			
-		
-			
-		}
-			
+//		Dispecer dispecer1 = new Dispecer("Perap", "123", "Pera", "Peric", "123456", "Narodnog fronta 2", Pol.MUSKI,
+//				1, 1000.0, "0211234", Odeljenje.Odeljenje_za_prijem_voznji);
+//		System.out.println("Dipsecer je: " + dispecer1);
+//		Dispecer dispecer2 = new Dispecer("Mikam", "456", "Mika", "Mikic", "978545", "Modene 2", Pol.ZENSKI,
+//				2, 2000.0, "0211234", Odeljenje.Odeljenje_za_prijem_voznji);
+//		
+//		taxi_sluzba.dodajDispecera(dispecer1);
+//		taxi_sluzba.dodajDispecera(dispecer2);
+		System.out.println("Taxi je: " + taxi_sluzba);
+//		taxi_sluzba.cuvanjeDispecera(DISPECER_FAJL);
 		
 	}
 

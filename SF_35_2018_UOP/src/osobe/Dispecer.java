@@ -1,120 +1,77 @@
 package osobe;
 
-public class Dispecer {
+public class Dispecer extends Korisnik {
+
+	private int id;
+	private double plata;
+	private String telefonska_linija;
+	private Odeljenje odeljenje;
 	
-	private String korIme;
-	private String lozinka;
-	private String ime;
-	private String prezime;
-	private String jmbg;
-	private String adresa;
-	private Pol pol;
-	private String brTelefona;
 	
 	
 	public Dispecer() {
-		this.ime = "";
-		this.prezime = "";
-		this.pol = Pol.ZENSKI;
-		this.korIme = "";
-		this.lozinka = "";
-		this.jmbg = "";
-		this.adresa = "";
-		this.brTelefona = "";
-
-
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	public Dispecer(String korIme, String lozinka, String ime, String prezime, String jmbg, String adresa, Pol pol,
-			String brTelefona) {
-		super();
-		this.korIme = korIme;
-		this.lozinka = lozinka;
-		this.ime = ime;
-		this.prezime = prezime;
-		this.jmbg = jmbg;
-		this.adresa = adresa;
-		this.pol = pol;
-		this.brTelefona = brTelefona;
+			int id, double plata, String telefonska_linija, Odeljenje odeljenje) {
+		super(korIme, lozinka, ime, prezime, jmbg, adresa, pol);
+		this.id = id;
+		this.plata = plata;
+		this.telefonska_linija = telefonska_linija;
+		this.odeljenje = odeljenje;
 	}
 
-	public String getKorIme() {
-		return korIme;
+	public long getId() {
+		return id;
 	}
 
-	public void setKorIme(String korIme) {
-		this.korIme = korIme;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public String getLozinka() {
-		return lozinka;
+	public double getPlata() {
+		return plata;
 	}
-
-	public void setLozinka(String lozinka) {
-		this.lozinka = lozinka;
+	
+	public void setPlata(double plata) {
+		this.plata = plata;
 	}
-
-	public String getIme() {
-		return ime;
+	
+	public String getTelefonska_linija() {
+		return telefonska_linija;
 	}
-
-	public void setIme(String ime) {
-		this.ime = ime;
+	
+	public void setTelefonska_linija(String telefonska_linija) {
+		this.telefonska_linija = telefonska_linija;
 	}
-
-	public String getPrezime() {
-		return prezime;
+	
+	public Odeljenje getOdeljenje() {
+		return odeljenje;
 	}
-
-	public void setPrezime(String prezime) {
-		this.prezime = prezime;
-	}
-
-	public String getJmbg() {
-		return jmbg;
-	}
-
-	public void setJmbg(String jmbg) {
-		this.jmbg = jmbg;
-	}
-
-	public String getAdresa() {
-		return adresa;
-	}
-
-	public void setAdresa(String adresa) {
-		this.adresa = adresa;
-	}
-
-	public Pol getPol() {
-		return pol;
-	}
-
-	public void setPol(Pol pol) {
-		this.pol = pol;
-	}
-
-	public String getBrTelefona() {
-		return brTelefona;
-	}
-
-	public void setBrTelefona(String brTelefona) {
-		this.brTelefona = brTelefona;
+	
+	public void setOdeljenje(Odeljenje odeljenje) {
+		this.odeljenje = odeljenje;
 	}
 
 	@Override
 	public String toString() {
-		return "Dispeceri [korIme=" + korIme + ", lozinka=" + lozinka + ", ime=" + ime + ", prezime=" + prezime
-				+ ", jmbg=" + jmbg + ", adresa=" + adresa + ", pol=" + pol + ", brTelefona=" + brTelefona + "]";
+		return "Dispecer [id=" + id + ", plata=" + plata + ", telefonska_linija=" + telefonska_linija + ", odeljenje="
+				+ odeljenje + ", getKorIme()=" + getKorIme() + ", Lozinka" + getLozinka() + ", getIme()="
+				+ getIme() + ", getPrezime()=" + getPrezime() + ", getJmbg()=" + getJmbg() + ", getAdresa()="
+				+ getAdresa() + ", getPol()=" + getPol() + ", toString()=" + super.toString() + ", getClass()="
+				+ getClass() + ", hashCode()=" + hashCode() + "]";
 	}
 
-	//OVO POGLEDAJ DA LI JE DOBRO U TAXI_SLUZBA.JAVA KOD DISPECERI LOGIN ISOBRISAN
-	public boolean isObrisan() {
-		// TODO Auto-generated method stub
-		return false;
-	}
 	
-	
+//	//OVO POGLEDAJ DA LI JE DOBRO U TAXI_SLUZBA.JAVA KOD DISPECERI LOGIN ISOBRISAN
+//	public boolean isObrisan() {
+//		// TODO Auto-generated method stub
+//		return false;
+//	}
+//	
+//	
 }
 
 
