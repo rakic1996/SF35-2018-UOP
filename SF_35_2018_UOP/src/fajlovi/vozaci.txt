@@ -1,1 +1,2 @@
-001|marko|markovic|markom|678
+Petarp|abc|Petar|Petrovic|MUSKI|1000.0||Mihajla Pupina 85343471|1000.01automobil.Automobil@5c8da962
+Lukal|567|Luka|Lukic|MUSKI|1500.0||Bul Oslobodjenja 4586746342|1500.01automobil.Automobil@2c13da15

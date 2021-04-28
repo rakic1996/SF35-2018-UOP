@@ -2,8 +2,9 @@ package automobil;
 
 public class Automobil {
 	
+	private int id;
 	private String model;
-	private String poizvodjac;
+	private String proizvodjac;
 	private int godProizvodnje;
 	private String registracija;
 	private String brVozila;
@@ -12,19 +13,47 @@ public class Automobil {
 
    	public Automobil() {
    		this.model = "";
-   		this.poizvodjac = "";
+   		this.proizvodjac = "";
    		this.registracija = "";
    		this.brVozila = "";
    		
    	}
 
-	public Automobil(String model, String poizvodjac, String godProizvodnje, String registracija, String brVozila,
-			String vrstaA) {
+	public Automobil(int id, String model, String poizvodjac, int godProizvodnje, String registracija, String brVozila,
+			VrstaAutomobila vrstaAutomobila) {
 		super();
+		this.id = id;
 		this.model = model;
-		this.poizvodjac = poizvodjac;
+		this.proizvodjac = poizvodjac;
+		this.godProizvodnje = godProizvodnje;
 		this.registracija = registracija;
 		this.brVozila = brVozila;
+		this.vrstaAutomobila = vrstaAutomobila;
+	}
+
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getGodProizvodnje() {
+		return godProizvodnje;
+	}
+
+	public void setGodProizvodnje(int godProizvodnje) {
+		this.godProizvodnje = godProizvodnje;
+	}
+
+	public VrstaAutomobila getVrstaAutomobila() {
+		return vrstaAutomobila;
+	}
+
+	public void setVrstaAutomobila(VrstaAutomobila vrstaAutomobila) {
+		this.vrstaAutomobila = vrstaAutomobila;
 	}
 
 	public String getModel() {
@@ -35,12 +64,12 @@ public class Automobil {
 		this.model = model;
 	}
 
-	public String getPoizvodjac() {
-		return poizvodjac;
+	public String getProizvodjac() {
+		return proizvodjac;
 	}
 
-	public void setPoizvodjac(String poizvodjac) {
-		this.poizvodjac = poizvodjac;
+	public void setProizvodjac(String proizvodjac) {
+		this.proizvodjac = proizvodjac;
 	}
 
 	public String getRegistracija() {
@@ -58,4 +87,7 @@ public class Automobil {
 	public void setBrVozila(String brVozila) {
 		this.brVozila = brVozila;
 	}
+	
+	
+	
 }

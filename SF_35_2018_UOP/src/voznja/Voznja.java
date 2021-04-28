@@ -1,14 +1,14 @@
 package voznja;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import osobe.Musterija;
 import osobe.Vozac;
 
 public class Voznja {
 	
-	private long id;
-	private Date datum_porudzbine;
+	private int id;
+	private LocalDateTime datum_porudzbine;
 	private String adresa_polaska;
 	private String adresa_destinacije;
 	private Musterija musterija;
@@ -17,7 +17,7 @@ public class Voznja {
 	private double trajanje_voznje;
 	private StatusVoznje status_voznje;
 	
-	public Voznja(long id, Date datum_porudzbine, String adresa_polaska, String adresa_destinacije, Musterija musterija,
+	public Voznja(int id, LocalDateTime datum_porudzbine, String adresa_polaska, String adresa_destinacije, Musterija musterija,
 			Vozac vozac, double predjeni_km, double trajanje_voznje, StatusVoznje status_voznje) {
 		super();
 		this.id = id;
@@ -35,15 +35,15 @@ public class Voznja {
 		return id;
 	}
 	
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
-	public Date getDatum_porudzbine() {
+	public LocalDateTime getDatum_porudzbine() {
 		return datum_porudzbine;
 	}
 	
-	public void setDatum_porudzbine(Date datum_porudzbine) {
+	public void setDatum_porudzbine(LocalDateTime datum_porudzbine) {
 		this.datum_porudzbine = datum_porudzbine;
 	}
 	public String getAdresa_polaska() {
@@ -102,7 +102,13 @@ public class Voznja {
 	public void setStatus_voznje(StatusVoznje status_voznje) {
 		this.status_voznje = status_voznje;
 	}
-	
-	
-}
 
+	@Override
+	public String toString() {
+		return "Voznja id: " + id + "\n" + "Datum i vreme porudzbine: " + datum_porudzbine + "\n" + "Adresa polaska: " + adresa_polaska
+				+ "\n" + "Adresa destinacije: " + adresa_destinacije + "\n" +  "Musterija= " + musterija + "\n" + "Vozac: " + vozac
+				+ "\n" + "Predjeni kilometri: " + predjeni_km + "\n" +  "Trajanje voznje: " + trajanje_voznje + "\n" + "Status voznje: "
+				+ status_voznje + "\n" + "getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
+				+ super.toString() + "\n";
+	}
+}

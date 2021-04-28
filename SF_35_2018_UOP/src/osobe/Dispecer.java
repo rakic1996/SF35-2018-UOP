@@ -57,11 +57,11 @@ public class Dispecer extends Korisnik {
 
 	@Override
 	public String toString() {
-		return "Dispecer [id=" + id + ", plata=" + plata + ", telefonska_linija=" + telefonska_linija + ", odeljenje="
-				+ odeljenje + ", getKorIme()=" + getKorIme() + ", Lozinka" + getLozinka() + ", getIme()="
-				+ getIme() + ", getPrezime()=" + getPrezime() + ", getJmbg()=" + getJmbg() + ", getAdresa()="
-				+ getAdresa() + ", getPol()=" + getPol() + ", toString()=" + super.toString() + ", getClass()="
-				+ getClass() + ", hashCode()=" + hashCode() + "]";
+		return "Dispecer id:" + id +  "\n" + "Plata:" + plata + "\n" + "Telefonska_linija:" + telefonska_linija + "\n" + "Odeljenje:" + "\n"
+				+ odeljenje + "Korisnicko ime:" + "\n" + getKorIme() + "Lozinka:" + "\n" +  getLozinka() + "Ime:" + "\n"
+				+ getIme() + "Prezime:" + "\n" + getPrezime() + "\n" + "Jmbg:" + "\n" + getJmbg() + "Adresa:" + "\n"
+				+ getAdresa() + "Pol:" + "\n" + getPol() + " toString()=" + super.toString() + "s getClass()="
+				+ getClass() + " hashCode()=" + hashCode() + "]";
 	}
 
 	
