@@ -83,8 +83,9 @@ public class Korisnik {
 
 	@Override
 	public String toString() {
-		return "Korisnik [korIme=" + korIme + ", lozinka=" + lozinka + ", ime=" + ime + ", prezime=" + prezime
-				+ ", jmbg=" + jmbg + ", adresa=" + adresa + ", pol=" + pol + "]";
+		return "Korisnicko ime:  " + korIme + "\n" + "Lozinka:" + lozinka + "\n" 
+				+ "Ime:" + ime + "Prezime:" + prezime + "\n" 
+				+ "Jmbg: " + jmbg + "\n" + "Adresa=" + adresa + "Pol:" + pol + "\n";
 	}
 	
 }

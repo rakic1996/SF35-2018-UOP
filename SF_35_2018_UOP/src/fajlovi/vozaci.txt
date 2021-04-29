@@ -1,2 +1,16 @@
-Petarp|abc|Petar|Petrovic|MUSKI|1000.0||Mihajla Pupina 85343471|1000.01automobil.Automobil@5c8da962
-Lukal|567|Luka|Lukic|MUSKI|1500.0||Bul Oslobodjenja 4586746342|1500.01automobil.Automobil@2c13da15
+Petarp|abc|Petar|Petrovic|MUSKI|1000.0||Mihajla Pupina 85343471|1000.011
+Model:a3
+Proizvodjac:Audi
+Godina proizvodnje: 2016
+Registarska oznaka: NS223TX
+Broj vozila: 1
+Vrsta automobila: putnicki
+
+Lukal|567|Luka|Lukic|MUSKI|1500.0||Bul Oslobodjenja 4586746342|1500.011
+Model:Vento
+Proizvodjac:Mercedes
+Godina proizvodnje: 2017
+Registarska oznaka: NS768TX
+Broj vozila: 2
+Vrsta automobila: kombi
+

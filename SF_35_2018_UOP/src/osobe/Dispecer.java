@@ -57,21 +57,11 @@ public class Dispecer extends Korisnik {
 
 	@Override
 	public String toString() {
-		return "Dispecer id:" + id +  "\n" + "Plata:" + plata + "\n" + "Telefonska_linija:" + telefonska_linija + "\n" + "Odeljenje:" + "\n"
-				+ odeljenje + "Korisnicko ime:" + "\n" + getKorIme() + "Lozinka:" + "\n" +  getLozinka() + "Ime:" + "\n"
-				+ getIme() + "Prezime:" + "\n" + getPrezime() + "\n" + "Jmbg:" + "\n" + getJmbg() + "Adresa:" + "\n"
-				+ getAdresa() + "Pol:" + "\n" + getPol() + " toString()=" + super.toString() + "s getClass()="
-				+ getClass() + " hashCode()=" + hashCode() + "]";
+		return "Dispecer id:" + id +  "\n" + "Plata:" + plata + "\n" + "Telefonska_linija:" + telefonska_linija + "\n" + "Odeljenje:"
+				+ odeljenje + "\n" + "Korisnicko ime:" + getKorIme() + "\n" + "Lozinka:"  +  getLozinka() + "\n" + "Ime:"
+				+ getIme() + "\n" +"Prezime:" + getPrezime() + "\n" + "Jmbg:" + getJmbg() + "\n" + "Adresa:" 
+				+ getAdresa() + "\n" + "Pol: " +  getPol() + "\n";
+
 	}
-
-	
-//	//OVO POGLEDAJ DA LI JE DOBRO U TAXI_SLUZBA.JAVA KOD DISPECERI LOGIN ISOBRISAN
-//	public boolean isObrisan() {
-//		// TODO Auto-generated method stub
-//		return false;
-//	}
-//	
-//	
 }
-
 

@@ -87,7 +87,12 @@ public class Automobil {
 	public void setBrVozila(String brVozila) {
 		this.brVozila = brVozila;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return  id + "\n" + "Model:" + model + "\n" + "Proizvodjac:" + proizvodjac + "\n" +  "Godina proizvodnje: "
+				+ godProizvodnje + "\n" +  "Registarska oznaka: " + registracija + "\n" + "Broj vozila: " + brVozila + "\n" + "Vrsta automobila: "
+				+ vrstaAutomobila + "\n";
+	}
 	
 }

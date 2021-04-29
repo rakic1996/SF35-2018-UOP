@@ -440,9 +440,11 @@ public class Taxi_sluzba {
 
 	@Override
 	public String toString() {
-		return "Taxi_sluzba id: " +  id + "\n" + " PIB: "  + pib + "\n" + " Naziv: "  + naziv + "\n" + " Adresa: "  + adresa + "\n" +  " Cena starta: " +
-				+ cena_start + "\n" + " Cena po kilometru: " + cena_km + "\n"  + " Dispeceri: " + dispeceri + "\n" + " Musterije: "  + musterije
-				+ "\n" + " Vozaci: "  + vozaci + "\n";
+		return "Taxi_sluzba id: " +  id + "\n" + "PIB: " + pib + "\n" + "Naziv: "  + naziv + "\n" 
+				+ "Adresa: "  + adresa + "\n" +  "Cena starta: " +
+				+ cena_start + "\n" + "Cena po kilometru: " 
+				+ cena_km + "\n"  + "Dispeceri: " + dispeceri + "\n" + "Musterije: "  + musterije
+				+ "\n" + "Vozaci: "  + vozaci + "\n";
 	}
 
 

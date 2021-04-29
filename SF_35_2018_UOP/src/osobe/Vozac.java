@@ -63,9 +63,11 @@ public class Vozac extends Korisnik {
 		return "Vozac id: " + id + "\n" + "Plata: " + plata + "\n" + "Clanska karta broj: " + clanska_karta + "\n" + "Automobil: " + automobil +"\n" 
 				+ "Koisnicko ime: " + getKorIme() + "\n" + "Lozinka: " + getLozinka() + "\n" + "Ime: " + getIme() + "\n" 
 				+ "Prezime: " + getPrezime() + "\n" + "Jmbg: " + getJmbg() + "\n" + "Adresa: " + getAdresa() + "\n" 
-				+ "Pol()=" + getPol() + "\n" + ", toString()=" + super.toString() + "getClass()=" + getClass()
-				+ "hashCode()=" + hashCode() + "\n" ;
+				+ "Pol()=" + getPol() + "\n";
 	}
 
-	
-}
+}	
+
+
+//  + "toString" + super.toString() + "s getClass()="
+//		+ getClass() + "\n" + " hashCode()=" + hashCode() + "\n";

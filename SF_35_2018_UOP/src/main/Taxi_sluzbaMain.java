@@ -35,6 +35,8 @@ public class Taxi_sluzbaMain {
 		Dispecer dispecer1 = new Dispecer("Perap", "123", "Pera", "Peric", "123456", "Narodnog fronta 2", Pol.MUSKI,
 				1, 1000.0, "0211234", Odeljenje.Odeljenje_za_prijem_voznji);
 		System.out.println("Dipsecer je: " + dispecer1);
+		
+		
 		Dispecer dispecer2 = new Dispecer("Mikam", "456", "Mika", "Mikic", "978545", "Modene 2", Pol.MUSKI,
 				2, 2000.0, "0211234", Odeljenje.Odeljenje_za_prijem_voznji);
 		
