@@ -57,7 +57,7 @@ public class Dispecer extends Korisnik {
 
 	@Override
 	public String toString() {
-		return "Dispecer id:" + id +  "\n" + "Plata:" + plata + "\n" + "Telefonska_linija:" + telefonska_linija + "\n" + "Odeljenje:"
+		return  "\n" + "Id:" + id +  "\n" + "Plata:" + plata + "\n" + "Telefonska_linija:" + telefonska_linija + "\n" + "Odeljenje:"
 				+ odeljenje + "\n" + "Korisnicko ime:" + getKorIme() + "\n" + "Lozinka:"  +  getLozinka() + "\n" + "Ime:"
 				+ getIme() + "\n" +"Prezime:" + getPrezime() + "\n" + "Jmbg:" + getJmbg() + "\n" + "Adresa:" 
 				+ getAdresa() + "\n" + "Pol: " +  getPol() + "\n";

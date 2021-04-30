@@ -420,6 +420,7 @@ public class Taxi_sluzba {
 	public void setMusterije(ArrayList<Musterija> musterije) {
 		this.musterije = musterije;
 	}
+	
 
 
 	public void setVozaci(ArrayList<Vozac> vozaci) {
@@ -437,17 +438,57 @@ public class Taxi_sluzba {
 	public void obrisiDispecere(Dispecer dispeceri) {
 		this.dispeceri.remove(dispeceri);
 	}
+	
+	//////////////////////////////////////
 
-	@Override
-	public String toString() {
-		return "Taxi_sluzba id: " +  id + "\n" + "PIB: " + pib + "\n" + "Naziv: "  + naziv + "\n" 
-				+ "Adresa: "  + adresa + "\n" +  "Cena starta: " +
-				+ cena_start + "\n" + "Cena po kilometru: " 
-				+ cena_km + "\n"  + "Dispeceri: " + dispeceri + "\n" + "Musterije: "  + musterije
-				+ "\n" + "Vozaci: "  + vozaci + "\n";
+	public ArrayList<Voznja> getVoznje() {
+		return voznje;
 	}
 
 
+
+
+	public void setVoznje(ArrayList<Voznja> voznje) {
+		this.voznje = voznje;
+	}
+
+
+
+
+	public ArrayList<Automobil> getAutomobili() {
+		return automobili;
+	}
+
+
+
+
+	public void setAutomobili(ArrayList<Automobil> automobili) {
+		this.automobili = automobili;
+	}
+
+
+
+
+	public ArrayList<Musterija> getMusterije() {
+		return musterije;
+	}
+
+
+
+
+	public ArrayList<Vozac> getVozaci() {
+		return vozaci;
+	}
+
+
+
+
+	@Override
+	public String toString() {
+		return "Taxi_sluzba [id=" + id + ", pib=" + pib + ", naziv=" + naziv + ", adresa=" + adresa + ", cena_start="
+				+ cena_start + ", cena_km=" + cena_km + ", dispeceri=" + dispeceri + ", musterije=" + musterije
+				+ ", vozaci=" + vozaci + ", voznje=" + voznje + ", automobili=" + automobili + "]";
+	}
 
 		
 }

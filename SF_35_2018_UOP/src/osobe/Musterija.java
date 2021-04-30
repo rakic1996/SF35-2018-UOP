@@ -31,7 +31,7 @@ public class Musterija extends Korisnik {
 
 	@Override
 	public String toString() {
-		return "Musterija id: " + id + "\n" + "Korisnicko ime: " + getKorIme() + "\n" + "Lozinka: " + getLozinka() + "\n" + "Ime: "
+		return  "\n" +"Id: " + id + "\n" + "Korisnicko ime: " + getKorIme() + "\n" + "Lozinka: " + getLozinka() + "\n" + "Ime: "
 				+ getIme() + "\n" + "Prezime: " + getPrezime() + "\n" + "Jmbg: " + getJmbg() + "\n" + "Adresa: "
 				+ getAdresa() + "\n" + "Pol: " + getPol() + "\n";
 	}

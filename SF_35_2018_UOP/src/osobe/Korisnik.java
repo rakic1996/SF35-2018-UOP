@@ -1,6 +1,6 @@
 package osobe;
 
-public class Korisnik {
+public class Korisnik  {
 	
 	private String korIme;
 	private String lozinka;
@@ -23,7 +23,8 @@ public class Korisnik {
 		this.jmbg = jmbg;
 		this.adresa = adresa;
 		this.pol = pol;
-	}
+ 	
+ 	}
 
 	public String getKorIme() {
 		return korIme;
@@ -80,12 +81,14 @@ public class Korisnik {
 	public void setPol(Pol pol) {
 		this.pol = pol;
 	}
+	
+
 
 	@Override
 	public String toString() {
 		return "Korisnicko ime:  " + korIme + "\n" + "Lozinka:" + lozinka + "\n" 
 				+ "Ime:" + ime + "Prezime:" + prezime + "\n" 
-				+ "Jmbg: " + jmbg + "\n" + "Adresa=" + adresa + "Pol:" + pol + "\n";
+				+ "Jmbg: " + jmbg + "\n" + "Adresa: " + adresa + "Pol:" + pol + "\n";
 	}
 	
 }

@@ -105,10 +105,12 @@ public class Voznja {
 
 	@Override
 	public String toString() {
-		return "Voznja id: " + id + "\n" + "Datum i vreme porudzbine: " + datum_porudzbine + "\n" + "Adresa polaska: " + adresa_polaska
+		return  "Id: " + id + "\n" + "Datum i vreme porudzbine: " + datum_porudzbine + "\n" + "Adresa polaska: " + adresa_polaska
 				+ "\n" + "Adresa destinacije: " + adresa_destinacije + "\n" +  "Musterija= " + musterija + "\n" + "Vozac: " + vozac
 				+ "\n" + "Predjeni kilometri: " + predjeni_km + "\n" +  "Trajanje voznje: " + trajanje_voznje + "\n" + "Status voznje: "
-				+ status_voznje + "\n" + "getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
-				+ super.toString() + "\n";
+				+ status_voznje + "\n";
 	}
 }
+
+// + "getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
+//+ super.toString() + "\n";

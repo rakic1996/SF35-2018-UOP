@@ -60,10 +60,10 @@ public class Vozac extends Korisnik {
 
 	@Override
 	public String toString() {
-		return "Vozac id: " + id + "\n" + "Plata: " + plata + "\n" + "Clanska karta broj: " + clanska_karta + "\n" + "Automobil: " + automobil +"\n" 
+		return  "\n" + "Vozac: " + id + "\n" + "Plata: " + plata + "\n" + "Clanska karta broj: " + clanska_karta + "\n" + "Automobil: " + automobil +"\n" 
 				+ "Koisnicko ime: " + getKorIme() + "\n" + "Lozinka: " + getLozinka() + "\n" + "Ime: " + getIme() + "\n" 
 				+ "Prezime: " + getPrezime() + "\n" + "Jmbg: " + getJmbg() + "\n" + "Adresa: " + getAdresa() + "\n" 
-				+ "Pol()=" + getPol() + "\n";
+				+ "Pol: " + getPol() + "\n";
 	}
 
 }	
