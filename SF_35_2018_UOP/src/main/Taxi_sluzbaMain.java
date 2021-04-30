@@ -65,6 +65,7 @@ public class Taxi_sluzbaMain {
 		taxi_sluzba.dodajMusteriju(musterija2);
 		System.out.println("\n");
 		
+		
 		taxi_sluzba.cuvanjeMusterije(MUSTERRIJA_FAJL);
 		System.out.println("\n");
 		
