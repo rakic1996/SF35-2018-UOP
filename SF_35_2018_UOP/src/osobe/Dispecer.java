@@ -14,6 +14,7 @@ public class Dispecer extends Korisnik {
 		// TODO Auto-generated constructor stub
 	}
 
+	
 	public Dispecer(String korIme, String lozinka, String ime, String prezime, String jmbg, String adresa, Pol pol,
 			int id, double plata, String telefonska_linija, Odeljenje odeljenje) {
 		super(korIme, lozinka, ime, prezime, jmbg, adresa, pol);
