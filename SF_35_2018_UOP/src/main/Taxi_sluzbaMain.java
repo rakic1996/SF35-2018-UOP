@@ -14,19 +14,25 @@ import voznja.Voznja;
 
 import automobil.Automobil;
 import automobil.VrstaAutomobila;
+import gui.LoginProzor;
 
-public class Taxi_sluzbaMain {
+	public class Taxi_sluzbaMain {
+		private static String DISPECER_FAJL = "dispeceri.txt";
+		private static String MUSTERRIJA_FAJL = "musterije.txt";
+		private static String VOZAC_FAJL = "vozaci.txt";
+		private static String VOZNJA_FAJL = "voznje.txt";
 	
-
-	private static String DISPECER_FAJL = "dispeceri.txt";
-	private static String MUSTERRIJA_FAJL = "musterije.txt";
-	private static String VOZAC_FAJL = "vozaci.txt";
-	private static String VOZNJA_FAJL = "voznje.txt";
 	
 	public static void main(String[] args) {
-		
+		Taxi_sluzba taxi_sluzba = new Taxi_sluzba();
+		taxi_sluzba.ucitajDispecere(DISPECER_FAJL);
+		taxi_sluzba.ucitajMusterije(MUSTERRIJA_FAJL);
+		taxi_sluzba.ucitajVoznje(VOZNJA_FAJL);
+		taxi_sluzba.ucitajVozace(VOZAC_FAJL);
+
 		
 
+/*
 		Taxi_sluzba taxi_sluzba = new Taxi_sluzba(1, 123, "Crveni taxi", "Fruskogorska 1", 90, 40 );
 		System.out.println(taxi_sluzba.toString());
 		System.out.println("\n");
@@ -37,7 +43,7 @@ public class Taxi_sluzbaMain {
 
 		//taxi_sluzba.ucitajMusterije(MUSTERRIJA_FAJL);
 		
-		
+
 		Dispecer dispecer1 = new Dispecer("Perap", "123", "Pera", "Peric", "123456", "Narodnog fronta 2", Pol.MUSKI,
 				1, 1000.0, "0211234", Odeljenje.Odeljenje_za_prijem_voznji);
 		System.out.println("Dipsecer je: " + dispecer1);
@@ -94,8 +100,16 @@ public class Taxi_sluzbaMain {
 		
 		System.out.println("\n TAXI: "+ taxi_sluzba.toString());
 		
+*/
+		
+		
 
+		
+		LoginProzor lp = new LoginProzor(taxi_sluzba);
+		lp.setVisible(true);
+		
 	}
+	
 		
 }
 		

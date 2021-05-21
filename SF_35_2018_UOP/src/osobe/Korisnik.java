@@ -1,6 +1,6 @@
 package osobe;
 
-public class Korisnik  {
+public abstract class Korisnik  {
 	
 	private String korIme;
 	private String lozinka;
@@ -11,6 +11,14 @@ public class Korisnik  {
 	private Pol pol;
 	
 	public Korisnik() {
+		this.korIme = "";
+		this.lozinka = "";
+		this.ime = "";
+		this.prezime = "";
+		this.jmbg = "";
+		this.adresa = "";
+		this.pol = pol.MUSKI;
+		
 		
 	}
 	

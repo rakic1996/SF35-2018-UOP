@@ -16,6 +16,8 @@ public class Automobil {
    		this.proizvodjac = "";
    		this.registracija = "";
    		this.brVozila = "";
+   		//this.vrstaAutomobila = "";
+
    		
    	}
 

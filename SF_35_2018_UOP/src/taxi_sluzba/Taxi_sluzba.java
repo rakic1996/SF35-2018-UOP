@@ -126,6 +126,16 @@ public class Taxi_sluzba {
 			e.printStackTrace();
 		}
 	}
+		
+	public Dispecer login(String korIme, String lozinka) {
+		for(Dispcer disepcer : dispeceri) {
+			if(dispecer.getKorIme().equalsIgnoreCase(korIme) &&
+					dispecer.getLozinka().equals(lozinka) && !dispecer.isObrisan()) {
+				return dispecer;
+			
+		}
+	}
+	}
 
 
 
@@ -167,6 +177,7 @@ public class Taxi_sluzba {
 				String ime = split[2];
 				String prezime = split[3];
 				String jmbg = split[4];
+				String polString = split[4];
 				String adresa = split[5];
 				String polString = split[6];
 				Pol pol = Pol.valueOf(polString);
@@ -206,6 +217,37 @@ public class Taxi_sluzba {
 		} catch (IOException e) {
 			System.out.println("Greska prilikom snimanja vozaca.");
 		}
+	}
+		
+		public void ucitajVozace(String imeFajla) {
+			try {
+				File file = new File("src/fajlovi/" + imeFajla);
+				BufferedReader reader = new BufferedReader(new FileReader(file));
+				String line;
+				while ((line = reader.readLine()) != null) {
+					String[] split = line.split("\\|");
+					String korIme = split[0];
+					String lozinka = split[1];
+					String ime = split[2];
+					String prezime = split[3];
+					String jmbg = split[4];
+					String adresa = split[5];
+					String polString = split[4];
+					Pol pol = Pol.valueOf(polString);
+					String idString = split[6];
+					int id = Integer.parseInt(idString);
+					double plata = Double.parseDouble(split[7]);
+					int clanska_karta = Integer.parseInt(clanska_kartaString);
+					Automobil automobil = Automobil.valueOf(automobilString);
+					Vozac vozac = new Vozac(korIme, lozinka, ime, prezime,
+							jmbg, adresa, pol, id, plata, clanska_karta, automobil);
+					this.vozaci.add(vozac);
+				}
+				reader.close();
+			} catch (IOException e) {
+				System.out.println("Greska prilikom snimanja podataka o vozacima");
+				e.printStackTrace();
+			}
 	}
 		
 	
