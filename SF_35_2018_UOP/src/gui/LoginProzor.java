@@ -9,6 +9,7 @@ import javax.swing.JTextField;
 import com.sun.tools.javac.util.Log;
 
 import net.miginfocom.swing.MigLayout;
+import osobe.Korisnik;
 import taxi_sluzba.Taxi_sluzba;
 
 import java.awt.event.ActionEvent;
@@ -67,8 +68,7 @@ public class LoginProzor extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				LoginProzor.this.dispose();
 				LoginProzor.this.setVisible(false);
-				
-				
+							
 			}
 		});
 		
@@ -80,11 +80,16 @@ public class LoginProzor extends JFrame {
 				String sifra = new String(pfPassword.getPassword()).trim();
 				
 				if(korisnickoIme.equals("") || sifra.equals("")) {
-					JOptionPane.showMessageDialog(null, "Nite uneli sve podatke za prijavu.", "Greska ", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Niste uneli sve podatke za prijavu.", "Greska ", JOptionPane.WARNING_MESSAGE);
 				}else {
+					Korisnik prijavljeni = taxi_sluzba.login(korisnickoIme, sifra);
+					if(prijavljeni == null) {
+						JOptionPane.showMessageDialog(null,  "pogresni login podaci", " Greska", JOptionPane.WARNING_MESSAGE);
+					}else {
+					System.out.println(prijavljeni);
+					}				
 				}
 			}
 		});
-		
 	}
 }

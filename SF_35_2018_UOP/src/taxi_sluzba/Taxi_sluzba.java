@@ -128,9 +128,9 @@ public class Taxi_sluzba {
 	}
 		
 	public Dispecer login(String korIme, String lozinka) {
-		for(Dispcer disepcer : dispeceri) {
+		for(Dispecer dispecer : dispeceri) {
 			if(dispecer.getKorIme().equalsIgnoreCase(korIme) &&
-					dispecer.getLozinka().equals(lozinka) && !dispecer.isObrisan()) {
+					dispecer.getLozinka().equals(lozinka) && !dispecer.isObrisan()) { //////////////////////////////////////////////////////////
 				return dispecer;
 			
 		}
