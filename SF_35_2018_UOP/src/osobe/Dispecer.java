@@ -15,13 +15,14 @@ public class Dispecer extends Korisnik {
 	}
 
 	
-	public Dispecer(String korIme, String lozinka, String ime, String prezime, String jmbg, String adresa, Pol pol,
+	public Dispecer(String korIme, String lozinka, String ime, String prezime, String jmbg, String adresa, Pol pol, String brTelefona, boolean obrisan,
 			int id, double plata, String telefonska_linija, Odeljenje odeljenje) {
-		super(korIme, lozinka, ime, prezime, jmbg, adresa, pol);
+		super(korIme, lozinka, ime, prezime, jmbg, adresa, pol, brTelefona);
 		this.id = id;
 		this.plata = plata;
 		this.telefonska_linija = telefonska_linija;
 		this.odeljenje = odeljenje;
+	
 	}
 
 	public long getId() {
@@ -61,7 +62,7 @@ public class Dispecer extends Korisnik {
 		return  "\n" + "Id:" + id +  "\n" + "Plata:" + plata + "\n" + "Telefonska_linija:" + telefonska_linija + "\n" + "Odeljenje:"
 				+ odeljenje + "\n" + "Korisnicko ime:" + getKorIme() + "\n" + "Lozinka:"  +  getLozinka() + "\n" + "Ime:"
 				+ getIme() + "\n" +"Prezime:" + getPrezime() + "\n" + "Jmbg:" + getJmbg() + "\n" + "Adresa:" 
-				+ getAdresa() + "\n" + "Pol: " +  getPol() + "\n";
+				+ getAdresa() + "\n" + "Pol: " +  getPol() + "\n" + getBrTelefona() + "\n";
 
 	}
 }

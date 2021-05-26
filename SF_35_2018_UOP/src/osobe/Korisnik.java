@@ -9,6 +9,9 @@ public abstract class Korisnik  {
 	private String jmbg;
 	private String adresa;
 	private Pol pol;
+	private String brTelefona;
+	private boolean obrisan; 
+	
 	
 	public Korisnik() {
 		this.korIme = "";
@@ -18,11 +21,13 @@ public abstract class Korisnik  {
 		this.jmbg = "";
 		this.adresa = "";
 		this.pol = pol.MUSKI;
+		this.brTelefona = "";
+		this.obrisan = false;
 		
 		
 	}
 	
- 	public Korisnik(String korIme, String lozinka, String ime, String prezime, String jmbg, String adresa, Pol pol) {
+ 	public Korisnik(String korIme, String lozinka, String ime, String prezime, String jmbg, String adresa, Pol pol, String brTelefona) {
 		super();
 		this.korIme = korIme;
 		this.lozinka = lozinka;
@@ -31,6 +36,10 @@ public abstract class Korisnik  {
 		this.jmbg = jmbg;
 		this.adresa = adresa;
 		this.pol = pol;
+		this.brTelefona = brTelefona;
+		this.obrisan = obrisan;
+		
+		
  	
  	}
 
@@ -90,13 +99,28 @@ public abstract class Korisnik  {
 		this.pol = pol;
 	}
 	
+	public String getBrTelefona() {
+		return brTelefona;
+	}
 
+	public void setBrTelefona(String brTelefona) {
+		this.brTelefona = brTelefona;
+	}
+		
+	public boolean isObrisan() {
+		return obrisan;
+	}
+
+	public void setObrisan(boolean obrisan) {
+		this.obrisan = obrisan;
+	}
 
 	@Override
 	public String toString() {
 		return "Korisnicko ime:  " + korIme + "\n" + "Lozinka:" + lozinka + "\n" 
 				+ "Ime:" + ime + "Prezime:" + prezime + "\n" 
-				+ "Jmbg: " + jmbg + "\n" + "Adresa: " + adresa + "Pol:" + pol + "\n";
+				+ "Jmbg: " + jmbg + "\n" + "Adresa: " + adresa + "Pol:" + pol + "\n"
+				+ "Broj telefona: " + "Obrisan" + obrisan + "\n";
 	}
 	
 }

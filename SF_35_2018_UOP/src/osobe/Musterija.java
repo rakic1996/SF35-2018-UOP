@@ -23,8 +23,8 @@ public class Musterija extends Korisnik {
 	
 
 
-	public Musterija(String korIme, String lozinka, String ime, String prezime, String jmbg, String adresa, Pol pol, int id) {
-		super(korIme, lozinka, ime, prezime, jmbg, adresa, pol);
+	public Musterija(String korIme, String lozinka, String ime, String prezime, String jmbg, String adresa, Pol pol, String brTelefona, boolean obrisan, int id) {
+		super(korIme, lozinka, ime, prezime, jmbg, adresa, pol, brTelefona);
 		this.id = id;
 	}
 
@@ -33,7 +33,7 @@ public class Musterija extends Korisnik {
 	public String toString() {
 		return  "\n" +"Id: " + id + "\n" + "Korisnicko ime: " + getKorIme() + "\n" + "Lozinka: " + getLozinka() + "\n" + "Ime: "
 				+ getIme() + "\n" + "Prezime: " + getPrezime() + "\n" + "Jmbg: " + getJmbg() + "\n" + "Adresa: "
-				+ getAdresa() + "\n" + "Pol: " + getPol() + "\n";
+				+ getAdresa() + "\n" + "Pol: " + getPol() + "\n" + getBrTelefona() + "\n";
 	}
 	
 }

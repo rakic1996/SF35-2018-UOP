@@ -7,16 +7,17 @@ public class Vozac extends Korisnik {
 	private long id;
 	private double plata;
 	private String clanska_karta;
-	private Automobil automobil;
+//	private Automobil automobil;
+	private int automobil;
 	
 	public Vozac() {
 		super();
 	}
 
 	
-	public Vozac(String korIme, String lozinka, String ime, String prezime, String jmbg, String adresa, Pol pol,
-			long id, double plata, String clanska_karta, Automobil automobil) {
-		super(korIme, lozinka, ime, prezime, jmbg, adresa, pol);
+	public Vozac(String korIme, String lozinka, String ime, String prezime, String jmbg, String adresa, Pol pol, String brTelefona, boolean obrisan,
+			long id, double plata, String clanska_karta, int automobil) {
+		super(korIme, lozinka, ime, prezime, jmbg, adresa, pol, brTelefona);
 		this.id = id;
 		this.plata = plata;
 		this.clanska_karta = clanska_karta;
@@ -49,11 +50,12 @@ public class Vozac extends Korisnik {
 		this.clanska_karta = clanska_karta;
 	}
 
-	public Automobil getAutomobil() {
+	public int getAutomobil() {
 		return automobil;
 	}
 
-	public void setAutomobil(Automobil automobil) {
+
+	public void setAutomobil(int automobil) {
 		this.automobil = automobil;
 	}
 
@@ -63,7 +65,8 @@ public class Vozac extends Korisnik {
 		return  "\n" + "Vozac: " + id + "\n" + "Plata: " + plata + "\n" + "Clanska karta broj: " + clanska_karta + "\n" + "Automobil: " + automobil +"\n" 
 				+ "Koisnicko ime: " + getKorIme() + "\n" + "Lozinka: " + getLozinka() + "\n" + "Ime: " + getIme() + "\n" 
 				+ "Prezime: " + getPrezime() + "\n" + "Jmbg: " + getJmbg() + "\n" + "Adresa: " + getAdresa() + "\n" 
-				+ "Pol: " + getPol() + "\n";
+				+ "Pol: " + getPol() + "\n"+ getBrTelefona() + "\n";
+	
 	}
 
 }	

@@ -6,8 +6,6 @@ import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import com.sun.tools.javac.util.Log;
-
 import net.miginfocom.swing.MigLayout;
 import osobe.Korisnik;
 import taxi_sluzba.Taxi_sluzba;
@@ -39,10 +37,11 @@ public class LoginProzor extends JFrame {
 		initGUI();
 		initActions();
 		pack();
+		System.out.println("asdasda");
 	}
 	
 	public void initGUI() {
-		MigLayout mig = new MigLayout("wrap 2", "[][]", "[]10[][]10");
+		MigLayout mig = new MigLayout("wrap 2", "[][]", "[]10[][]10[]");
 		setLayout(mig);
 		
 		
@@ -55,10 +54,10 @@ public class LoginProzor extends JFrame {
 		add(btnOk, "split 2");
 		add(btnCancel);
 		
-		getRootPane().setDefaultButton(btnOk);
 		
-		
-		
+		txtKorIme.setText("petarp");
+		pfPassword.setText("1234");
+		getRootPane().setDefaultButton(btnOk);	
 		
 	}
 	
@@ -72,7 +71,6 @@ public class LoginProzor extends JFrame {
 			}
 		});
 		
-
 		btnOk.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
