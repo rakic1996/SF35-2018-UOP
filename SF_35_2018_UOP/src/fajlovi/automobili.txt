@@ -1,1 +1,2 @@
-a3|Audi|2016|NS223TX|1|putnicki
+a3|Audi|2016|NS223TX|1|putnicki|1
+Vento|Mercedes|2017|NS768TX|2|kombi|2

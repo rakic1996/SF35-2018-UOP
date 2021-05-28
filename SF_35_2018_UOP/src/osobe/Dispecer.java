@@ -7,8 +7,6 @@ public class Dispecer extends Korisnik {
 	private String telefonska_linija;
 	private Odeljenje odeljenje;
 	
-	
-	
 	public Dispecer() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -17,7 +15,7 @@ public class Dispecer extends Korisnik {
 	
 	public Dispecer(String korIme, String lozinka, String ime, String prezime, String jmbg, String adresa, Pol pol, String brTelefona, boolean obrisan,
 			int id, double plata, String telefonska_linija, Odeljenje odeljenje) {
-		super(korIme, lozinka, ime, prezime, jmbg, adresa, pol, brTelefona);
+		super(korIme, lozinka, ime, prezime, jmbg, adresa, pol, brTelefona, obrisan);
 		this.id = id;
 		this.plata = plata;
 		this.telefonska_linija = telefonska_linija;

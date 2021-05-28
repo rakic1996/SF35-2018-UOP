@@ -20,14 +20,12 @@ public abstract class Korisnik  {
 		this.prezime = "";
 		this.jmbg = "";
 		this.adresa = "";
-		this.pol = pol.MUSKI;
+		this.pol = Pol.MUSKI;
 		this.brTelefona = "";
 		this.obrisan = false;
-		
-		
 	}
 	
- 	public Korisnik(String korIme, String lozinka, String ime, String prezime, String jmbg, String adresa, Pol pol, String brTelefona) {
+ 	public Korisnik(String korIme, String lozinka, String ime, String prezime, String jmbg, String adresa, Pol pol, String brTelefona, boolean obrisan) {
 		super();
 		this.korIme = korIme;
 		this.lozinka = lozinka;
@@ -38,9 +36,6 @@ public abstract class Korisnik  {
 		this.pol = pol;
 		this.brTelefona = brTelefona;
 		this.obrisan = obrisan;
-		
-		
- 	
  	}
 
 	public String getKorIme() {

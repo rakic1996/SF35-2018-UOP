@@ -40,13 +40,11 @@ public class Taxi_sluzba {
 	private ArrayList<Automobil> automobili;
 
 	public Taxi_sluzba() {
-
 		this.dispeceri = new ArrayList<Dispecer>();
 		this.musterije = new ArrayList<Musterija>();
 		this.vozaci = new ArrayList<Vozac>();
 		this.voznje = new ArrayList<Voznja>();
 		this.automobili = new ArrayList<Automobil>();
-
 	}
 
 	public Taxi_sluzba(long id, int pib, String naziv, String adresa, int cena_start, int cena_km) {
@@ -64,6 +62,17 @@ public class Taxi_sluzba {
 		this.automobili = new ArrayList<Automobil>();
 
 	}
+	
+	public ArrayList<Dispecer> sviNeobrisaniDiseceri() {
+		ArrayList<Dispecer> neobrisani = new ArrayList<Dispecer>();
+		for (Dispecer dispecer : dispeceri) {
+			if(!dispecer.isObrisan()) {
+				neobrisani.add(dispecer);
+			}
+		}
+		return neobrisani;
+		
+	}
 
 	public void dodajDispecera(Dispecer dispecer) {
 		this.dispeceri.add(dispecer);
@@ -75,9 +84,10 @@ public class Taxi_sluzba {
 			String content = "";
 			for (Dispecer dispecer : dispeceri) {
 				content += dispecer.getKorIme() + "|" + dispecer.getLozinka() + "|" + dispecer.getIme() + "|"
-						+ dispecer.getPrezime() + "|" + dispecer.getPol() + "|" + dispecer.getId() + "|"
-						+ dispecer.getPlata() + "|" + dispecer.getTelefonska_linija() + "|" + dispecer.getOdeljenje()
-						+ "|" + dispecer.getAdresa() + "|" + dispecer.getJmbg() + "\n";
+						+ dispecer.getPrezime() + "|" + dispecer.getPol() + "|" + dispecer.getBrTelefona() + "|"
+						+ dispecer.isObrisan() + "|" + dispecer.getId() + "|"
+						+ dispecer.getPlata() + "|" + dispecer.getTelefonska_linija() + "|" + dispecer.getOdeljenje() + "|"
+						+ dispecer.getAdresa() + "|" + dispecer.getJmbg() + "\n";
 			}
 			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 			writer.write(content);
@@ -100,16 +110,18 @@ public class Taxi_sluzba {
 				String prezime = split[3];
 				String polString = split[4];
 				Pol pol = Pol.valueOf(polString);
-				String idString = split[5];
+				String brTelefona = split[5];
+				boolean obrisan = Boolean.parseBoolean(split[6]);
+				String idString = split[7];
 				int id = Integer.parseInt(idString);
-				double plata = Double.parseDouble(split[6]);
-				String telefonska_linija = split[7];
-				String odeljenjeString = split[8];
+				double plata = Double.parseDouble(split[8]);
+				String telefonska_linija = split[9];
+				String odeljenjeString = split[10];
 				Odeljenje odeljenje = Odeljenje.valueOf(odeljenjeString);
-				String adresa = split[9];
-				String jmbg = split[10];
-				Dispecer dispecer = new Dispecer(korIme, lozinka, ime, prezime, jmbg, adresa, pol, id, plata,
-						telefonska_linija, odeljenje);
+				String adresa = split[11];
+				String jmbg = split[12];
+				Dispecer dispecer = new Dispecer(korIme, lozinka, ime, prezime, jmbg,
+						adresa, pol, brTelefona, obrisan, id, plata,telefonska_linija, odeljenje);
 				this.dispeceri.add(dispecer);
 			}
 			reader.close();
@@ -131,6 +143,15 @@ public class Taxi_sluzba {
 			return dispecer;
 		}
 	 
+	public ArrayList<Musterija> sveNeobrisaneMuterije() {
+		ArrayList<Musterija> neobrisani = new ArrayList<Musterija>();
+		for (Musterija musterija : musterije) {
+			if(!musterija.isObrisan()) {
+				neobrisani.add(musterija);
+			}
+		}
+		return neobrisani;
+	}
 
 	public void dodajMusteriju(Musterija musterija) {
 		this.musterije.add(musterija);
@@ -143,7 +164,8 @@ public class Taxi_sluzba {
 			for (Musterija musterija : musterije) {
 				content += musterija.getKorIme() + "|" + musterija.getLozinka() + "|" + musterija.getIme() + "|"
 						+ musterija.getPrezime() + "|" + musterija.getJmbg() + "|" + musterija.getAdresa() + "|"
-						+ musterija.getPol() + "|" + musterija.getId() + "|" + "\n";
+						+ musterija.getPol() + "|" + musterija.getBrTelefona() + "|"
+						+ musterija.isObrisan() + "|" + musterija.getId() + "|" + "\n";
 			}
 			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 			writer.write(content);
@@ -167,10 +189,12 @@ public class Taxi_sluzba {
 				String jmbg = split[4];
 				String adresa = split[5];
 				String polString = split[6];
+				String brTelefona = split[7];
+				boolean obrisan = Boolean.parseBoolean(split[8]);
 				Pol pol = Pol.valueOf(polString);
-				String idString = split[7];
+				String idString = split[9];
 				int id = Integer.parseInt(idString);
-				Musterija musterija = new Musterija(korIme, lozinka, ime, prezime, jmbg, adresa, pol, id);
+				Musterija musterija = new Musterija(korIme, lozinka, ime, prezime, jmbg, adresa, pol, brTelefona, obrisan, id);
 				this.musterije.add(musterija);
 			}
 			reader.close();
@@ -178,7 +202,16 @@ public class Taxi_sluzba {
 			System.out.println("Greska prilikom snimanja podataka o musterijama");
 			e.printStackTrace();
 		}
+	}
 
+	public ArrayList<Vozac> sviNeobrisaniVozaci() {
+		ArrayList<Vozac> neobrisani = new ArrayList<Vozac>();
+		for (Vozac vozac : vozaci) {
+			if(!vozac.isObrisan()) {
+				neobrisani.add(vozac);
+			}
+		}
+		return neobrisani;
 	}
 
 	public void dodajVozace(Vozac vozac) {
@@ -191,9 +224,10 @@ public class Taxi_sluzba {
 			String content = "";
 			for (Vozac vozac : vozaci) {
 				content += vozac.getKorIme() + "|" + vozac.getLozinka() + "|" + vozac.getIme() + "|"
-						+ vozac.getPrezime() + "|" + vozac.getPol() + "|" + +vozac.getPlata() + "|" + "|"
-						+ vozac.getAdresa() + vozac.getJmbg() + vozac.getId() + "|" + vozac.getPlata()
-						+ vozac.getClanska_karta() + vozac.getAutomobil() + "\n";
+						+ vozac.getPrezime() + "|" + vozac.getPol() + "|" + vozac.getBrTelefona() + "|"
+						+ vozac.isObrisan() + "|" + +vozac.getPlata() + "|"
+						+ vozac.getAdresa() + "|" + vozac.getJmbg() + "|" + vozac.getId() + "|"
+						+ vozac.getClanska_karta() + "|" + vozac.getAutomobil().getId() + "\n";
 			}
 			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 			writer.write(content);
@@ -215,33 +249,55 @@ public class Taxi_sluzba {
 				String lozinka = split[1];
 				String ime = split[2];
 				String prezime = split[3];
-				String jmbg = split[4];
-				String adresa = split[5];
-				String polString = split[6];
+				String polString = split[4];
 				Pol pol = Pol.valueOf(polString);
-				String idString = split[7];
-				String brTelefona = split[8];
+				String brTelefona = split[5];
+				Boolean obrisan = Boolean.parseBoolean(split[6]);
+				double plata = Double.parseDouble(split[7]);
+				String adresa = split[8];
+				String jmbg = split[9];
+				String idString = split[10];
 				int id = Integer.parseInt(idString);
-				double plata = Double.parseDouble(split[9]);
-				String clanska_karta = split[10];
-				String idAutomobil = split[11];
-				int automobil = Integer.parseInt(idAutomobil);
+				String clanska_karta = split[11];
+				String idAutomobil = split[12];
+				int automobilId = Integer.parseInt(idAutomobil);
+				Automobil automobil = pronadjiAutomobil(automobilId);
 
-				Vozac vozac = new Vozac(korIme, lozinka, ime, prezime, jmbg, adresa, pol, brTelefona id, plata, clanska_karta,
-						automobil);
+				// TO DO obrisan procitati a ne setovati false
+				
+				Vozac vozac = new Vozac(korIme, lozinka, ime, prezime, jmbg, adresa, pol, brTelefona, obrisan, id, 
+						plata, clanska_karta, automobil);
 				this.vozaci.add(vozac);
-			
+			}
 			reader.close();
 		} catch (IOException e) {
 			System.out.println("Greska prilikom snimanja podataka o vozacima");
 			e.printStackTrace();
 		}
-	}
-}
 	
-}
+	}
+	
+
+		
+	public ArrayList<Voznja> sveNeobrisaneVoznje() {
+		ArrayList<Voznja> neobrisani = new ArrayList<Voznja>();
+		for (Voznja voznja : voznje) {
+			if(!voznja.isObrisan()) {
+				neobrisani.add(voznja);
+			}
+		}
+		return neobrisani;
+		
+	}
+		
+		
 	public void dodajVoznju(Voznja voznja) {
 		this.voznje.add(voznja);
+	}
+	
+	public void obrisiVoznje(String imeFajla) {
+		File file = new File("src/fajlovi/" + imeFajla);
+		
 	}
 
 	public void cuvanjeVoznji(String imeFajla) {
@@ -291,8 +347,10 @@ public class Taxi_sluzba {
 				double trajanje_voznje = Double.parseDouble(split[6]);
 				String status_voznje = split[7];
 				StatusVoznje status = StatusVoznje.valueOf(status_voznje);
+				
+				// TO DO false obrisan ucitati
 				Voznja voznja = new Voznja(id, datum_por, adresa_polaska, adresa_destinacije, musterija, vozac,
-						predjeni_km, trajanje_voznje, status);
+						predjeni_km, trajanje_voznje, status, false);
 				this.voznje.add(voznja);
 			}
 			reader.close();
@@ -321,9 +379,9 @@ public class Taxi_sluzba {
 	}
 
 	public Automobil pronadjiAutomobil(int id) {
-		for (Vozac vozac : vozaci) {
-			if (vozac.getAutomobil().getId() == id) {
-				return vozac.getAutomobil();
+		for (Automobil auto : automobili) {
+			if (auto.getId() == id) {
+				return auto;
 			}
 		}
 		return null;
@@ -333,14 +391,14 @@ public class Taxi_sluzba {
 		this.automobili.add(automobil);
 	}
 
-	public void cuvanjeAtomobila(String imeFajla) {
+	public void cuvanjeAutomobila(String imeFajla) {
 		try {
 			File file = new File("src/fajlovi/" + imeFajla);
 			String content = "";
 			for (Automobil automobil : automobili) {
 				content += automobil.getModel() + "|" + automobil.getProizvodjac() + "|" + automobil.getGodProizvodnje()
 						+ "|" + automobil.getRegistracija() + "|" + automobil.getBrVozila() + "|"
-						+ automobil.getVrstaAutomobila() + automobil.getId() + "\n";
+						+ automobil.getVrstaAutomobila() + "|" + automobil.getId() + "\n";
 			}
 			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 			writer.write(content);

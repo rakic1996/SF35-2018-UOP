@@ -24,7 +24,7 @@ public class Musterija extends Korisnik {
 
 
 	public Musterija(String korIme, String lozinka, String ime, String prezime, String jmbg, String adresa, Pol pol, String brTelefona, boolean obrisan, int id) {
-		super(korIme, lozinka, ime, prezime, jmbg, adresa, pol, brTelefona);
+		super(korIme, lozinka, ime, prezime, jmbg, adresa, pol, brTelefona, obrisan);
 		this.id = id;
 	}
 

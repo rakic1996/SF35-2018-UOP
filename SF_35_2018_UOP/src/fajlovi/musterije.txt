@@ -1,2 +1,2 @@
-Simas|789|Sima|Simic|45634|Bul Oslobodjenja 4|MUSKI|1|
-Maram|913|Mara|Maric|9876|Bul Cara Lazara 5|ZENSKI|2|
+Simas|789|Sima|Simic|45634|Bul Oslobodjenja 4|MUSKI|854523|false|1|
+Maram|913|Mara|Maric|9876|Bul Cara Lazara 5|ZENSKI|0903450|false|2|

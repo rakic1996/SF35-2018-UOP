@@ -16,9 +16,10 @@ public class Voznja {
 	private double predjeni_km;
 	private double trajanje_voznje;
 	private StatusVoznje status_voznje;
+	private boolean obrisan;
 	
 	public Voznja(int id, LocalDateTime datum_porudzbine, String adresa_polaska, String adresa_destinacije, Musterija musterija,
-			Vozac vozac, double predjeni_km, double trajanje_voznje, StatusVoznje status_voznje) {
+			Vozac vozac, double predjeni_km, double trajanje_voznje, StatusVoznje status_voznje, boolean obrisan) {
 		super();
 		this.id = id;
 		this.datum_porudzbine = datum_porudzbine;
@@ -29,6 +30,7 @@ public class Voznja {
 		this.predjeni_km = predjeni_km;
 		this.trajanje_voznje = trajanje_voznje;
 		this.status_voznje = status_voznje;
+		this.obrisan = obrisan;
 	}
 
 	public long getId() {
@@ -102,15 +104,21 @@ public class Voznja {
 	public void setStatus_voznje(StatusVoznje status_voznje) {
 		this.status_voznje = status_voznje;
 	}
+	
+	public boolean isObrisan() {
+		return obrisan;
+	}
+
+	public void setObrisan(boolean obrisan) {
+		this.obrisan = obrisan;
+	}
 
 	@Override
 	public String toString() {
 		return  "Id: " + id + "\n" + "Datum i vreme porudzbine: " + datum_porudzbine + "\n" + "Adresa polaska: " + adresa_polaska
 				+ "\n" + "Adresa destinacije: " + adresa_destinacije + "\n" +  "Musterija= " + musterija + "\n" + "Vozac: " + vozac
 				+ "\n" + "Predjeni kilometri: " + predjeni_km + "\n" +  "Trajanje voznje: " + trajanje_voznje + "\n" + "Status voznje: "
-				+ status_voznje + "\n";
+				+ status_voznje + "\n" + "Obrisan" + obrisan + "|";
 	}
 }
 
-// + "getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
-//+ super.toString() + "\n";
