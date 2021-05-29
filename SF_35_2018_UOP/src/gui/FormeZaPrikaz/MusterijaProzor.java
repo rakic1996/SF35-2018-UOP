@@ -6,16 +6,15 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JToolBar;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
-import osobe.Dispecer;
+import osobe.Musterija;
 import taxi_sluzba.Taxi_sluzba;
 
-public class DispeceriProzor extends JFrame {
+public class MusterijaProzor extends JFrame {
 
 	private JToolBar mainToolBar = new JToolBar();
 	private JButton btnAdd = new JButton();
@@ -24,15 +23,15 @@ public class DispeceriProzor extends JFrame {
 	
 	
 	private DefaultTableModel tableModel;
-	private JTable dispeceriTabela;
+	private JTable musterijeTabela;
 	
 	
 	private Taxi_sluzba taxi_sluzba;
 	
 	
-	public DispeceriProzor(Taxi_sluzba taxi_sluzba) {
+	public MusterijaProzor(Taxi_sluzba taxi_sluzba) {
 		this.taxi_sluzba = taxi_sluzba;
-		setTitle("Dispeceri");
+		setTitle("Musterije");
 		setSize(500, 300);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
@@ -56,36 +55,33 @@ public class DispeceriProzor extends JFrame {
 		add(mainToolBar, BorderLayout.NORTH);
 		
 		
-		String [] zaglavlja = new String[] {"Korisnicko ime", "Ime", "Prezime", "JMBG",
-									"Adresa", "Pol", "Broj telefona", "ID", "Plata", 
-									"Telefonska linija", "Odeljenje"};
+		String [] zaglavlja = new String[] {"Korisnicko ime", "Ime", "Prezime",
+				 							"JMBG", "Adresa", "Pol", "Broj telefona", "ID"};
 		Object[][] sadrzaj = new Object[taxi_sluzba.sviNeobrisaniDispeceri().size()][zaglavlja.length];
 		
-		for(int i=0; i<taxi_sluzba.sviNeobrisaniDispeceri().size(); i++) {
-			Dispecer dispecer = taxi_sluzba.sviNeobrisaniDispeceri().get(i);
-			sadrzaj[i][0] = dispecer.getKorIme();
-			sadrzaj[i][1] = dispecer.getIme();
-			sadrzaj[i][2] = dispecer.getPrezime();
-			sadrzaj[i][3] = dispecer.getJmbg();
-			sadrzaj[i][4] = dispecer.getAdresa();
-			sadrzaj[i][4] = dispecer.getPol();
-			sadrzaj[i][4] = dispecer.getBrTelefona();
-			sadrzaj[i][4] = dispecer.getId();
-			sadrzaj[i][4] = dispecer.getPlata();
-			sadrzaj[i][4] = dispecer.getTelefonska_linija();
-			sadrzaj[i][4] = dispecer.getOdeljenje();
+		for(int i=0; i<taxi_sluzba.sveNeobrisaneMuterije().size(); i++) {
+			Musterija musterija = taxi_sluzba.sveNeobrisaneMuterije().get(i);
+			sadrzaj[i][0] = musterija.getKorIme();
+			sadrzaj[i][1] = musterija.getIme();
+			sadrzaj[i][2] = musterija.getPrezime();
+			sadrzaj[i][3] = musterija.getJmbg();
+			sadrzaj[i][4] = musterija.getAdresa();
+			sadrzaj[i][4] = musterija.getPol();
+			sadrzaj[i][4] = musterija.getBrTelefona();
+			sadrzaj[i][4] = musterija.getId();
+
 		}
 		
 		tableModel = new DefaultTableModel(sadrzaj, zaglavlja);
-		dispeceriTabela = new JTable(tableModel);
+		musterijeTabela = new JTable(tableModel);
 		
-		dispeceriTabela.setRowSelectionAllowed(true);
-		dispeceriTabela.setColumnSelectionAllowed(false);
-		dispeceriTabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		dispeceriTabela.setDefaultEditor(Object.class, null);
-		dispeceriTabela.getTableHeader().setReorderingAllowed(false);
+		musterijeTabela.setRowSelectionAllowed(true);
+		musterijeTabela.setColumnSelectionAllowed(false);
+		musterijeTabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		musterijeTabela.setDefaultEditor(Object.class, null);
+		musterijeTabela.getTableHeader().setReorderingAllowed(false);
 		
-		JScrollPane scrollPane = new JScrollPane(dispeceriTabela);
+		JScrollPane scrollPane = new JScrollPane(musterijeTabela);
 		add(scrollPane, BorderLayout.CENTER);
 		
 	}
@@ -93,7 +89,4 @@ public class DispeceriProzor extends JFrame {
 	private void initActions() {
 		
 	}
-
-	
 }
-

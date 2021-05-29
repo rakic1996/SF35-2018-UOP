@@ -14,8 +14,8 @@ public class Vozac extends Korisnik {
 	}
 
 	public Vozac(String korIme, String lozinka, String ime, String prezime, String jmbg, String adresa, Pol pol, String brTelefona, boolean obrisan,
-			long id, double plata, String clanska_karta, Automobil automobil) {
-		super(korIme, lozinka, ime, prezime, jmbg, adresa, pol, brTelefona, false);
+			long id, double plata, String clanska_karta, Automobil automobil, Uloga uloga) {
+		super(korIme, lozinka, ime, prezime, jmbg, adresa, pol, brTelefona, false, uloga);
 		this.id = id;
 		this.plata = plata;
 		this.clanska_karta = clanska_karta;

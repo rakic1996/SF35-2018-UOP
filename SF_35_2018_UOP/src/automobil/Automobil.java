@@ -9,6 +9,7 @@ public class Automobil {
 	private String registracija;
 	private String brVozila;
 	private VrstaAutomobila vrstaAutomobila;
+	private boolean obrisan;
 
 
    	public Automobil() {
@@ -22,7 +23,7 @@ public class Automobil {
    	}
 
 	public Automobil(int id, String model, String poizvodjac, int godProizvodnje, String registracija, String brVozila,
-			VrstaAutomobila vrstaAutomobila) {
+			VrstaAutomobila vrstaAutomobila, boolean obrisan) {
 		super();
 		this.id = id;
 		this.model = model;
@@ -31,6 +32,7 @@ public class Automobil {
 		this.registracija = registracija;
 		this.brVozila = brVozila;
 		this.vrstaAutomobila = vrstaAutomobila;
+		this.obrisan = obrisan;
 	}
 
 
@@ -88,6 +90,14 @@ public class Automobil {
 
 	public void setBrVozila(String brVozila) {
 		this.brVozila = brVozila;
+	}
+
+	public boolean isObrisan() {
+		return obrisan;
+	}
+
+	public void setObrisan(boolean obrisan) {
+		this.obrisan = obrisan;
 	}
 
 	@Override

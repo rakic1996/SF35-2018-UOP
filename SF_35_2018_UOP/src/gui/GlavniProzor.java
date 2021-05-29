@@ -1,15 +1,13 @@
 package gui;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-import gui.FormeZaPrikaz.DispeceriProzor;
 import osobe.Dispecer;
+import osobe.Musterija;
+import osobe.Vozac;
 import taxi_sluzba.Taxi_sluzba;
 
 
@@ -26,12 +24,11 @@ public class GlavniProzor extends JFrame {
 	private JMenuItem prodavciItem = new JMenuItem("Prodavci");
 	
 	private Taxi_sluzba taxi_sluzba;
-	private Dispecer prijavljeniKorisnik;
+	private Dispecer prijavljeniDispecer;
+	private Musterija prijavljenaMusterija;
+	private Vozac prijavljeniVozac;
 	
-	public GlavniProzor(Taxi_sluzba taxi_sluzba, Dispecer prijavljeniKorisnik) {
-		this.taxi_sluzba = taxi_sluzba;
-		this.prijavljeniKorisnik = prijavljeniKorisnik;
-		setTitle("Prodavac: " + prijavljeniKorisnik.getKorIme());
+	public GlavniProzor() {
 		setSize(500, 500);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -39,6 +36,34 @@ public class GlavniProzor extends JFrame {
 //		initMenu();
 //		initActions();
 	}
+	
+	public GlavniProzor(Taxi_sluzba taxi_sluzba, Dispecer prijavljeniKorisnik) {
+		this();
+		this.taxi_sluzba = taxi_sluzba;
+		this.prijavljeniDispecer = prijavljeniKorisnik;
+		setTitle("Dispecer: " + prijavljeniKorisnik.getKorIme());
+//		initMenu();
+//		initActions();
+	}
+	
+	public GlavniProzor(Taxi_sluzba taxi_sluzba, Musterija prijavljenaMusterija) {
+		this();
+		this.taxi_sluzba = taxi_sluzba;
+		this.prijavljenaMusterija = prijavljenaMusterija;
+		setTitle("Musterija: " + prijavljenaMusterija.getKorIme());
+//		initMenu();
+//		initActions();
+	}
+	
+	public GlavniProzor(Taxi_sluzba taxi_sluzba, Vozac prijavljenaVozac) {
+		this();
+		this.taxi_sluzba = taxi_sluzba;
+		this.prijavljeniVozac = prijavljenaVozac;
+		setTitle("Vozac: " + prijavljenaVozac.getKorIme());
+//		initMenu();
+//		initActions();
+	}
+	
 	
 //	private void initMenu() {
 //		setJMenuBar(mainMenu);

@@ -11,7 +11,7 @@ public abstract class Korisnik  {
 	private Pol pol;
 	private String brTelefona;
 	private boolean obrisan; 
-	
+	private Uloga uloga;
 	
 	public Korisnik() {
 		this.korIme = "";
@@ -25,7 +25,7 @@ public abstract class Korisnik  {
 		this.obrisan = false;
 	}
 	
- 	public Korisnik(String korIme, String lozinka, String ime, String prezime, String jmbg, String adresa, Pol pol, String brTelefona, boolean obrisan) {
+ 	public Korisnik(String korIme, String lozinka, String ime, String prezime, String jmbg, String adresa, Pol pol, String brTelefona, boolean obrisan, Uloga uloga) {
 		super();
 		this.korIme = korIme;
 		this.lozinka = lozinka;
@@ -36,6 +36,7 @@ public abstract class Korisnik  {
 		this.pol = pol;
 		this.brTelefona = brTelefona;
 		this.obrisan = obrisan;
+		this.uloga = uloga;
  	}
 
 	public String getKorIme() {
@@ -108,6 +109,14 @@ public abstract class Korisnik  {
 
 	public void setObrisan(boolean obrisan) {
 		this.obrisan = obrisan;
+	}
+	
+	public Uloga getUloga() {
+		return uloga;
+	}
+
+	public void setUloga(Uloga uloga) {
+		this.uloga = uloga;
 	}
 
 	@Override

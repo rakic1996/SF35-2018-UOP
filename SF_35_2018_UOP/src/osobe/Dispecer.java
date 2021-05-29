@@ -14,13 +14,12 @@ public class Dispecer extends Korisnik {
 
 	
 	public Dispecer(String korIme, String lozinka, String ime, String prezime, String jmbg, String adresa, Pol pol, String brTelefona, boolean obrisan,
-			int id, double plata, String telefonska_linija, Odeljenje odeljenje) {
-		super(korIme, lozinka, ime, prezime, jmbg, adresa, pol, brTelefona, obrisan);
+			int id, double plata, String telefonska_linija, Odeljenje odeljenje, Uloga uloga) {
+		super(korIme, lozinka, ime, prezime, jmbg, adresa, pol, brTelefona, obrisan, uloga);
 		this.id = id;
 		this.plata = plata;
 		this.telefonska_linija = telefonska_linija;
 		this.odeljenje = odeljenje;
-	
 	}
 
 	public long getId() {
