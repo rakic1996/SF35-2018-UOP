@@ -336,7 +336,7 @@ public class Taxi_sluzba {
 	}
 	
 	///////////////// CRUD ZA VOCAZE
-	public void obrisiVozaceIzFajla(Vozac vozac, String imeFajla) {
+	public void obrisiVozacaIzFajla(Vozac vozac, String imeFajla) {
 		obrisiSveVozaceIzFajla(imeFajla);
 		for (Vozac v : vozaci) {
 			if (v.getId() == vozac.getId()) {

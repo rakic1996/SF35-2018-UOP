@@ -112,50 +112,43 @@ public class Taxi_sluzbaMain {
 
 		
 		
-//		taxi_sluzba.obrisiVoznju(voznja1, VOZNJA_FAJL);
+		taxi_sluzba.obrisiVoznjuIzFajla(voznja2, VOZNJA_FAJL);
 		
 		
-		Voznja voznja3 = new Voznja(3, LocalDateTime.of(2021, 5, 12, 8, 10), "Futoska 2", "Mihajla Puina 5",
-				  musterija2, vozac2, 5.5, 8.0, StatusVoznje.zavrsena, false);
-		taxi_sluzba.sacuvajVoznjuUFajl(voznja3, VOZNJA_FAJL);
-		voznja3.setAdresa_destinacije("EDITOVANAAAAA");
-		
-		taxi_sluzba.izmeniVoznjuUFajlu(voznja3, VOZNJA_FAJL);
+//		Voznja voznja3 = new Voznja(3, LocalDateTime.of(2021, 5, 12, 8, 10), "Futoska 2", "Mihajla Puina 5",
+//				  musterija2, vozac2, 5.5, 8.0, StatusVoznje.zavrsena, false);
+//		taxi_sluzba.sacuvajVoznjuUFajl(voznja3, VOZNJA_FAJL);
+//		voznja3.setAdresa_destinacije("EDITOVANAAAAA");
+//		
+//		taxi_sluzba.izmeniVoznjuUFajlu(voznja3, VOZNJA_FAJL);
 	
 	
 	
 		
 		
-		taxi_sluzba.obrisiDispecereIzFajla(dispecer2,DISPECER_FAJL);
+//		taxi_sluzba.obrisiDispecereIzFajla(dispecer2,DISPECER_FAJL);
 		
 		
-		Dispecer dispecer3 = new Dispecer("Perap", "123", "Pera", "Peric", "123456",
-			  "Narodnog fronta 2", Pol.MUSKI, "1223456", false, 3, 1000.0, "0211234",
-			  Odeljenje.Odeljenje_za_prijem_voznji, Uloga.DISPECER); 
-		taxi_sluzba.sacuvajDispecereUFajl(dispecer3, DISPECER_FAJL);
-		dispecer3.setAdresa("EDITOVANAAAAAAA");
+//		Dispecer dispecer3 = new Dispecer("Perap", "123", "Pera", "Peric", "123456",
+//			  "Narodnog fronta 2", Pol.MUSKI, "1223456", false, 3, 1000.0, "0211234",
+//			  Odeljenje.Odeljenje_za_prijem_voznji, Uloga.DISPECER); 
+//		taxi_sluzba.sacuvajDispecereUFajl(dispecer3, DISPECER_FAJL);
+//		dispecer3.setAdresa("EDITOVANAAAAAAA");
+//		
+//		taxi_sluzba.izmeniDispeceraUFajlu(dispecer3, DISPECER_FAJL);
 		
-		taxi_sluzba.izmeniDispeceraUFajlu(dispecer3, DISPECER_FAJL);
 		
-		
-//		taxi_sluzba.obrisiVozaceIzFajla(vozac2, VOZAC_FAJL);
+//		taxi_sluzba.obrisiVozacaIzFajla(vozac2, VOZAC_FAJL);
 
 		
-		Vozac vozac3 = new Vozac("Petarp","abc", "Petar", "Petrovic", "534347",
-				 "Mihajla Pupina 8", Pol.MUSKI, "04231245", false, 3, 1000.0, "1", automobil1, Uloga.VOZAC); 
-		taxi_sluzba.sacuvajVozaceUFajl(vozac3, VOZAC_FAJL);
-		vozac2.setIme("EDITOVANOOOOOOOOO");
-		
-		taxi_sluzba.izmeniVozaceUFajlu(vozac2, VOZAC_FAJL);
-		
-		
-		
+//		Vozac vozac3 = new Vozac("Petarp","abc", "Petar", "Petrovic", "534347",
+//				 "Mihajla Pupina 8", Pol.MUSKI, "04231245", false, 3, 1000.0, "1", automobil1, Uloga.VOZAC); 
+//		taxi_sluzba.sacuvajVozaceUFajl(vozac3, VOZAC_FAJL);
+//		vozac2.setIme("EDITOVANOOOOOOOOO");
+//		
+//		taxi_sluzba.izmeniVozaceUFajlu(vozac2, VOZAC_FAJL);
 		
 		
 	}
-		
-//	private static void crud(Taxi_sluzba taxi_sluzba) {
-//		
-//	}
 
 }

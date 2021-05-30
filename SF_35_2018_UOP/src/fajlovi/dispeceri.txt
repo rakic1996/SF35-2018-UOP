@@ -1,3 +1,2 @@
 Perap|123|Pera|Peric|MUSKI|1223456|false|1|1000.0|0211234|Odeljenje_za_prijem_voznji|Narodnog fronta 2|123456|DISPECER|
-Mikam|456|Mika|Mikic|MUSKI|785634|true|2|2000.0|0211234|Odeljenje_za_prijem_voznji|Modene 2|978545|DISPECER|
-Perap|123|Pera|Peric|MUSKI|1223456|false|3|1000.0|0211234|Odeljenje_za_prijem_voznji|EDITOVANAAAAAAA|123456|DISPECER|
+Mikam|456|Mika|Mikic|MUSKI|785634|false|2|2000.0|0211234|Odeljenje_za_prijem_voznji|Modene 2|978545|DISPECER|
