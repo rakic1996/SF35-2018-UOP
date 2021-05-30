@@ -1,2 +1,3 @@
 Petarp|abc|Petar|Petrovic|MUSKI|04231245|false|1000.0|Mihajla Pupina 8|534347|1|1|1|VOZAC
-Lukal|567|Luka|Lukic|MUSKI|12054956|false|1500.0|Bul Oslobodjenja 45|8674634|2|1|2|VOZAC
+Lukal|567|EDITOVANOOOOOOOOO|Lukic|MUSKI|12054956|false|1500.0|Bul Oslobodjenja 45|8674634|2|1|2|VOZAC
+Petarp|abc|Petar|Petrovic|MUSKI|04231245|false|1000.0|Mihajla Pupina 8|534347|3|1|1|VOZAC

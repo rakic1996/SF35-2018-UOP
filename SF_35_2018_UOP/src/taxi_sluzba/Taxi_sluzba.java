@@ -122,29 +122,66 @@ public class Taxi_sluzba {
 		}
 	}
 	
-//	public class obrisiDispecera {
-//		    Dispecer dispecer = new Dispecer("dispeceri.txt");
-//		    if (myObj.delete()) { 
-//		      System.out.println("Obrisi dispecera: " + dispecer.getName());
-//		    } else {
-//		      System.out.println("Neusesno obrisan dispecer.");
-//		    } 
-//	}
 	
-//	public void dodajDispecera(String imeFajla)
-//		    try {
-//		      Dispecer dispecer = new Dispecer("dispeceri.txt");
-//		      if (dispecer.createNewFile()) {
-//		        System.out.println(" Kreiran dispecer: " + dispecer.getName());
-//		      } else {
-//		        System.out.println("Ovaj dispecer vec postoji.");
-//		      }
-//		    } catch (IOException e) {
-//		      System.out.println("An error occurred.");
-//		      e.printStackTrace();
-//		    }
-//	
+	///////////// CRUD ZA DISPECERE
+	
+	public void obrisiDispecereIzFajla(Dispecer dispecer, String imeFajla) {
+		obrisiSveDispecereIzFajla(imeFajla);
+		for (Dispecer d : dispeceri) {
+			if (d.getId() == dispecer.getId()) {
+				d.setObrisan(true);
+			}
+		}
+		cuvanjeDispecera(imeFajla);
 
+	}
+
+	public void sacuvajDispecereUFajl(Dispecer dispecer, String imeFajla) {
+		for (Dispecer d : dispeceri) {
+			if (d.getId() == dispecer.getId()) {
+				return;
+			}
+		}
+		obrisiSveDispecereIzFajla(imeFajla);
+		dispeceri.add(dispecer);
+		cuvanjeDispecera(imeFajla);
+	}
+	
+	public void izmeniDispeceraUFajlu(Dispecer dispecer, String imeFajla) {
+		obrisiSveDispecereIzFajla(imeFajla);
+		for (Dispecer d : dispeceri) {
+			if (d.getId() == dispecer.getId()) {
+				d.setAdresa(dispecer.getAdresa());
+				d.setBrTelefona(dispecer.getBrTelefona());
+				d.setIme(dispecer.getIme());
+				d.setKorIme(dispecer.getKorIme());
+				d.setPrezime(dispecer.getPrezime());
+				d.setJmbg(dispecer.getJmbg());
+				d.setPol(dispecer.getPol());
+				d.setOdeljenje(dispecer.getOdeljenje());
+				d.setTelefonska_linija(dispecer.getTelefonska_linija());
+				d.setPlata(dispecer.getPlata());
+				d.setId(dispecer.getId());
+				
+			
+				
+			}
+		}
+		cuvanjeDispecera(imeFajla);
+		
+	}
+	
+	public void obrisiSveDispecereIzFajla(String imeFajla) {
+		try {
+			PrintWriter writer = new PrintWriter(imeFajla);
+			writer.print("");
+			writer.close();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	///////////////////////////
 	public Korisnik login(String korIme, String lozinka) {
 		for (Dispecer dis: dispeceri) {
 			if (dis.getKorIme().equalsIgnoreCase(korIme) && dis.getLozinka().equals(lozinka) ) {
@@ -173,6 +210,61 @@ public class Taxi_sluzba {
 		}
 		return neobrisani;
 	}
+
+	///////////////// CRUD ZA MUSTERIJE
+	
+//	public void obrisiMusterijeIzFajla(Musterija musterija, String imeFajla) {
+//		obrisiSveMusterijeIzFajla(imeFajla);
+//		for (Musterija m : musterije) {
+//			if (m.getId() == musterija.getId()) {
+//				m.setObrisan(true);
+//			}
+//		}
+//		cuvanjeMusterije(imeFajla);
+//
+//	}
+//
+//	public void sacuvajMusterijeUFajl(Musterija musterija, String imeFajla) {
+//		for (Musterija m : musterije) {
+//			if (m.getId() == musterija.getId()) {
+//				return;
+//			}
+//		}
+//		obrisiSveMusterijeIzFajla(imeFajla);
+//		musterije.add(musterija);
+//		cuvanjeMusterije(imeFajla);
+//	}
+//	
+//	public void izmeniMusterijeUFajlu(Musterija musterija, String imeFajla) {
+//		obrisiSveMusterijeIzFajla(imeFajla);
+//		for (Musterija m : musterije) {
+//			if (m.getId() == musterija.getId()) {
+//				m.setAdresa(musterija.getAdresa());
+//				m.setBrTelefona(musterija.getBrTelefona());
+//				m.setIme(musterija.getIme());
+//				m.setKorIme(musterija.getKorIme());
+//				m.setPrezime(musterija.getPrezime());
+//				m.setJmbg(musterija.getJmbg());
+//				m.setPol(musterija.getPol());
+//				m.setId(musterija.getId());
+//				
+//			}
+//		}
+//		cuvanjeMusterije(imeFajla);
+//		
+//	}
+//	
+//	public void obrisiSveMusterijeIzFajla(String imeFajla) {
+//		try {
+//			PrintWriter writer = new PrintWriter(imeFajla);
+//			writer.print("");
+//			writer.close();
+//		} catch(Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
+	
+	////////////////
 
 	public void dodajMusteriju(Musterija musterija) {
 		for (Musterija m : musterije) {
@@ -243,7 +335,62 @@ public class Taxi_sluzba {
 		return neobrisani;
 	}
 	
+	///////////////// CRUD ZA VOCAZE
+	public void obrisiVozaceIzFajla(Vozac vozac, String imeFajla) {
+		obrisiSveVozaceIzFajla(imeFajla);
+		for (Vozac v : vozaci) {
+			if (v.getId() == vozac.getId()) {
+				v.setObrisan(true);
+			}
+		}
+		cuvanjeVozaca(imeFajla);
+
+	}
 	
+	public void sacuvajVozaceUFajl(Vozac vozac, String imeFajla) {
+		for (Vozac v : vozaci) {
+			if (v.getId() == vozac.getId()) {
+				return;
+			}
+		}
+		obrisiSveVozaceIzFajla(imeFajla);
+		vozaci.add(vozac);
+		cuvanjeVozaca(imeFajla);
+	}
+	
+	public void izmeniVozaceUFajlu(Vozac vozac, String imeFajla) {
+		obrisiSveVozaceIzFajla(imeFajla);
+		for (Vozac v : vozaci) {
+			if (v.getId() == vozac.getId()) {
+				v.setAdresa(vozac.getAdresa());
+				v.setBrTelefona(vozac.getBrTelefona());
+				v.setClanska_karta(vozac.getClanska_karta());
+				v.setIme(vozac.getIme());
+				v.setKorIme(vozac.getKorIme());
+				v.setPrezime(vozac.getPrezime());
+				v.setJmbg(vozac.getJmbg());
+				v.setPlata(vozac.getPlata());
+				v.setAutomobil(vozac.getAutomobil());
+				v.setLozinka(vozac.getLozinka());
+				v.setPol(vozac.getPol());
+				v.setId(vozac.getId());
+				
+			}
+		}
+		cuvanjeVozaca(imeFajla);
+	}
+	
+	public void obrisiSveVozaceIzFajla(String imeFajla) {
+		try {
+			PrintWriter writer = new PrintWriter(imeFajla);
+			writer.print("");
+			writer.close();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	////////////////
 
 	public void dodajVozace(Vozac vozac) {
 		for (Vozac v : vozaci) {
@@ -326,6 +473,8 @@ public class Taxi_sluzba {
 		
 	}
 		
+	
+	////////// CRUD ZA VOZNJE
 	public void obrisiVoznjuIzFajla(Voznja voznja, String imeFajla) {
 		obrisiSveVoznjeIzFajla(imeFajla);
 		for (Voznja v : voznje) {
@@ -377,6 +526,8 @@ public class Taxi_sluzba {
 			e.printStackTrace();
 		}
 	}
+	
+	////////////////////////////
 
 	public void cuvanjeVoznji(String imeFajla) {
 		try {

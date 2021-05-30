@@ -2,7 +2,7 @@ package osobe;
 
 public class Dispecer extends Korisnik {
 
-	private int id;
+	private long id;
 	private double plata;
 	private String telefonska_linija;
 	private Odeljenje odeljenje;
@@ -26,7 +26,7 @@ public class Dispecer extends Korisnik {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
