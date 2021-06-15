@@ -47,14 +47,14 @@ public class Taxi_sluzbaMain {
 		LoginProzor lp = new LoginProzor(taxi_sluzba);
 		lp.setVisible(true);
 		
-//		DispeceriProzor dp = new DispeceriProzor(taxi_sluzba);
-//		dp.setVisible(true);
-//		
-//		MusterijaProzor mp = new MusterijaProzor(taxi_sluzba);
-//		mp.setVisible(true);
-//		
-//		VozacProzor vp = new VozacProzor(taxi_sluzba);
-//		vp.setVisible(true);
+		DispeceriProzor dp = new DispeceriProzor(taxi_sluzba);
+		dp.setVisible(true);
+		
+		MusterijaProzor mp = new MusterijaProzor(taxi_sluzba);
+		mp.setVisible(true);
+		
+		VozacProzor vp = new VozacProzor(taxi_sluzba);
+		vp.setVisible(true);
 
 	}
 	

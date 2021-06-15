@@ -41,11 +41,11 @@ public class VozacProzor extends JFrame {
 	}
 	
 	private void initGUI() {
-		ImageIcon addIcon = new ImageIcon(getClass().getResource("/icons/add.png"));
+		ImageIcon addIcon = new ImageIcon(getClass().getResource("/icons/create.png"));
 		btnAdd.setIcon(addIcon);
-		ImageIcon editIcon = new ImageIcon(getClass().getResource("/icons/edit.png"));
+		ImageIcon editIcon = new ImageIcon(getClass().getResource("/icons/update.png"));
 		btnEdit.setIcon(editIcon);
-		ImageIcon deleteIcon = new ImageIcon(getClass().getResource("/icons/delete.png"));
+		ImageIcon deleteIcon = new ImageIcon(getClass().getResource("/icons/delete.jpg"));
 		btnDelete.setIcon(deleteIcon);
 		
 		
