@@ -1,10 +1,16 @@
 package gui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import gui.FormeZaPrikaz.DispeceriProzor;
+import gui.FormeZaPrikaz.MusterijaProzor;
+import gui.FormeZaPrikaz.VoznjeProzor;
 import osobe.Dispecer;
 import osobe.Musterija;
 import osobe.Vozac;
@@ -16,12 +22,12 @@ public class GlavniProzor extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	private JMenuBar mainMenu = new JMenuBar();
-	private JMenu dispecerMenu = new JMenu("Dispeceri");
-	private JMenuItem diskoviItem = new JMenuItem("Diskovi");
-	private JMenuItem knjigeItem = new JMenuItem("Knjige");
-	private JMenuItem kompozicijeItem = new JMenuItem("Kompozicije");
-	private JMenu prodavciMenu = new JMenu("Prodavci");
-	private JMenuItem prodavciItem = new JMenuItem("Prodavci");
+	private JMenu korisniciMenu = new JMenu("Korisnici");
+	private JMenuItem dispeceriItem = new JMenuItem("Dispeceri");
+	private JMenuItem musterijeItem = new JMenuItem("Musterije");
+	private JMenuItem vozaciItem = new JMenuItem("Vozaci");
+	private JMenu voznjeMenu = new JMenu("Voznje");
+	private JMenuItem voznjeItem = new JMenuItem("Voznje");
 	
 	private Taxi_sluzba taxi_sluzba;
 	private Dispecer prijavljeniDispecer;
@@ -33,8 +39,8 @@ public class GlavniProzor extends JFrame {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
-//		initMenu();
-//		initActions();
+		initMenu();
+		initActions();
 	}
 	
 	public GlavniProzor(Taxi_sluzba taxi_sluzba, Dispecer prijavljeniKorisnik) {
@@ -42,8 +48,8 @@ public class GlavniProzor extends JFrame {
 		this.taxi_sluzba = taxi_sluzba;
 		this.prijavljeniDispecer = prijavljeniKorisnik;
 		setTitle("Dispecer: " + prijavljeniKorisnik.getKorIme());
-//		initMenu();
-//		initActions();
+		initMenu();
+		initActions();
 	}
 	
 	public GlavniProzor(Taxi_sluzba taxi_sluzba, Musterija prijavljenaMusterija) {
@@ -51,8 +57,8 @@ public class GlavniProzor extends JFrame {
 		this.taxi_sluzba = taxi_sluzba;
 		this.prijavljenaMusterija = prijavljenaMusterija;
 		setTitle("Musterija: " + prijavljenaMusterija.getKorIme());
-//		initMenu();
-//		initActions();
+		initMenu();
+		initActions();
 	}
 	
 	public GlavniProzor(Taxi_sluzba taxi_sluzba, Vozac prijavljenaVozac) {
@@ -60,53 +66,57 @@ public class GlavniProzor extends JFrame {
 		this.taxi_sluzba = taxi_sluzba;
 		this.prijavljeniVozac = prijavljenaVozac;
 		setTitle("Vozac: " + prijavljenaVozac.getKorIme());
-//		initMenu();
-//		initActions();
+		initMenu();
+		initActions();
 	}
 	
 	
-//	private void initMenu() {
-//		setJMenuBar(mainMenu);
-//		mainMenu.add(artikliMenu);
-//		artikliMenu.add(diskoviItem);
-//		artikliMenu.add(knjigeItem);
-//		artikliMenu.add(kompozicijeItem);
-//		mainMenu.add(prodavciMenu);
-//		prodavciMenu.add(prodavciItem);
-//	}
-//	
-//	private void initActions() {
-//		prodavciItem.addActionListener(new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				DispeceriProzor dp = new DispeceriProzor(taxi_sluzba);
-//				dp.setVisible(true);
-//			}
-//		});
-//		
-//		kompozicijeItem.addActionListener(new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				KompozicijeProzor kp = new KompozicijeProzor(prodavnica);
-//				kp.setVisible(true);
-//			}
-//		});
-//		
-//		diskoviItem.addActionListener(new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				DiskoviProzor dp = new DiskoviProzor(prodavnica);
-//				dp.setVisible(true);
-//			}
-//		});
-//		
-//		knjigeItem.addActionListener(new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				KnjigeProzor kp = new KnjigeProzor(prodavnica);
-//				kp.setVisible(true);
-//			}
-//		}
-//		
-//	}
+	private void initMenu() {
+		setJMenuBar(mainMenu);
+		mainMenu.add(korisniciMenu);
+		korisniciMenu.add(dispeceriItem);
+		korisniciMenu.add(musterijeItem);
+		korisniciMenu.add(vozaciItem);
+		mainMenu.add(voznjeMenu);
+		voznjeMenu.add(voznjeItem);
+	
+	}
+	
+	private void initActions() {
+		voznjeItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VoznjeProzor vp = new VoznjeProzor(taxi_sluzba);
+				vp.setVisible(true);
+			}
+	});
+		
+		dispeceriItem.addActionListener(new ActionListener() {
+			@Override public void actionPerformed(ActionEvent e) {
+				DispeceriProzor dp = new DispeceriProzor(taxi_sluzba);
+				dp.setVisible(true);
+			}
+		});
+			
+		musterijeItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				MusterijaProzor mp = new MusterijaProzor(taxi_sluzba);
+				mp.setVisible(true);
+			}
+		});
+			
+		vozaciItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VozacProzor vp = new VozacProzor(taxi_sluzba);
+				vp.setVisible(true);
+		}
+	});
+	
+	}		
+	
+	
+		
+
 }

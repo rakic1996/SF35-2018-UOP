@@ -817,4 +817,25 @@ public class Taxi_sluzba {
 				+ ", vozaci=" + vozaci + ", voznje=" + voznje + ", automobili=" + automobili + "]";
 	}
 
+	
+	
+	///////////////OVO JE KAO U REFERENTOM SNIMI ZAPOSLENE SAMO STO OVDE NISU KORISNICI NEGO NESTO DRUGO(ULOGA DA LI MOZE?)
+	
+//	public void snimiKorisnike(String imeFajla) {
+//		try {
+//			File file = new File("src/fajlovi/" + imeFajla);
+//			BufferedWriter br = new BufferedWriter(new FileWriter(file));
+//			String sadrzaj = "";
+//			for (Korisnik korisnik : Uloga) {//////////////OVO PROVERITI
+//				sadrzaj += korisnik.getIme() + "|" + korisnik.getPrezime() + "|" + korisnik.getPol().ordinal() + "|" 
+//						+ korisnik.getKorIme() + "|" + korisnik.getLozinka() + "|" + korisnik.isObrisan() + "\n";
+//			}
+//			br.write(sadrzaj);
+//			br.close();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		
+//	}
+
 }

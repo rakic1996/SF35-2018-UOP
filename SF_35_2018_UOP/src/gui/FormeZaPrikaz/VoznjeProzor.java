@@ -9,18 +9,18 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JToolBar;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 import gui.FormeZaDodavanjeIIzmenu.DispeceriForma;
+import gui.FormeZaDodavanjeIIzmenu.VozaciForma;
 import main.Taxi_sluzbaMain;
-import osobe.Dispecer;
+import osobe.Vozac;
 import taxi_sluzba.Taxi_sluzba;
 
-public class DispeceriProzor extends JFrame {
+public class VoznjeProzor extends JFrame {
 
 	private JToolBar mainToolBar = new JToolBar();
 	private JButton btnAdd = new JButton();
@@ -29,15 +29,15 @@ public class DispeceriProzor extends JFrame {
 	
 	
 	private DefaultTableModel tableModel;
-	private JTable dispeceriTabela;
+	private JTable vozacTabela;
 	
 	
 	private Taxi_sluzba taxi_sluzba;
 	
 	
-	public DispeceriProzor(Taxi_sluzba taxi_sluzba) {
+	public VoznjeProzor(Taxi_sluzba taxi_sluzba) {
 		this.taxi_sluzba = taxi_sluzba;
-		setTitle("Dispeceri");
+		setTitle("Vozac");
 		setSize(500, 300);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
@@ -61,60 +61,60 @@ public class DispeceriProzor extends JFrame {
 		add(mainToolBar, BorderLayout.NORTH);
 		
 		
-		String [] zaglavlja = new String[] {"Korisnicko ime", "Ime", "Prezime", "JMBG",
-									"Adresa", "Pol", "Broj telefona", "ID", "Plata", 
-									"Telefonska linija", "Odeljenje"};
-		Object[][] sadrzaj = new Object[taxi_sluzba.sviNeobrisaniDispeceri().size()][zaglavlja.length];
+		String [] zaglavlja = new String[] {"Datum porudzbine", "Adresa polaska", "Adresa destinacije",
+				 							"Predjeni kilometri", "Adresa", "Pol", "Broj telefona", "Plata",
+				 							"Broj clanske karte", "ID Automobila"};
+		Object[][] sadrzaj = new Object[taxi_sluzba.sveNeobrisaneVoznje().size()][zaglavlja.length];
 		
-		for(int i=0; i<taxi_sluzba.sviNeobrisaniDispeceri().size(); i++) {
-			Dispecer dispecer = taxi_sluzba.sviNeobrisaniDispeceri().get(i);
-			sadrzaj[i][0] = dispecer.getKorIme();
-			sadrzaj[i][1] = dispecer.getIme();
-			sadrzaj[i][2] = dispecer.getPrezime();
-			sadrzaj[i][3] = dispecer.getJmbg();
-			sadrzaj[i][4] = dispecer.getAdresa();
-			sadrzaj[i][4] = dispecer.getPol();
-			sadrzaj[i][4] = dispecer.getBrTelefona();
-			sadrzaj[i][4] = dispecer.getId();
-			sadrzaj[i][4] = dispecer.getPlata();
-			sadrzaj[i][4] = dispecer.getTelefonska_linija();
-			sadrzaj[i][4] = dispecer.getOdeljenje();
+		for(int i=0; i<taxi_sluzba.sviNeobrisaniVozaci().size(); i++) {
+			Vozac vozac = taxi_sluzba.sviNeobrisaniVozaci().get(i);
+			sadrzaj[i][0] = vozac.getKorIme();
+			sadrzaj[i][1] = vozac.getIme();
+			sadrzaj[i][2] = vozac.getPrezime();
+			sadrzaj[i][3] = vozac.getJmbg();
+			sadrzaj[i][4] = vozac.getAdresa();
+			sadrzaj[i][5] = vozac.getPol();
+			sadrzaj[i][6] = vozac.getBrTelefona();
+			sadrzaj[i][7] = vozac.getPlata();
+			sadrzaj[i][8] = vozac.getClanska_karta();
+			sadrzaj[i][9] = vozac.getAutomobil();
+
 		}
 		
 		tableModel = new DefaultTableModel(sadrzaj, zaglavlja);
-		dispeceriTabela = new JTable(tableModel);
+		vozacTabela = new JTable(tableModel);
 		
-		dispeceriTabela.setRowSelectionAllowed(true);
-		dispeceriTabela.setColumnSelectionAllowed(false);
-		dispeceriTabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		dispeceriTabela.setDefaultEditor(Object.class, null);
-		dispeceriTabela.getTableHeader().setReorderingAllowed(false);
+		vozacTabela.setRowSelectionAllowed(true);
+		vozacTabela.setColumnSelectionAllowed(false);
+		vozacTabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		vozacTabela.setDefaultEditor(Object.class, null);
+		vozacTabela.getTableHeader().setReorderingAllowed(false);
 		
-		JScrollPane scrollPane = new JScrollPane(dispeceriTabela);
+		JScrollPane scrollPane = new JScrollPane(vozacTabela);
 		add(scrollPane, BorderLayout.CENTER);
 		
 	}
 
 	private void initActions() {
 		
+		
 		btnDelete.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int red = dispeceriTabela.getSelectedRow();
+				int red = vozacTabela.getSelectedRow();
 				if(red == -1) {
 					JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
 				}else {
 					String korIme = tableModel.getValueAt(red, 3).toString();
-					Dispecer dispecer = taxi_sluzba.pronadjiDispecera(id);
+					Vozac vozac = taxi_sluzba.pronadjiVozaca(Id);
 					
 					int izbor = JOptionPane.showConfirmDialog(null, 
-							"Da li ste sigurni da zelite da obrisete dispecera?", 
+							"Da li ste sigurni da zelite da obrisete vozaca?", 
 							korIme + " - Porvrda brisanja", JOptionPane.YES_NO_OPTION);
 					if(izbor == JOptionPane.YES_OPTION) {
-						dispecer.setObrisan(true);
+						vozac.setObrisan(true);
 						tableModel.removeRow(red);
-						taxi_sluzba.snimiZaposlene(Taxi_sluzbaMain.DISPECER_FAJL);
-						//NE IDE OVO SNIMI ZAPOSLENE, TREBA VEROVATNO NAPRAVITI NOVU FUNKCIJU U TAXISLUZBA
+						taxi_sluzba.snimiKorisnike(Taxi_sluzbaMain.VOZAC_FAJL);
 					}
 				}
 			}
@@ -123,8 +123,8 @@ public class DispeceriProzor extends JFrame {
 		btnAdd.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				DispeceriForma df = new DispeceriForma(taxi_sluzba, null);
-				df.setVisible(true);
+				VozaciForma vf = new VozaciForma(taxi_sluzba, null);
+				vf.setVisible(true);
 			}
 		});
 		
@@ -132,25 +132,20 @@ public class DispeceriProzor extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int red = dispeceriTabela.getSelectedRow();
+				int red = vozacTabela.getSelectedRow();
 				if(red == -1) {
 					JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
 				}else {
 					String korisnickoIme = tableModel.getValueAt(red, 3).toString();
-					Dispecer dispecer = taxi_sluzba.nadjiDispecera(id);
-					if(dispecer == null) {
-						JOptionPane.showMessageDialog(null, "Greska prilikom pronalazenja dispecera sa tim korisnickim imenom", "Greska", JOptionPane.WARNING_MESSAGE);
+					Vozac vozac = taxi_sluzba.pronadjiVozaca(id);
+					if(vozac == null) {
+						JOptionPane.showMessageDialog(null, "Greska prilikom pronalazenja vozaca sa tim korisnickim imenom", "Greska", JOptionPane.WARNING_MESSAGE);
 					}else {
-						DispeceriForma pf = new DispeceriForma(taxi_sluzba, dispecer);
-						pf.setVisible(true);
+						VozaciForma vf = new DispeceriForma(taxi_sluzba, vozac);
+						vf.setVisible(true);
 					}
 				}
 			}
 		});
 	}
-		
 }
-
-	
-
-

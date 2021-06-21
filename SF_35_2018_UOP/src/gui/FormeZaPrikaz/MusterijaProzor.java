@@ -1,16 +1,23 @@
 package gui.FormeZaPrikaz;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JToolBar;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
+import gui.FormeZaDodavanjeIIzmenu.DispeceriForma;
+import gui.FormeZaDodavanjeIIzmenu.MusterijeForma;
+import main.Taxi_sluzbaMain;
+import osobe.Dispecer;
 import osobe.Musterija;
 import taxi_sluzba.Taxi_sluzba;
 
@@ -88,5 +95,57 @@ public class MusterijaProzor extends JFrame {
 
 	private void initActions() {
 		
+		
+		btnDelete.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int red = musterijeTabela.getSelectedRow();
+				if(red == -1) {
+					JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
+				}else {
+					String korIme = tableModel.getValueAt(red, 3).toString();
+					Musterija musterija = taxi_sluzba.pronadjiMusteriju(id);
+					
+					int izbor = JOptionPane.showConfirmDialog(null, 
+							"Da li ste sigurni da zelite da obrisete musteriju?", 
+							korIme + " - Porvrda brisanja", JOptionPane.YES_NO_OPTION);
+					if(izbor == JOptionPane.YES_OPTION) {
+						musterija.setObrisan(true);
+						tableModel.removeRow(red);
+						taxi_sluzba.snimiZaposlene(Taxi_sluzbaMain.MUSTERIJA_FAJL);
+					}
+				}
+			}
+		});
+		
+		btnAdd.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				MusterijeForma mf = new MusterijeForma(taxi_sluzba, null);
+				mf.setVisible(true);
+			}
+		});
+		
+		btnEdit.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int red = musterijeTabela.getSelectedRow();
+				if(red == -1) {
+					JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
+				}else {
+					String korisnickoIme = tableModel.getValueAt(red, 3).toString();
+					Musterija musterija = taxi_sluzba.nadjiMusteriju(id);
+					if(musterija == null) {
+						JOptionPane.showMessageDialog(null, "Greska prilikom pronalazenja musteriju sa tim korisnickim imenom", "Greska", JOptionPane.WARNING_MESSAGE);
+					}else {
+						DispeceriForma pf = new MusterijeForma(taxi_sluzba, musterija);
+						pf.setVisible(true);
+					}
+				}
+			}
+		});
 	}
+		
 }
+

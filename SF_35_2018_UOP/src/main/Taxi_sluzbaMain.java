@@ -19,8 +19,8 @@ import voznja.StatusVoznje;
 import voznja.Voznja;
 
 public class Taxi_sluzbaMain {
-	private static String DISPECER_FAJL = "dispeceri.txt";
-	public static String MUSTERRIJA_FAJL = "musterije.txt";
+	public static String DISPECER_FAJL = "dispeceri.txt";
+	public static String MUSTERIJA_FAJL = "musterije.txt";
 	public static String VOZAC_FAJL = "vozaci.txt";
 	public static String VOZNJA_FAJL = "voznje.txt";
 	public static String AUTOMOBILI_FAJL = "automobili.txt";
@@ -31,7 +31,7 @@ public class Taxi_sluzbaMain {
 		saveData(taxi_sluzba);
 		
 		taxi_sluzba.ucitajDispecere(DISPECER_FAJL);
-		taxi_sluzba.ucitajMusterije(MUSTERRIJA_FAJL);
+		taxi_sluzba.ucitajMusterije(MUSTERIJA_FAJL);
 		taxi_sluzba.ucitajVoznje(VOZNJA_FAJL);
 		taxi_sluzba.ucitajAutomobile(AUTOMOBILI_FAJL);
 		taxi_sluzba.ucitajVozace(VOZAC_FAJL);
@@ -78,7 +78,7 @@ public class Taxi_sluzbaMain {
 		
 		taxi_sluzba.dodajMusteriju(musterija1);
 		taxi_sluzba.dodajMusteriju(musterija2);
-		taxi_sluzba.cuvanjeMusterije(MUSTERRIJA_FAJL);
+		taxi_sluzba.cuvanjeMusterije(MUSTERIJA_FAJL);
 		
 		
 		Automobil automobil1 = new Automobil(1, "a3", "Audi", 2016, "NS223TX", "1", VrstaAutomobila.putnicki, false); 

@@ -1,16 +1,23 @@
 package gui.FormeZaPrikaz;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JToolBar;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
+import gui.FormeZaDodavanjeIIzmenu.DispeceriForma;
+import gui.FormeZaDodavanjeIIzmenu.VozaciForma;
+import main.Taxi_sluzbaMain;
+import osobe.Dispecer;
 import osobe.Vozac;
 import taxi_sluzba.Taxi_sluzba;
 
@@ -91,6 +98,56 @@ public class VozacProzor extends JFrame {
 
 	private void initActions() {
 		
+		
+		btnDelete.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int red = vozacTabela.getSelectedRow();
+				if(red == -1) {
+					JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
+				}else {
+					String korIme = tableModel.getValueAt(red, 3).toString();
+					Vozac vozac = taxi_sluzba.pronadjiVozaca(Id);
+					
+					int izbor = JOptionPane.showConfirmDialog(null, 
+							"Da li ste sigurni da zelite da obrisete vozaca?", 
+							korIme + " - Porvrda brisanja", JOptionPane.YES_NO_OPTION);
+					if(izbor == JOptionPane.YES_OPTION) {
+						vozac.setObrisan(true);
+						tableModel.removeRow(red);
+						taxi_sluzba.snimiKorisnike(Taxi_sluzbaMain.VOZAC_FAJL);
+					}
+				}
+			}
+		});
+		
+		btnAdd.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VozaciForma vf = new VozaciForma(taxi_sluzba, null);
+				vf.setVisible(true);
+			}
+		});
+		
+		btnEdit.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int red = vozacTabela.getSelectedRow();
+				if(red == -1) {
+					JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
+				}else {
+					String korisnickoIme = tableModel.getValueAt(red, 3).toString();
+					Vozac vozac = taxi_sluzba.pronadjiVozaca(id);
+					if(vozac == null) {
+						JOptionPane.showMessageDialog(null, "Greska prilikom pronalazenja vozaca sa tim korisnickim imenom", "Greska", JOptionPane.WARNING_MESSAGE);
+					}else {
+						VozaciForma vf = new DispeceriForma(taxi_sluzba, vozac);
+						vf.setVisible(true);
+					}
+				}
+			}
+		});
 	}
-
 }
+

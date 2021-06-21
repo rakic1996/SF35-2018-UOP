@@ -120,8 +120,8 @@ public class DispeceriForma extends JFrame {
 					String jmbg = txtJmbg.getText().trim();
 					
 					if(dispecer == null) { // DODAVANJE:
-						Dispecer novi = new Dispecer(korIme, ime, prezime, pol, brTelefona,
-								id, plata, telLinija, odeljenje, adresa, jmbg);
+						Dispecer novi = new Dispecer(korIme, lozinka, ime, prezime, jmbg,
+								adresa, pol, brTelefona, obrisan, id, plata,telefonska_linija, odeljenje, uloga);
 								
 						taxi_sluzba.dodajDispecera(novi);
 					}else {
@@ -137,7 +137,7 @@ public class DispeceriForma extends JFrame {
 						dispecer.setAdresa(adresa);
 						dispecer.setJmbg(jmbg);
 					}
-					taxi_sluzba.snimiDiskove(Taxi_sluzbaMain.DISPECER_FAJL);
+					taxi_sluzba.snimiDisove(Taxi_sluzbaMain.DISPECER_FAJL);
 					DispeceriForma.this.dispose();
 					DispeceriForma.this.setVisible(false);
 				}
@@ -150,7 +150,67 @@ public class DispeceriForma extends JFrame {
 		txtKorIme.setText(String.valueOf(dispecer.getPlata()));
 		txtIme.setText(dispecer.getIme());
 		txtPrezime.setText(dispecer.getPrezime());
-		txt.setText(dispecer.get());
+		txtPol.setText(dispecer.getPol());
+		txtBrTelefona.setText(dispecer.getBrTelefona());
+		txtID.setText(dispecer.setId());
+		txtPlata.setText(dispecer.setPlata());
+		
 	}
-
+	
+	private boolean validacija() {
+		boolean ok = true;
+		String poruka = "Molimo popravite sledece greske u unosu:\n";
+		
+		if(txtID.getText().trim().equals("")) {
+			poruka += "- Morate uneti ID\n";
+			ok = false;
+		}else if(dispecer == null) {
+			String id = txtID.getText().trim();
+			Dispecer pronadjen = taxi_sluzba.pronadjiDispecera(id);
+			if(pronadjen != null) {
+				poruka += "- Dispecer sa unetim ID vec postoji\n";
+				ok = false;
+			}
+		}
+		
+		try {
+			Double.parseDouble(txtPlata.getText().trim());
+		}catch (NumberFormatException e) {
+			poruka += "- Plata mora biti broj\n";
+			ok = false;
+		}
+		
+		if(txtIme.getText().trim().equals("")) {
+			poruka += "- Morate uneti ime\n";
+			ok = false;
+		}
+		
+		if(txtPrezime.getText().trim().equals("")) {
+			poruka += "- Morate uneti prezime\n";
+			ok = false;
+		}
+		
+		if(txtKorIme.getText().trim().equals("")) {
+			poruka += "- Morate uneti korisnicko ime\n";
+			ok = false;
+		}
+		
+		
+		if(txt.getText().trim().equals("")) {
+			poruka += "- Morate uneti korisnicko ime\n";
+			ok = false;
+			
+		}
+		String sifra = new String(pfLozinka.getPassword()).trim();
+		if(sifra.equals("")) {
+			poruka += "- Unesite sifru\n";
+			ok = false;
+		
+		
+		if(ok == false) {
+			JOptionPane.showMessageDialog(null, poruka, "Neispravni podaci", JOptionPane.WARNING_MESSAGE);
+		}
+		return ok;
+	}
+	
 }
