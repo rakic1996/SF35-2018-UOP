@@ -135,12 +135,12 @@ public class MusterijaProzor extends JFrame {
 					JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
 				}else {
 					String korisnickoIme = tableModel.getValueAt(red, 3).toString();
-					Musterija musterija = taxi_sluzba.nadjiMusteriju(id);
+					Musterija musterija = taxi_sluzba.pronadjiMusteriju(id);
 					if(musterija == null) {
 						JOptionPane.showMessageDialog(null, "Greska prilikom pronalazenja musteriju sa tim korisnickim imenom", "Greska", JOptionPane.WARNING_MESSAGE);
 					}else {
-						DispeceriForma pf = new MusterijeForma(taxi_sluzba, musterija);
-						pf.setVisible(true);
+						MusterijeForma mf = new MusterijeForma();
+						mf.setVisible(true);
 					}
 				}
 			}

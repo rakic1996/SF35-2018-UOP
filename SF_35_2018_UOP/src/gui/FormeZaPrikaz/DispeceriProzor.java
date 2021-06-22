@@ -137,7 +137,7 @@ public class DispeceriProzor extends JFrame {
 					JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
 				}else {
 					String korisnickoIme = tableModel.getValueAt(red, 3).toString();
-					Dispecer dispecer = taxi_sluzba.nadjiDispecera(id);
+					Dispecer dispecer = taxi_sluzba.pronadjiDispecera(id);
 					if(dispecer == null) {
 						JOptionPane.showMessageDialog(null, "Greska prilikom pronalazenja dispecera sa tim korisnickim imenom", "Greska", JOptionPane.WARNING_MESSAGE);
 					}else {

@@ -10,6 +10,7 @@ import javax.swing.JMenuItem;
 
 import gui.FormeZaPrikaz.DispeceriProzor;
 import gui.FormeZaPrikaz.MusterijaProzor;
+import gui.FormeZaPrikaz.VozacProzor;
 import gui.FormeZaPrikaz.VoznjeProzor;
 import osobe.Dispecer;
 import osobe.Musterija;

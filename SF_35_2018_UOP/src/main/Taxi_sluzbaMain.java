@@ -8,6 +8,7 @@ import gui.LoginProzor;
 import gui.FormeZaPrikaz.DispeceriProzor;
 import gui.FormeZaPrikaz.MusterijaProzor;
 import gui.FormeZaPrikaz.VozacProzor;
+import gui.FormeZaPrikaz.VoznjeProzor;
 import osobe.Dispecer;
 import osobe.Musterija;
 import osobe.Odeljenje;
@@ -56,6 +57,8 @@ public class Taxi_sluzbaMain {
 		VozacProzor vp = new VozacProzor(taxi_sluzba);
 		vp.setVisible(true);
 
+		VoznjeProzor kp = new VoznjeProzor(taxi_sluzba);
+		vp.setVisible(true);
 	}
 	
 	private static void saveData(Taxi_sluzba taxi_sluzba) {

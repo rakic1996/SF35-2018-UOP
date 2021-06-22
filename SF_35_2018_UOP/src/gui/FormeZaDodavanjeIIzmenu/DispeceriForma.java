@@ -8,6 +8,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import main.Taxi_sluzbaMain;
@@ -22,6 +23,8 @@ public class DispeceriForma extends JFrame {
 	protected static final boolean Odeljenje = false;
 	private JLabel lblKorIme = new JLabel("Korisnicko ime");
 	private JTextField txtKorIme = new JTextField(20);
+	private JLabel txtLozinka = new JLabel("Lozinka");
+	private JPasswordField pfLozinka = new JPasswordField(20);
 	private JLabel lblIme = new  JLabel("Ime");
 	private JTextField txtIme = new JTextField(20);
 	private JLabel lblPrezime = new JLabel("Naziv");
@@ -30,8 +33,8 @@ public class DispeceriForma extends JFrame {
 	private JComboBox<Pol> cbPol = new JComboBox<Pol>(Pol.values());
 	private JLabel lblBrTelefona = new JLabel("Broj telefona");
 	private JTextField txtBrTelefona = new JTextField(20);
-	private JLabel lblID = new JLabel("ID");
-	private JTextField txtID = new JTextField(20);
+//	private JLabel lblID = new JLabel("ID");
+//	private JTextField txtID = new JTextField(20);
 	private JLabel lblPlata = new JLabel("Plata");
 	private JTextField txtPlata = new JTextField(20);
 	private JLabel lblTelLinija = new JLabel("Telefonska linija");
@@ -70,12 +73,13 @@ public class DispeceriForma extends JFrame {
 		setLayout(layout);
 		
 		if(dispecer != null) {
-//			txtID.setEnabled(false);
 			popuniPolja();
 		}
 		
 		add(lblKorIme);
 		add(txtKorIme);
+		add(txtLozinka);
+		add(pfLozinka);
 		add(lblIme);
 		add(txtIme);
 		add(lblPrezime);
@@ -84,8 +88,8 @@ public class DispeceriForma extends JFrame {
 		add(cbPol);
 		add(lblBrTelefona);
 		add(txtBrTelefona);
-		add(lblID);
-		add(txtID);
+//		add(lblID);
+//		add(txtID);
 		add(lblPlata);
 		add(txtPlata);
 		add(lblTelLinija);
@@ -108,20 +112,21 @@ public class DispeceriForma extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if(validacija()) {
 					String korIme = txtKorIme.getText().trim();
+					String lozinka = txtLozinka .getText().trim();
 					String ime = txtIme.getText().trim();
 					String prezime = txtPrezime.getText().trim();
 					Pol pol = (Pol)cbPol.getSelectedItem();
 					String brTelefona = txtBrTelefona.getText().trim();
-					String id = txtID.getText().trim();
+//					String id = txtID.getText().trim();
 					double plata = Double.parseDouble(txtPlata.getText().trim());
-					String telLinija = txtTelLinija.getText().trim();
+					String telefonska_linija = txtTelLinija.getText().trim();
 					Odeljenje odeljenje = (Odeljenje).cbOdeljenje.getSelectedItem();
 					String adresa = txtAdresa.getText().trim();
 					String jmbg = txtJmbg.getText().trim();
 					
 					if(dispecer == null) { // DODAVANJE:
 						Dispecer novi = new Dispecer(korIme, lozinka, ime, prezime, jmbg,
-								adresa, pol, brTelefona, obrisan, id, plata,telefonska_linija, odeljenje, uloga);
+								adresa, pol, brTelefona, plata,telefonska_linija, odeljenje);
 								
 						taxi_sluzba.dodajDispecera(novi);
 					}else {
@@ -130,14 +135,14 @@ public class DispeceriForma extends JFrame {
 						dispecer.setPrezime(prezime);
 						dispecer.setPol(pol);
 						dispecer.setBrTelefona(brTelefona);
-						dispecer.setId(id);
+//						dispecer.setId(id);
 						dispecer.setPlata(plata);
 						dispecer.setTelefonska_linija(telefonska_linija);
 						dispecer.setOdeljenje(odeljenje);
 						dispecer.setAdresa(adresa);
 						dispecer.setJmbg(jmbg);
 					}
-					taxi_sluzba.snimiDisove(Taxi_sluzbaMain.DISPECER_FAJL);
+					taxi_sluzba.//////////////////////(Taxi_sluzbaMain.DISPECER_FAJL);
 					DispeceriForma.this.dispose();
 					DispeceriForma.this.setVisible(false);
 				}
@@ -146,14 +151,17 @@ public class DispeceriForma extends JFrame {
 	};
 	
 	private void popuniPolja() {
-		txtID.setText(dispecer.getId());
 		txtKorIme.setText(String.valueOf(dispecer.getPlata()));
 		txtIme.setText(dispecer.getIme());
 		txtPrezime.setText(dispecer.getPrezime());
-		txtPol.setText(dispecer.getPol());
+		cbPol.setSelectedItem(dispecer.getPol());
 		txtBrTelefona.setText(dispecer.getBrTelefona());
-		txtID.setText(dispecer.setId());
 		txtPlata.setText(dispecer.setPlata());
+		txtTelLinija.setText(dispecer.setTelefonska_linija();
+		cbOdeljenje.setSelectedItem(dispecer.setOdeljenje();
+		txtAdresa.setText(dispecer.getAdresa());
+		txtJmbg.setText(dispecer.getAdresa());
+//		txtID.setText(dispecer.getId());
 		
 	}
 	
@@ -161,14 +169,14 @@ public class DispeceriForma extends JFrame {
 		boolean ok = true;
 		String poruka = "Molimo popravite sledece greske u unosu:\n";
 		
-		if(txtID.getText().trim().equals("")) {
-			poruka += "- Morate uneti ID\n";
+		if(txtKorIme.getText().trim().equals("")) {
+			poruka += "- Morate uneti korisnicko ime\n";
 			ok = false;
 		}else if(dispecer == null) {
-			String id = txtID.getText().trim();
+			String id = txtKorIme.getText().trim();
 			Dispecer pronadjen = taxi_sluzba.pronadjiDispecera(id);
 			if(pronadjen != null) {
-				poruka += "- Dispecer sa unetim ID vec postoji\n";
+				poruka += "- Dispecer sa unetim korisnickim imenom vec postoji\n";
 				ok = false;
 			}
 		}
@@ -188,22 +196,11 @@ public class DispeceriForma extends JFrame {
 		if(txtPrezime.getText().trim().equals("")) {
 			poruka += "- Morate uneti prezime\n";
 			ok = false;
-		}
-		
-		if(txtKorIme.getText().trim().equals("")) {
-			poruka += "- Morate uneti korisnicko ime\n";
-			ok = false;
-		}
-		
-		
-		if(txt.getText().trim().equals("")) {
-			poruka += "- Morate uneti korisnicko ime\n";
-			ok = false;
 			
 		}
-		String sifra = new String(pfLozinka.getPassword()).trim();
-		if(sifra.equals("")) {
-			poruka += "- Unesite sifru\n";
+		String lozinka = new String(pfLozinka.getPassword()).trim();
+		if(lozinka.equals("")) {
+			poruka += "- Unesite lozinku\n";
 			ok = false;
 		
 		
@@ -213,4 +210,5 @@ public class DispeceriForma extends JFrame {
 		return ok;
 	}
 	
+}
 }

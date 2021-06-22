@@ -16,9 +16,11 @@ import javax.swing.table.DefaultTableModel;
 
 import gui.FormeZaDodavanjeIIzmenu.DispeceriForma;
 import gui.FormeZaDodavanjeIIzmenu.VozaciForma;
+import gui.FormeZaDodavanjeIIzmenu.VoznjeForma;
 import main.Taxi_sluzbaMain;
 import osobe.Vozac;
 import taxi_sluzba.Taxi_sluzba;
+import voznja.Voznja;
 
 public class VoznjeProzor extends JFrame {
 
@@ -29,7 +31,7 @@ public class VoznjeProzor extends JFrame {
 	
 	
 	private DefaultTableModel tableModel;
-	private JTable vozacTabela;
+	private JTable voznjaTabela ;
 	
 	
 	private Taxi_sluzba taxi_sluzba;
@@ -37,115 +39,125 @@ public class VoznjeProzor extends JFrame {
 	
 	public VoznjeProzor(Taxi_sluzba taxi_sluzba) {
 		this.taxi_sluzba = taxi_sluzba;
-		setTitle("Vozac");
+		setTitle("Voznje");
 		setSize(500, 300);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
-		initGUI();
-		initActions();
+//		initGUI();
+//		initActions();
 		 
 	}
 	
-	private void initGUI() {
-		ImageIcon addIcon = new ImageIcon(getClass().getResource("/icons/create.png"));
-		btnAdd.setIcon(addIcon);
-		ImageIcon editIcon = new ImageIcon(getClass().getResource("/icons/update.png"));
-		btnEdit.setIcon(editIcon);
-		ImageIcon deleteIcon = new ImageIcon(getClass().getResource("/icons/delete.jpg"));
-		btnDelete.setIcon(deleteIcon);
+//	private void initGUI() {
+//		ImageIcon addIcon = new ImageIcon(getClass().getResource("/icons/create.png"));
+//		btnAdd.setIcon(addIcon);
+//		ImageIcon editIcon = new ImageIcon(getClass().getResource("/icons/update.png"));
+//		btnEdit.setIcon(editIcon);
+//		ImageIcon deleteIcon = new ImageIcon(getClass().getResource("/icons/delete.jpg"));
+//		btnDelete.setIcon(deleteIcon);
+//		
+//		
+//		mainToolBar.add(btnAdd);
+//		mainToolBar.add(btnEdit);
+//		mainToolBar.add(btnDelete);
+//		add(mainToolBar, BorderLayout.NORTH);
+	
+	////////OVO NE TREBA JER IDE SAMO PRIKAZ A NE CEO CRUD
 		
 		
-		mainToolBar.add(btnAdd);
-		mainToolBar.add(btnEdit);
-		mainToolBar.add(btnDelete);
-		add(mainToolBar, BorderLayout.NORTH);
-		
-		
-		String [] zaglavlja = new String[] {"Datum porudzbine", "Adresa polaska", "Adresa destinacije",
-				 							"Predjeni kilometri", "Adresa", "Pol", "Broj telefona", "Plata",
-				 							"Broj clanske karte", "ID Automobila"};
+		String [] zaglavlja = new String[] {"ID", "Datum porudzbine", "Adresa polaska", "Adresa destinacije",
+											"Musterija", "Vozac", "Predjeni kilometri",
+				 							"Trajanje voznje", "Status voznje","ID Automobila"};
 		Object[][] sadrzaj = new Object[taxi_sluzba.sveNeobrisaneVoznje().size()][zaglavlja.length];
 		
-		for(int i=0; i<taxi_sluzba.sviNeobrisaniVozaci().size(); i++) {
-			Vozac vozac = taxi_sluzba.sviNeobrisaniVozaci().get(i);
-			sadrzaj[i][0] = vozac.getKorIme();
-			sadrzaj[i][1] = vozac.getIme();
-			sadrzaj[i][2] = vozac.getPrezime();
-			sadrzaj[i][3] = vozac.getJmbg();
-			sadrzaj[i][4] = vozac.getAdresa();
-			sadrzaj[i][5] = vozac.getPol();
-			sadrzaj[i][6] = vozac.getBrTelefona();
-			sadrzaj[i][7] = vozac.getPlata();
-			sadrzaj[i][8] = vozac.getClanska_karta();
-			sadrzaj[i][9] = vozac.getAutomobil();
+		for(int i=0; i<taxi_sluzba.sveNeobrisaneVoznje().size(); i++) {
+			Voznja voznja = taxi_sluzba.sveNeobrisaneVoznje().get(i);
+			sadrzaj[i][0] = voznja.getDatum_porudzbine();
+			sadrzaj[i][1] = voznja.getAdresa_polaska();
+			sadrzaj[i][2] = voznja.getAdresa_destinacije();
+			sadrzaj[i][3] = voznja.getMusterija();
+			sadrzaj[i][4] = voznja.getVozac();
+			sadrzaj[i][5] = voznja.getPredjeni_km();
+			sadrzaj[i][6] = voznja.getTrajanje_voznje();
+			sadrzaj[i][7] = voznja.getStatus_voznje();;
+			sadrzaj[i][8] = voznja.getAutomobil();///////////
 
 		}
 		
+		{		
 		tableModel = new DefaultTableModel(sadrzaj, zaglavlja);
-		vozacTabela = new JTable(tableModel);
+		voznjaTabela = new JTable(tableModel);
 		
-		vozacTabela.setRowSelectionAllowed(true);
-		vozacTabela.setColumnSelectionAllowed(false);
-		vozacTabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		vozacTabela.setDefaultEditor(Object.class, null);
-		vozacTabela.getTableHeader().setReorderingAllowed(false);
+		voznjaTabela .setRowSelectionAllowed(true);
+		voznjaTabela .setColumnSelectionAllowed(false);
+		voznjaTabela .setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		voznjaTabela  .setDefaultEditor(Object.class, null);
+		voznjaTabela .getTableHeader().setReorderingAllowed(false);
 		
-		JScrollPane scrollPane = new JScrollPane(vozacTabela);
+		JScrollPane scrollPane = new JScrollPane(voznjaTabela);
 		add(scrollPane, BorderLayout.CENTER);
-		
-	}
-
-	private void initActions() {
-		
-		
-		btnDelete.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				int red = vozacTabela.getSelectedRow();
-				if(red == -1) {
-					JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
-				}else {
-					String korIme = tableModel.getValueAt(red, 3).toString();
-					Vozac vozac = taxi_sluzba.pronadjiVozaca(Id);
-					
-					int izbor = JOptionPane.showConfirmDialog(null, 
-							"Da li ste sigurni da zelite da obrisete vozaca?", 
-							korIme + " - Porvrda brisanja", JOptionPane.YES_NO_OPTION);
-					if(izbor == JOptionPane.YES_OPTION) {
-						vozac.setObrisan(true);
-						tableModel.removeRow(red);
-						taxi_sluzba.snimiKorisnike(Taxi_sluzbaMain.VOZAC_FAJL);
-					}
-				}
-			}
-		});
-		
-		btnAdd.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				VozaciForma vf = new VozaciForma(taxi_sluzba, null);
-				vf.setVisible(true);
-			}
-		});
-		
-		btnEdit.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				int red = vozacTabela.getSelectedRow();
-				if(red == -1) {
-					JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
-				}else {
-					String korisnickoIme = tableModel.getValueAt(red, 3).toString();
-					Vozac vozac = taxi_sluzba.pronadjiVozaca(id);
-					if(vozac == null) {
-						JOptionPane.showMessageDialog(null, "Greska prilikom pronalazenja vozaca sa tim korisnickim imenom", "Greska", JOptionPane.WARNING_MESSAGE);
-					}else {
-						VozaciForma vf = new DispeceriForma(taxi_sluzba, vozac);
-						vf.setVisible(true);
-					}
-				}
-			}
-		});
 	}
 }
+}
+
+//	private void initActions() {
+		
+		
+//		btnDelete.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				int red = voznjaTabela .getSelectedRow();
+//				if(red == -1) {
+//					JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
+//				}else {
+//					String korIme = tableModel.getValueAt(red, 3).toString();
+//					Voznja voznja = taxi_sluzba.pronadjiVoznju(Id);
+//					
+//					int izbor = JOptionPane.showConfirmDialog(null, 
+//							"Da li ste sigurni da zelite da obrisete vozaca?", 
+//							korIme + " - Porvrda brisanja", JOptionPane.YES_NO_OPTION);
+//					if(izbor == JOptionPane.YES_OPTION) {
+//						voznja.setObrisan(true);
+//						tableModel.removeRow(red);
+//						taxi_sluzba.snimiKorisnike(Taxi_sluzbaMain.VOZAC_FAJL);
+//					}
+//				}
+//			}
+//		});
+//		
+//		btnAdd.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				VozaciForma vf = new VozaciForma(taxi_sluzba, null);
+//				vf.setVisible(true);
+//			}
+//		});
+//		
+//		
+//		btnEdit.addActionListener(new ActionListener() {
+//				
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				int red = voznjaTabela .getSelectedRow();
+//				if(red == -1) {
+//					JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
+//				}else {
+//					String korisnickoIme = tableModel.getValueAt(red, 3).toString();
+//					Voznja voznja = taxi_sluzba.pronadjiVozaca(id);
+//					if(voznja == null) {
+//						JOptionPane.showMessageDialog(null, "Greska prilikom pronalazenja vozaca sa tim korisnickim imenom", "Greska", JOptionPane.WARNING_MESSAGE);
+//					}else {
+//						VoznjeForma vf = new VoznjeForma(taxi_sluzba, voznja);
+//						vf.setVisible(true);
+//						
+//					}
+//				}
+//			}
+//		});
+//	}
+//}
+//}
+//			
+//			
+		
+

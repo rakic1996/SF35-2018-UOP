@@ -38,7 +38,7 @@ public class VozacProzor extends JFrame {
 	
 	public VozacProzor(Taxi_sluzba taxi_sluzba) {
 		this.taxi_sluzba = taxi_sluzba;
-		setTitle("Vozac");
+		setTitle("Vozaci");
 		setSize(500, 300);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
@@ -142,7 +142,7 @@ public class VozacProzor extends JFrame {
 					if(vozac == null) {
 						JOptionPane.showMessageDialog(null, "Greska prilikom pronalazenja vozaca sa tim korisnickim imenom", "Greska", JOptionPane.WARNING_MESSAGE);
 					}else {
-						VozaciForma vf = new DispeceriForma(taxi_sluzba, vozac);
+						VozaciForma vf = new VozaciForma(taxi_sluzba, vozac);
 						vf.setVisible(true);
 					}
 				}
