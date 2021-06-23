@@ -63,7 +63,7 @@ public class MusterijaProzor extends JFrame {
 		
 		
 		String [] zaglavlja = new String[] {"Korisnicko ime", "Ime", "Prezime",
-				 							"JMBG", "Adresa", "Pol", "Broj telefona", "ID"};
+				 							"JMBG", "Adresa", "Pol", "Broj telefona"};
 		Object[][] sadrzaj = new Object[taxi_sluzba.sviNeobrisaniDispeceri().size()][zaglavlja.length];
 		
 		for(int i=0; i<taxi_sluzba.sveNeobrisaneMuterije().size(); i++) {
@@ -75,7 +75,6 @@ public class MusterijaProzor extends JFrame {
 			sadrzaj[i][4] = musterija.getAdresa();
 			sadrzaj[i][4] = musterija.getPol();
 			sadrzaj[i][4] = musterija.getBrTelefona();
-			sadrzaj[i][4] = musterija.getId();
 
 		}
 		
@@ -104,7 +103,7 @@ public class MusterijaProzor extends JFrame {
 					JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
 				}else {
 					String korIme = tableModel.getValueAt(red, 3).toString();
-					Musterija musterija = taxi_sluzba.pronadjiMusteriju(id);
+					Musterija musterija = taxi_sluzba.pronadjiMusteriju(korIme);
 					
 					int izbor = JOptionPane.showConfirmDialog(null, 
 							"Da li ste sigurni da zelite da obrisete musteriju?", 
@@ -112,7 +111,7 @@ public class MusterijaProzor extends JFrame {
 					if(izbor == JOptionPane.YES_OPTION) {
 						musterija.setObrisan(true);
 						tableModel.removeRow(red);
-						taxi_sluzba.snimiZaposlene(Taxi_sluzbaMain.MUSTERIJA_FAJL);
+						taxi_sluzba.cuvanjeMusterije(Taxi_sluzbaMain.MUSTERIJA_FAJL);
 					}
 				}
 			}
@@ -134,12 +133,12 @@ public class MusterijaProzor extends JFrame {
 				if(red == -1) {
 					JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
 				}else {
-					String korisnickoIme = tableModel.getValueAt(red, 3).toString();
-					Musterija musterija = taxi_sluzba.pronadjiMusteriju(id);
+					String korIme = tableModel.getValueAt(red, 0).toString();
+					Musterija musterija = taxi_sluzba.pronadjiMusteriju(korIme);
 					if(musterija == null) {
 						JOptionPane.showMessageDialog(null, "Greska prilikom pronalazenja musteriju sa tim korisnickim imenom", "Greska", JOptionPane.WARNING_MESSAGE);
 					}else {
-						MusterijeForma mf = new MusterijeForma();
+						MusterijeForma mf = new MusterijeForma(taxi_sluzba, musterija);
 						mf.setVisible(true);
 					}
 				}

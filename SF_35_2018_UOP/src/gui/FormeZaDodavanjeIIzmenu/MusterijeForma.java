@@ -11,16 +11,17 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import main.Taxi_sluzbaMain;
 import net.miginfocom.swing.MigLayout;
 import osobe.Dispecer;
 import osobe.Musterija;
 import osobe.Odeljenje;
 import osobe.Pol;
+import osobe.Uloga;
 import taxi_sluzba.Taxi_sluzba;
 
 public class MusterijeForma extends JFrame {
 	
-	protected static final boolean Odeljenje = false;
 	private JLabel lblKorIme = new JLabel("Korisnicko ime");
 	private JTextField txtKorIme = new JTextField(20);
 	private JLabel txtLozinka = new JLabel("Lozinka");
@@ -33,16 +34,10 @@ public class MusterijeForma extends JFrame {
 	private JComboBox<Pol> cbPol = new JComboBox<Pol>(Pol.values());
 	private JLabel lblBrTelefona = new JLabel("Broj telefona");
 	private JTextField txtBrTelefona = new JTextField(20);
-//	private JLabel lblID = new JLabel("ID");
-//	private JTextField txtID = new JTextField(20);
 	private JLabel lblAdresa = new JLabel("Adresa");
 	private JTextField txtAdresa = new JTextField(20);
 	private JLabel lblJmbg = new JLabel("JMBG");
 	private JTextField txtJmbg = new JTextField(20);
-	private JLabel lblObrisan = new JLabel("Obrisan");
-	private JTextField txtObrisan = new JTextField(20);
-	private JLabel lblUloga = new JLabel("Uloga");
-	private JTextField txtUloga = new JTextField(20);
 	private JButton btnOK = new JButton("OK");
 	private JButton btnCancel = new JButton("Cancel");
 
@@ -56,7 +51,7 @@ public class MusterijeForma extends JFrame {
 		if(musterija == null) {
 			setTitle("Dodavanje musteriju");
 		}else {
-			setTitle("Izmena podataka - " + musterija.getId());
+			setTitle("Izmena podataka - " + musterija.getKorIme());
 		}
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
@@ -71,7 +66,7 @@ public class MusterijeForma extends JFrame {
 		setLayout(layout);
 		
 		if(musterija != null) {
-			txtID.setEnabled(false);
+			txtKorIme.setEnabled(false);
 			popuniPolja();
 		}
 		
@@ -87,8 +82,6 @@ public class MusterijeForma extends JFrame {
 		add(cbPol);
 		add(lblBrTelefona);
 		add(txtBrTelefona);
-//		add(lblID);
-//		add(txtID);
 		add(lblAdresa);
 		add(txtAdresa);
 		add(lblJmbg);
@@ -112,13 +105,10 @@ public class MusterijeForma extends JFrame {
 					String adresa = txtAdresa.getText().trim();
 					Pol pol = (Pol)cbPol.getSelectedItem();
 					String brTelefona = txtBrTelefona.getText().trim();
-					boolean obrisan = boolean.parseBoolean/////////////////////////
-					String uloga = txtUloga.getText().trim();
-//					int id = intId.getInteger().trim();//////////////////KAKO INT
 
 					if(musterija == null) { // DODAVANJE:
 						Musterija nova = new Musterija(korIme, lozinka, ime, prezime, jmbg,
-								adresa, pol, brTelefona);
+								adresa, pol, brTelefona, false, Uloga.MUSTERIJA);
 								
 						taxi_sluzba.dodajMusteriju(nova);
 					}else {
@@ -127,11 +117,10 @@ public class MusterijeForma extends JFrame {
 						musterija.setPrezime(prezime);
 						musterija.setPol(pol);
 						musterija.setBrTelefona(brTelefona);
-						musterija.setId(id);
 						musterija.setAdresa(adresa);
 						musterija.setJmbg(jmbg);
 					}
-					taxi_sluzba.//////////////////////(Taxi_sluzbaMain.DISPECER_FAJL);
+					taxi_sluzba.cuvanjeMusterije(Taxi_sluzbaMain.MUSTERIJA_FAJL);
 					MusterijeForma.this.dispose();
 					MusterijeForma.this.setVisible(false);
 				}
@@ -162,19 +151,12 @@ public class MusterijeForma extends JFrame {
 			poruka += "- Morate uneti korisnicko ime\n";
 			ok = false;
 		}else if(musterija == null) {
-			String id = txtKorIme.getText().trim();
-			Dispecer pronadjen = taxi_sluzba.pronadjiMusteriju(id);
+			String korIme = txtKorIme.getText().trim();
+			Musterija pronadjen = taxi_sluzba.pronadjiMusteriju(korIme);
 			if(pronadjen != null) {
 				poruka += "- Musterija sa unetim korisnickim imenom vec postoji\n";
 				ok = false;
 			}
-		}
-		
-		try {
-			Double.parseDouble(txtPlata.getText().trim());
-		}catch (NumberFormatException e) {
-			poruka += "- Plata mora biti broj\n";
-			ok = false;
 		}
 		
 		if(txtIme.getText().trim().equals("")) {
@@ -196,14 +178,12 @@ public class MusterijeForma extends JFrame {
 		if(lozinka.equals("")) {
 			poruka += "- Unesite lozinku\n";
 			ok = false;
-		
+		}
 		
 		if(ok == false) {
 			JOptionPane.showMessageDialog(null, poruka, "Neispravni podaci", JOptionPane.WARNING_MESSAGE);
 		}
 		return ok;
-	}
-	
 }
 	
 	

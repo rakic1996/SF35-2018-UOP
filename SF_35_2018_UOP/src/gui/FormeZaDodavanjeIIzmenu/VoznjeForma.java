@@ -12,6 +12,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import automobil.Automobil;
+import main.Taxi_sluzbaMain;
 import net.miginfocom.swing.MigLayout;
 import osobe.Dispecer;
 import osobe.Musterija;
@@ -32,9 +33,9 @@ public class VoznjeForma extends JFrame {
 	private JLabel lblAdresaDestinacije = new JLabel("Adresa destinacije");
 	private JTextField txtAdresaDestinacije = new JTextField(20);
 	private JLabel lblMusterija = new JLabel("Musterija");
-	private JComboBox<Musterija> cbMusterija = new JComboBox<Musterija>(Musterija.values());//////
+	private JComboBox<Musterija> cbMusterija = new JComboBox<Musterija>();//////
 	private JLabel lblVozac = new JLabel("Vozac");
-	private JComboBox<Vozac> cbVozac = new JComboBox<Vozac>(Vozac.values());//////
+	private JComboBox<Vozac> cbVozac = new JComboBox<Vozac>();//////
 	private JLabel lblPredjeniKm = new JLabel("Predjeni kilometri");
 	private JTextField txtPredjeniKm = new JTextField(20);
 //	private JLabel lblID = new JLabel("ID");
@@ -65,7 +66,7 @@ public class VoznjeForma extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		initGUI();
-		initActions();
+//		initActions();
 		setResizable(false);
 		pack();
 	}
@@ -74,9 +75,9 @@ public class VoznjeForma extends JFrame {
 		MigLayout layout = new MigLayout("wrap 2", "[][]", "[][][][][]20[]");
 		setLayout(layout);
 		
-		if(voznja != null) {
-			popuniPolja();
-		}
+//		if(voznja != null) {
+//			popuniPolja();
+//		}
 		
 		add(lblID);
 		add(txtID);
@@ -102,64 +103,63 @@ public class VoznjeForma extends JFrame {
 	}
 	
 
-	private void initActions() {
-		btnOK.addActionListener(new ActionListener() {
-			private String clanska_karta;
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if(validacija()) {
-					String ID = txtID.getText().trim();
-					String datum_porudzbine = txtDatumPorudzbine.getText().trim();//// datetime
-					String adresa_polaska = txtAdresaPolaska.getText().trim();
-					String adresa_destinacije = txtAdresaDestinacije.getText().trim();
-					Musterija musterija = (musterija)cbMusterija.getSelectedItem();
-					Vozac vozac = (vozac)cbVozac.getSelectedItem();
-					String predjeni_km = txtPredjeniKm.getText().trim();
-					String trajanje_voznje = txtTrajanjeVoznje.getText().trim();
-					StatusVoznje status_voznje = (StatusVoznje)cbStatusVoznje.getSelectedItem();
-								
-					
-					if(voznja == null) { // DODAVANJE:
-						Voznja  novi = new Voznja(ID, datum_porudzbine, adresa_polaska,
-								adresa_destinacije, musterija, vozac, predjeni_km, trajanje_voznje,
-								status_voznje);
-								
-								
-						taxi_sluzba.dodajVoznju(novi);
-					}else {
-						voznja.setId(ID);
-						voznja.setDatum_porudzbine(datum_porudzbine);
-						voznja.setAdresa_polaska(adresa_polaska);
-						voznja.setAdresa_destinacije(adresa_destinacije);
-						voznja.setMusterija(musterija);
-						voznja.setVozac(vozac);
-						voznja.setPredjeni_km(predjeni_km);
-						voznja.setTrajanje_voznje(trajanje_voznje);
-						voznja.setStatus_voznje(status_voznje);
-
-
-					}
-					taxi_sluzba.//////////////////////(Taxi_sluzbaMain.VOZNJA_FAJL);
-					VoznjeForma.this.dispose();
-					VoznjeForma.this.setVisible(false);
-				}
-			}
-		});
-	};
+//	private void initActions() {
+//		btnOK.addActionListener(new ActionListener() {
+//			private String clanska_karta;
+//
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				if(validacija()) {
+//					String ID = txtID.getText().trim();
+//					String datum_porudzbine = txtDatumPorudzbine.getText().trim();
+//					String adresa_polaska = txtAdresaPolaska.getText().trim();
+//					String adresa_destinacije = txtAdresaDestinacije.getText().trim();
+//					Musterija musterija = (Musterija)cbMusterija.getSelectedItem();
+//					Vozac vozac = (Vozac)cbVozac.getSelectedItem();
+//					Double predjeni_km = Double.parseDouble(txtPredjeniKm.getText().trim());
+//					Double trajanje_voznje = Double.parseDouble(txtTrajanjeVoznje.getText().trim());
+//					StatusVoznje status_voznje = (StatusVoznje)cbStatusVoznje.getSelectedItem();
+//								
+//					
+//					if(voznja == null) { // DODAVANJE:
+//						Voznja  novi = new Voznja(ID, datum_porudzbine, adresa_polaska,
+//								adresa_destinacije, musterija, vozac, predjeni_km, trajanje_voznje,
+//								status_voznje);
+//								
+//								
+//						taxi_sluzba.dodajVoznju(novi);
+//					}else {
+//						voznja.setDatum_porudzbine(datum_porudzbine);
+//						voznja.setAdresa_polaska(adresa_polaska);
+//						voznja.setAdresa_destinacije(adresa_destinacije);
+//						voznja.setMusterija(musterija);
+//						voznja.setVozac(vozac);
+//						voznja.setPredjeni_km(predjeni_km);
+//						voznja.setTrajanje_voznje(trajanje_voznje);
+//						voznja.setStatus_voznje(status_voznje);
+//
+//
+//					}
+//					taxi_sluzba.cuvanjeVoznji(Taxi_sluzbaMain.VOZNJA_FAJL);
+//					VoznjeForma.this.dispose();
+//					VoznjeForma.this.setVisible(false);
+//				}
+//			}
+//		});
+//	};
 	
-	private void popuniPolja() {
-		txtID.setText(voznja.getId());
-		txtDatumPorudzbine.setText(voznja.getDatum_porudzbine());
-		txtAdresaPolaska.setText(voznja.getAdresa_polaska());
-		txtAdresaDestinacije.setText(voznja.getAdresa_destinacije());
-		cbMusterija.setSelectedItem(voznja.getMusterija());
-		cbVozac.setSelectedItem(voznja.getVozac());
-		txtPredjeniKm.setText(voznja.getPredjeni_km());
-		txtTrajanjeVoznje.setText(voznja.getTrajanje_voznje());
-		cbStatusVoznje.setSelectedItem(voznja.getStatus_voznje());
-		
-	}
+//	private void popuniPolja() {
+//		txtID.setText(voznja.getId());
+//		txtDatumPorudzbine.setText(voznja.getDatum_porudzbine());
+//		txtAdresaPolaska.setText(voznja.getAdresa_polaska());
+//		txtAdresaDestinacije.setText(voznja.getAdresa_destinacije());
+//		cbMusterija.setSelectedItem(voznja.getMusterija());
+//		cbVozac.setSelectedItem(voznja.getVozac());
+//		txtPredjeniKm.setText(voznja.getPredjeni_km());
+//		txtTrajanjeVoznje.setText(voznja.getTrajanje_voznje());
+//		cbStatusVoznje.setSelectedItem(voznja.getStatus_voznje());
+//		
+//	}
 	
 //	private boolean validacija() {
 //		boolean ok = true;

@@ -63,10 +63,10 @@ public class Taxi_sluzbaMain {
 	
 	private static void saveData(Taxi_sluzba taxi_sluzba) {
 		Dispecer dispecer1 = new Dispecer("Perap", "123", "Pera", "Peric", "123456",
-				  "Narodnog fronta 2", Pol.MUSKI, "1223456", false, 1, 1000.0, "0211234",
+				  "Narodnog fronta 2", Pol.MUSKI, "1223456", false, 1000.0, "0211234",
 				  Odeljenje.Odeljenje_za_prijem_voznji, Uloga.DISPECER); 
 		Dispecer dispecer2 = new Dispecer("Mikam", "456", "Mika", "Mikic", "978545",
-						  "Modene 2", Pol.MUSKI, "785634", false, 2, 2000.0, "0211234",
+						  "Modene 2", Pol.MUSKI, "785634", false, 2000.0, "0211234",
 						  Odeljenje.Odeljenje_za_prijem_voznji, Uloga.DISPECER); 
 		
 		taxi_sluzba.dodajDispecera(dispecer1); 
@@ -75,9 +75,9 @@ public class Taxi_sluzbaMain {
 		
 		
 		Musterija musterija1 = new Musterija("Simas", "789", "Sima", "Simic",
-							 "45634", "Bul Oslobodjenja 4", Pol.MUSKI, "854523", false, 1, Uloga.MUSTERIJA);
+							 "45634", "Bul Oslobodjenja 4", Pol.MUSKI, "854523", false, Uloga.MUSTERIJA);
 		Musterija musterija2 = new Musterija("Maram", "913", "Mara", "Maric", "9876", "Bul Cara Lazara 5",
-							  Pol.ZENSKI, "0903450", false, 2, Uloga.MUSTERIJA);
+							  Pol.ZENSKI, "0903450", false, Uloga.MUSTERIJA);
 		
 		taxi_sluzba.dodajMusteriju(musterija1);
 		taxi_sluzba.dodajMusteriju(musterija2);
@@ -92,9 +92,9 @@ public class Taxi_sluzbaMain {
 		taxi_sluzba.cuvanjeAutomobila(AUTOMOBILI_FAJL);
 		
 		Vozac vozac1 = new Vozac("Petarp","abc", "Petar", "Petrovic", "534347",
-				 "Mihajla Pupina 8", Pol.MUSKI, "04231245", false, 1, 1000.0, "1", automobil1, Uloga.VOZAC); 
+				 "Mihajla Pupina 8", Pol.MUSKI, "04231245", false, 1000.0, "1", automobil1, Uloga.VOZAC); 
 		Vozac vozac2 = new Vozac("Lukal", "567", "Luka", "Lukic", "8674634", "Bul Oslobodjenja 45",
-				Pol.MUSKI, "12054956", false, 2, 1500.0, "1", automobil2, Uloga.VOZAC); 
+				Pol.MUSKI, "12054956", false, 1500.0, "1", automobil2, Uloga.VOZAC); 
 		
 		taxi_sluzba.dodajVozace(vozac1); 
 		taxi_sluzba.dodajVozace(vozac2);

@@ -13,6 +13,7 @@ public class Voznja {
 	private String adresa_destinacije;
 	private Musterija musterija;
 	private Vozac vozac;
+	
 	private double predjeni_km;
 	private double trajanje_voznje;
 	private StatusVoznje status_voznje;

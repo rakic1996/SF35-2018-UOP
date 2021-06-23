@@ -12,16 +12,15 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import automobil.Automobil;
+import main.Taxi_sluzbaMain;
 import net.miginfocom.swing.MigLayout;
-import osobe.Dispecer;
-import osobe.Odeljenje;
 import osobe.Pol;
+import osobe.Uloga;
 import osobe.Vozac;
 import taxi_sluzba.Taxi_sluzba;
 
 public class VozaciForma extends JFrame {
 	
-	protected static final boolean Odeljenje = false;
 	private JLabel lblKorIme = new JLabel("Korisnicko ime");
 	private JTextField txtKorIme = new JTextField(20);
 	private JLabel txtLozinka = new JLabel("Lozinka");
@@ -38,15 +37,12 @@ public class VozaciForma extends JFrame {
 	private JComboBox<Pol> cbPol = new JComboBox<Pol>(Pol.values());
 	private JLabel lblBrTelefona = new JLabel("Broj telefona");
 	private JTextField txtBrTelefona = new JTextField(20);
-//	private JLabel lblID = new JLabel("ID");
-//	private JTextField txtID = new JTextField(20);
 	private JLabel lblPlata = new JLabel("Plata");
 	private JTextField txtPlata = new JTextField(20);
 	private JLabel lblClanska_karta = new JLabel("Clanska karta");
 	private JTextField txtClanska_karta = new JTextField(20); 
 	private JLabel lblAutomobil = new JLabel("Automobil");
-	private JComboBox<Automobil> cbAutomobil = new JComboBox<Automobil>(Automobil.values());//OVDE NE IDE VALUES NEGO NESTO DRUGO JER NIJE ENUM NEGO CEO OBJEKAT
-	
+	private JComboBox<Automobil> cbAutomobil = new JComboBox<Automobil>();
 
 
 
@@ -63,7 +59,7 @@ public class VozaciForma extends JFrame {
 		if(vozac == null) {
 			setTitle("Dodavanje vozaca");
 		}else {
-			setTitle("Izmena podataka - " + vozac.getId());
+			setTitle("Izmena podataka - " + vozac.getKorIme());
 		}
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
@@ -134,12 +130,12 @@ public class VozaciForma extends JFrame {
 
 					
 					
-					if(vozac == null) { // DODAVANJE:
+					if (vozac == null) { // DODAVANJE:
 						Vozac novi = new Vozac(korIme, lozinka, ime, prezime, jmbg,
-								adresa, pol, brTelefona, plata, clanskaKarta, automobil);
+								adresa, pol, brTelefona, false, plata, clanskaKarta, automobil, Uloga.VOZAC);
 								
 						taxi_sluzba.dodajVozace(novi);
-					}else {
+					} else {
 						vozac.setKorIme(korIme);
 						vozac.setIme(ime);
 						vozac.setPrezime(prezime);
@@ -148,15 +144,11 @@ public class VozaciForma extends JFrame {
 						vozac.setPol(pol);
 						vozac.setBrTelefona(brTelefona);
 						vozac.setPlata(plata);
-//						dispecer.setId(id);
 						vozac.setPlata(plata);
 						vozac.setClanska_karta(clanska_karta);
 						vozac.setAutomobil(automobil);
-						
-
-
 					}
-					taxi_sluzba.//////////////////////(Taxi_sluzbaMain.DISPECER_FAJL);
+					taxi_sluzba.cuvanjeVozaca(Taxi_sluzbaMain.VOZAC_FAJL);
 					VozaciForma.this.dispose();
 					VozaciForma.this.setVisible(false);
 				}
@@ -170,11 +162,9 @@ public class VozaciForma extends JFrame {
 		txtPrezime.setText(vozac.getPrezime());
 		cbPol.setSelectedItem(vozac.getPol());
 		txtBrTelefona.setText(vozac.getBrTelefona());
-		txtPlata.setText(vozac.setPlata());
+		txtPlata.setText("" + vozac.getPlata());
 		txtAdresa.setText(vozac.getAdresa());
 		txtJmbg.setText(vozac.getAdresa());
-//		txtID.setText(dispecer.getId());
-		
 	}
 	
 	private boolean validacija() {
@@ -185,8 +175,8 @@ public class VozaciForma extends JFrame {
 			poruka += "- Morate uneti korisnicko ime\n";
 			ok = false;
 		}else if(vozac == null) {
-			String id = txtKorIme.getText().trim();
-			Dispecer pronadjen = taxi_sluzba.pronadjiVozaca(id);
+			String korIme = txtKorIme.getText().trim();
+			Vozac pronadjen = taxi_sluzba.pronadjiVozaca(korIme);
 			if(pronadjen != null) {
 				poruka += "- Vozac sa unetim korisnickim imenom vec postoji\n";
 				ok = false;
@@ -214,14 +204,12 @@ public class VozaciForma extends JFrame {
 		if(lozinka.equals("")) {
 			poruka += "- Unesite lozinku\n";
 			ok = false;
-		
+		}
 		
 		if(ok == false) {
 			JOptionPane.showMessageDialog(null, poruka, "Neispravni podaci", JOptionPane.WARNING_MESSAGE);
 		}
 		return ok;
 	}
-	
-}
 
 }

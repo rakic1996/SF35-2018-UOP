@@ -107,7 +107,7 @@ public class VozacProzor extends JFrame {
 					JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
 				}else {
 					String korIme = tableModel.getValueAt(red, 3).toString();
-					Vozac vozac = taxi_sluzba.pronadjiVozaca(Id);
+					Vozac vozac = taxi_sluzba.pronadjiVozaca(korIme);
 					
 					int izbor = JOptionPane.showConfirmDialog(null, 
 							"Da li ste sigurni da zelite da obrisete vozaca?", 
@@ -115,7 +115,7 @@ public class VozacProzor extends JFrame {
 					if(izbor == JOptionPane.YES_OPTION) {
 						vozac.setObrisan(true);
 						tableModel.removeRow(red);
-						taxi_sluzba.snimiKorisnike(Taxi_sluzbaMain.VOZAC_FAJL);
+						taxi_sluzba.cuvanjeVozaca(Taxi_sluzbaMain.VOZAC_FAJL);
 					}
 				}
 			}
@@ -137,8 +137,8 @@ public class VozacProzor extends JFrame {
 				if(red == -1) {
 					JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
 				}else {
-					String korisnickoIme = tableModel.getValueAt(red, 3).toString();
-					Vozac vozac = taxi_sluzba.pronadjiVozaca(id);
+					String korisnickoIme = tableModel.getValueAt(red, 0).toString();
+					Vozac vozac = taxi_sluzba.pronadjiVozaca(korisnickoIme);
 					if(vozac == null) {
 						JOptionPane.showMessageDialog(null, "Greska prilikom pronalazenja vozaca sa tim korisnickim imenom", "Greska", JOptionPane.WARNING_MESSAGE);
 					}else {

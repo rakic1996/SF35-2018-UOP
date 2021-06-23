@@ -48,7 +48,7 @@ public class VoznjeProzor extends JFrame {
 		 
 	}
 	
-//	private void initGUI() {
+	private void initGUI() {
 //		ImageIcon addIcon = new ImageIcon(getClass().getResource("/icons/create.png"));
 //		btnAdd.setIcon(addIcon);
 //		ImageIcon editIcon = new ImageIcon(getClass().getResource("/icons/update.png"));
@@ -80,7 +80,7 @@ public class VoznjeProzor extends JFrame {
 			sadrzaj[i][5] = voznja.getPredjeni_km();
 			sadrzaj[i][6] = voznja.getTrajanje_voznje();
 			sadrzaj[i][7] = voznja.getStatus_voznje();;
-			sadrzaj[i][8] = voznja.getAutomobil();///////////
+//			sadrzaj[i][8] = voznja.getAutomobil();///////////
 
 		}
 		

@@ -73,12 +73,11 @@ public class DispeceriProzor extends JFrame {
 			sadrzaj[i][2] = dispecer.getPrezime();
 			sadrzaj[i][3] = dispecer.getJmbg();
 			sadrzaj[i][4] = dispecer.getAdresa();
-			sadrzaj[i][4] = dispecer.getPol();
-			sadrzaj[i][4] = dispecer.getBrTelefona();
-			sadrzaj[i][4] = dispecer.getId();
-			sadrzaj[i][4] = dispecer.getPlata();
-			sadrzaj[i][4] = dispecer.getTelefonska_linija();
-			sadrzaj[i][4] = dispecer.getOdeljenje();
+			sadrzaj[i][5] = dispecer.getPol();
+			sadrzaj[i][6] = dispecer.getBrTelefona();
+			sadrzaj[i][7] = dispecer.getPlata();
+			sadrzaj[i][8] = dispecer.getTelefonska_linija();
+			sadrzaj[i][9] = dispecer.getOdeljenje();
 		}
 		
 		tableModel = new DefaultTableModel(sadrzaj, zaglavlja);
@@ -105,7 +104,7 @@ public class DispeceriProzor extends JFrame {
 					JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
 				}else {
 					String korIme = tableModel.getValueAt(red, 3).toString();
-					Dispecer dispecer = taxi_sluzba.pronadjiDispecera(id);
+					Dispecer dispecer = taxi_sluzba.pronadjiDispecera(korIme);
 					
 					int izbor = JOptionPane.showConfirmDialog(null, 
 							"Da li ste sigurni da zelite da obrisete dispecera?", 
@@ -113,7 +112,7 @@ public class DispeceriProzor extends JFrame {
 					if(izbor == JOptionPane.YES_OPTION) {
 						dispecer.setObrisan(true);
 						tableModel.removeRow(red);
-						taxi_sluzba.snimiZaposlene(Taxi_sluzbaMain.DISPECER_FAJL);
+						taxi_sluzba.cuvanjeDispecera(Taxi_sluzbaMain.DISPECER_FAJL);
 						//NE IDE OVO SNIMI ZAPOSLENE, TREBA VEROVATNO NAPRAVITI NOVU FUNKCIJU U TAXISLUZBA
 					}
 				}
@@ -136,8 +135,8 @@ public class DispeceriProzor extends JFrame {
 				if(red == -1) {
 					JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
 				}else {
-					String korisnickoIme = tableModel.getValueAt(red, 3).toString();
-					Dispecer dispecer = taxi_sluzba.pronadjiDispecera(id);
+					String korIme = tableModel.getValueAt(red, 0).toString();
+					Dispecer dispecer = taxi_sluzba.pronadjiDispecera(korIme);
 					if(dispecer == null) {
 						JOptionPane.showMessageDialog(null, "Greska prilikom pronalazenja dispecera sa tim korisnickim imenom", "Greska", JOptionPane.WARNING_MESSAGE);
 					}else {
