@@ -62,7 +62,7 @@ public class DispeceriProzor extends JFrame {
 		
 		
 		String [] zaglavlja = new String[] {"Korisnicko ime", "Ime", "Prezime", "JMBG",
-									"Adresa", "Pol", "Broj telefona", "ID", "Plata", 
+									"Adresa", "Pol", "Broj telefona", "Plata", 
 									"Telefonska linija", "Odeljenje"};
 		Object[][] sadrzaj = new Object[taxi_sluzba.sviNeobrisaniDispeceri().size()][zaglavlja.length];
 		

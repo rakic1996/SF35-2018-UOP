@@ -8,8 +8,11 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import gui.FormeZaDodavanjeIIzmenu.ZakazivanjeVoznjeForma;
 import gui.FormeZaPrikaz.DispeceriProzor;
+import gui.FormeZaPrikaz.DodeljeneVoznjeProzor;
 import gui.FormeZaPrikaz.MusterijaProzor;
+import gui.FormeZaPrikaz.PrihvaceneVoznjeProzor;
 import gui.FormeZaPrikaz.VozacProzor;
 import gui.FormeZaPrikaz.VoznjeProzor;
 import osobe.Dispecer;
@@ -25,10 +28,10 @@ public class GlavniProzor extends JFrame {
 	private JMenuBar mainMenu = new JMenuBar();
 	private JMenu korisniciMenu = new JMenu("Korisnici");
 	private JMenu zakaziVoznju = new JMenu("Zakazi voznju");
-	private JMenu pregledVoznje = new JMenu("Voznja");
-	private JMenu dodeljenaVoznja = new JMenu("Dodeljena voznja");
-	private JMenu promeniStatus = new JMenu("Status voznje");
-	private JMenu putemTelefona = new JMenu("Putem telefona");
+	private JMenu voznjeZaVozaca = new JMenu("Voznje");
+	private JMenuItem dodeljeneVoznje = new JMenuItem("Dodeljene voznje");
+	private JMenuItem prihvaceneVoznje = new JMenuItem("Prihvacene voznje");
+	private JMenuItem putemTelefona = new JMenuItem("Putem telefona");
 	private JMenuItem dispeceriItem = new JMenuItem("Dispeceri");
 	private JMenuItem musterijeItem = new JMenuItem("Musterije");
 	private JMenuItem vozaciItem = new JMenuItem("Vozaci");
@@ -62,10 +65,9 @@ public class GlavniProzor extends JFrame {
 		this.prijavljenaMusterija = prijavljenaMusterija;
 		setTitle("Musterija: " + prijavljenaMusterija.getKorIme());
 //		initMenu();
-//		initActions();
+		initActions();
 		setJMenuBar(mainMenu);
 		mainMenu.add(zakaziVoznju);
-		mainMenu.add(pregledVoznje);
 		zakaziVoznju.add(putemTelefona);
 
 
@@ -77,10 +79,11 @@ public class GlavniProzor extends JFrame {
 		this.prijavljeniVozac = prijavljenaVozac;
 		setTitle("Vozac: " + prijavljenaVozac.getKorIme());
 //		initMenu();
-//		initActions();
+		initActions();
 		setJMenuBar(mainMenu);
-		mainMenu.add(dodeljenaVoznja);
-		mainMenu.add(promeniStatus);
+		mainMenu.add(voznjeZaVozaca);
+		voznjeZaVozaca.add(dodeljeneVoznje);
+		voznjeZaVozaca.add(prihvaceneVoznje);
 	}
 	
 	
@@ -126,7 +129,29 @@ public class GlavniProzor extends JFrame {
 				vp.setVisible(true);
 			}
 		});
-	
+		putemTelefona.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ZakazivanjeVoznjeForma zkf = new ZakazivanjeVoznjeForma(taxi_sluzba, prijavljenaMusterija, true);
+				zkf.setVisible(true);
+			}
+		});
+		dodeljeneVoznje.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				DodeljeneVoznjeProzor zkf = new DodeljeneVoznjeProzor(taxi_sluzba, prijavljeniVozac);
+				zkf.setVisible(true);
+			}
+		});
+		prihvaceneVoznje.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				PrihvaceneVoznjeProzor zkf = new PrihvaceneVoznjeProzor(taxi_sluzba, prijavljeniVozac);
+				zkf.setVisible(true);
+			}
+		});
+		
+		
 	}		
 	
 	

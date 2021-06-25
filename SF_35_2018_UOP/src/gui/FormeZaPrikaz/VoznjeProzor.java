@@ -14,11 +14,7 @@ import javax.swing.JToolBar;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
-import gui.FormeZaDodavanjeIIzmenu.DispeceriForma;
-import gui.FormeZaDodavanjeIIzmenu.VozaciForma;
-import gui.FormeZaDodavanjeIIzmenu.VoznjeForma;
-import main.Taxi_sluzbaMain;
-import osobe.Vozac;
+import gui.FormeZaDodavanjeIIzmenu.DodeljivanjeVozacaForma;
 import taxi_sluzba.Taxi_sluzba;
 import voznja.Voznja;
 
@@ -28,6 +24,7 @@ public class VoznjeProzor extends JFrame {
 	private JButton btnAdd = new JButton();
 	private JButton btnEdit = new JButton();
 	private JButton btnDelete = new JButton();
+	private JButton btnDodeliVozaca = new JButton();
 	
 	
 	private DefaultTableModel tableModel;
@@ -44,7 +41,7 @@ public class VoznjeProzor extends JFrame {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		initGUI();
-//		initActions();
+		initActions();
 		 
 	}
 	
@@ -60,7 +57,11 @@ public class VoznjeProzor extends JFrame {
 //		mainToolBar.add(btnAdd);
 //		mainToolBar.add(btnEdit);
 //		mainToolBar.add(btnDelete);
-//		add(mainToolBar, BorderLayout.NORTH);
+		
+		ImageIcon dodeliIcon = new ImageIcon(getClass().getResource("/icons/create.png"));
+		btnDodeliVozaca.setIcon(dodeliIcon);
+		mainToolBar.add(btnDodeliVozaca);
+		add(mainToolBar, BorderLayout.NORTH);
 	
 	////////OVO NE TREBA JER IDE SAMO PRIKAZ A NE CEO CRUD
 		
@@ -77,7 +78,11 @@ public class VoznjeProzor extends JFrame {
 			sadrzaj[i][2] = voznja.getAdresa_polaska();
 			sadrzaj[i][3] = voznja.getAdresa_destinacije();
 			sadrzaj[i][4] = voznja.getMusterija();
-			sadrzaj[i][5] = voznja.getVozac();
+			if (voznja.getVozac() != null) {
+				sadrzaj[i][5] = voznja.getVozac().getKorIme();
+			} else {
+				sadrzaj[i][5] = "/";
+			}
 			sadrzaj[i][6] = voznja.getPredjeni_km();
 			sadrzaj[i][7] = voznja.getTrajanje_voznje();
 			sadrzaj[i][8] = voznja.getStatus_voznje();
@@ -87,28 +92,51 @@ public class VoznjeProzor extends JFrame {
 				sadrzaj[i][9] = "";
 			}
 			sadrzaj[i][10] = voznja.isKreiranaPutemTelefona();
-
 		}
 		
 		{		
-		tableModel = new DefaultTableModel(sadrzaj, zaglavlja);
-		voznjaTabela = new JTable(tableModel);
-		
-		voznjaTabela .setRowSelectionAllowed(true);
-		voznjaTabela .setColumnSelectionAllowed(false);
-		voznjaTabela .setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		voznjaTabela  .setDefaultEditor(Object.class, null);
-		voznjaTabela .getTableHeader().setReorderingAllowed(false);
-		
-		JScrollPane scrollPane = new JScrollPane(voznjaTabela);
-		add(scrollPane, BorderLayout.CENTER);
+			tableModel = new DefaultTableModel(sadrzaj, zaglavlja);
+			voznjaTabela = new JTable(tableModel);
+			
+			voznjaTabela .setRowSelectionAllowed(true);
+			voznjaTabela .setColumnSelectionAllowed(false);
+			voznjaTabela .setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+			voznjaTabela  .setDefaultEditor(Object.class, null);
+			voznjaTabela .getTableHeader().setReorderingAllowed(false);
+			
+			JScrollPane scrollPane = new JScrollPane(voznjaTabela);
+			add(scrollPane, BorderLayout.CENTER);
+		}
 	}
-}
-}
 
-//	private void initActions() {
+	private void initActions() {
 		
-		
+		btnDodeliVozaca.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int red = voznjaTabela .getSelectedRow();
+				if (red == -1) {
+					JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
+				} else {
+					String voznjaIdStr = tableModel.getValueAt(red, 0).toString();
+					Integer voznjaId = Integer.parseInt(voznjaIdStr);
+					Voznja voznja = taxi_sluzba.pronadjiVoznju(voznjaId);
+					System.out.println(voznja.getVozac());
+					if (voznja != null && voznja.getVozac() != null) {
+						JOptionPane.showMessageDialog(null, "Morate odabrati voznju koja nema odabranog vozaca.", "Greska", JOptionPane.WARNING_MESSAGE);
+					}
+					if (voznja != null && !voznja.isKreiranaPutemTelefona()) {
+						JOptionPane.showMessageDialog(null, "Morate odabrati voznju koja je kreirana putem telefona.", "Greska", JOptionPane.WARNING_MESSAGE);
+					}
+					
+					if (voznja != null && voznja.isKreiranaPutemTelefona() && voznja.getVozac() == null) {
+						DodeljivanjeVozacaForma vf = new DodeljivanjeVozacaForma(taxi_sluzba, voznjaId);
+						vf.setVisible(true);
+					}
+				}
+			}
+		});
+
 //		btnDelete.addActionListener(new ActionListener() {
 //			@Override
 //			public void actionPerformed(ActionEvent e) {
@@ -161,9 +189,9 @@ public class VoznjeProzor extends JFrame {
 //			}
 //		});
 //	}
-//}
+	}
 //}
 //			
 //			
 		
-
+}

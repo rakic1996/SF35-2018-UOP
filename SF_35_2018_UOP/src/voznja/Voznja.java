@@ -22,6 +22,8 @@ public class Voznja {
 	private boolean obrisan;
 	private boolean kreiranaPutemTelefona;
 	
+	public Voznja() {}
+	
 	public Voznja(int id, LocalDateTime datum_porudzbine, String adresa_polaska, String adresa_destinacije, Musterija musterija,
 			Vozac vozac, double predjeni_km, double trajanje_voznje, StatusVoznje status_voznje, boolean obrisan, Automobil auto, boolean kreiranaPutemTelefona) {
 		super();
@@ -39,7 +41,7 @@ public class Voznja {
 		this.kreiranaPutemTelefona = kreiranaPutemTelefona;
 	}
 
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 	

@@ -13,6 +13,7 @@ import java.util.List;
 
 import automobil.Automobil;
 import automobil.VrstaAutomobila;
+import main.Taxi_sluzbaMain;
 import osobe.Dispecer;
 import osobe.Korisnik;
 import osobe.Musterija;
@@ -543,7 +544,15 @@ public class Taxi_sluzba {
 				content += voznja.getId() + "|" + voznja.getDatum_porudzbine() + "|" + voznja.getAdresa_polaska() + "|"
 						+ voznja.getAdresa_destinacije() + "|" + voznja.getMusterija().getKorIme() + "|"
 						+ voznja.getPredjeni_km() + "|" + voznja.getTrajanje_voznje() + "|" + voznja.getStatus_voznje()
-						+ "|" + voznja.getVozac().getKorIme() + "|" + voznja.isObrisan() + "|";
+						+ "|";
+				if (voznja.getVozac() != null) {
+					content += voznja.getVozac().getKorIme();
+				} else {
+					content += "null";
+				}
+				
+				content += "|" + voznja.isObrisan() + "|";
+				
 				if (voznja.getAuto() != null) {
 					content += voznja.getAuto().getId();
 				} else {
@@ -889,4 +898,69 @@ public class Taxi_sluzba {
 		return slobodni;
 	}
 
+	public void zakaziVoznju(Musterija prijavljenaMusterija, String adresaPolaska, String adresaDestinacije, boolean kreiranaPutemTelefona) {
+		Voznja v = new Voznja();
+		v.setDatum_porudzbine(LocalDateTime.now());
+		v.setMusterija(prijavljenaMusterija);
+		v.setAdresa_polaska(adresaPolaska);
+		v.setAdresa_destinacije(adresaDestinacije);
+		v.setKreiranaPutemTelefona(kreiranaPutemTelefona);
+		if (kreiranaPutemTelefona) {
+			v.setStatus_voznje(StatusVoznje.Kreirana);
+		} else {
+			v.setStatus_voznje(StatusVoznje.kreirana_na_cekanju);
+		}
+		v.setObrisan(false);
+		v.setId(voznje.get(voznje.size()-1).getId() + 1);
+		
+//		this.voznje.add(v);
+		
+		
+		sacuvajVoznjuUFajl(v, Taxi_sluzbaMain.VOZNJA_FAJL);
+	}
+	
+	public Voznja pronadjiVoznju(Integer voznjaId) {
+		for (Voznja voznja : voznje) {
+			if (voznja.getId() == voznjaId) {
+				return voznja;
+			}
+		}
+		return null;
+	}
+	
+	public void dodeliVozacaVoznji(Voznja voznja, String vozacKorIme) {
+		Vozac vozac = pronadjiVozaca(vozacKorIme);
+		if (vozac != null) {
+			voznja.setVozac(vozac);
+			voznja.setStatus_voznje(StatusVoznje.Kreirana);
+			
+			izmeniVoznjuUFajlu(voznja, Taxi_sluzbaMain.VOZNJA_FAJL);
+		}
+		
+	}
+	
+	public List<Voznja> sveDodeljeneVoznje(Vozac vozac) {
+		List<Voznja> result = new ArrayList<>();
+		for (Voznja voznja : voznje) {
+			if (voznja.getVozac() != null && voznja.getVozac().getKorIme().equals(vozac.getKorIme()) 
+					&& voznja.getStatus_voznje().name().equals(StatusVoznje.dodeljena.name()) 
+					&& voznja.isKreiranaPutemTelefona()) {
+				result.add(voznja);
+			}
+		}
+		return result;
+	}
+	
+	public List<Voznja> svePrihvaceneVoznje(Vozac vozac) {
+		List<Voznja> result = new ArrayList<>();
+		for (Voznja voznja : voznje) {
+			if (voznja.getVozac() != null && voznja.getVozac().getKorIme().equals(vozac.getKorIme()) 
+					&& voznja.getStatus_voznje().name().equals(StatusVoznje.prihvacena.name()) 
+					&& voznja.isKreiranaPutemTelefona()) {
+				result.add(voznja);
+			}
+		}
+		return result;
+	}
+	
 }

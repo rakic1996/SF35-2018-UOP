@@ -34,31 +34,14 @@ public class Taxi_sluzbaMain {
 		taxi_sluzba.ucitajDispecere(DISPECER_FAJL);
 		taxi_sluzba.ucitajAutomobile(AUTOMOBILI_FAJL);
 		taxi_sluzba.ucitajMusterije(MUSTERIJA_FAJL);
-		taxi_sluzba.ucitajVoznje(VOZNJA_FAJL);
 		taxi_sluzba.ucitajVozace(VOZAC_FAJL);
-		
-//		System.out.println(taxi_sluzba.toString());  
-
-		
-		
-		
+		taxi_sluzba.ucitajVoznje(VOZNJA_FAJL);
 		
 
 		
 		LoginProzor lp = new LoginProzor(taxi_sluzba);
 		lp.setVisible(true);
 		
-//		DispeceriProzor dp = new DispeceriProzor(taxi_sluzba);
-//		dp.setVisible(true);
-//		
-//		MusterijaProzor mp = new MusterijaProzor(taxi_sluzba);
-//		mp.setVisible(true);
-//		
-//		VozacProzor vp = new VozacProzor(taxi_sluzba);
-//		vp.setVisible(true);
-//
-//		VoznjeProzor kp = new VoznjeProzor(taxi_sluzba);
-//		vp.setVisible(true);
 	}
 	
 	private static void saveData(Taxi_sluzba taxi_sluzba) {

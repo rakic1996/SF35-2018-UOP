@@ -73,8 +73,8 @@ public class MusterijaProzor extends JFrame {
 			sadrzaj[i][2] = musterija.getPrezime();
 			sadrzaj[i][3] = musterija.getJmbg();
 			sadrzaj[i][4] = musterija.getAdresa();
-			sadrzaj[i][4] = musterija.getPol();
-			sadrzaj[i][4] = musterija.getBrTelefona();
+			sadrzaj[i][5] = musterija.getPol().name();
+			sadrzaj[i][6] = musterija.getBrTelefona();
 
 		}
 		
