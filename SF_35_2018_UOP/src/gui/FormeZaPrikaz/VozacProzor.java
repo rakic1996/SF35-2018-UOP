@@ -3,6 +3,7 @@ package gui.FormeZaPrikaz;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -14,10 +15,8 @@ import javax.swing.JToolBar;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
-import gui.FormeZaDodavanjeIIzmenu.DispeceriForma;
 import gui.FormeZaDodavanjeIIzmenu.VozaciForma;
 import main.Taxi_sluzbaMain;
-import osobe.Dispecer;
 import osobe.Vozac;
 import taxi_sluzba.Taxi_sluzba;
 
@@ -44,7 +43,6 @@ public class VozacProzor extends JFrame {
 		setLocationRelativeTo(null);
 		initGUI();
 		initActions();
-		 
 	}
 	
 	private void initGUI() {
@@ -65,10 +63,11 @@ public class VozacProzor extends JFrame {
 		String [] zaglavlja = new String[] {"Korisnicko ime", "Ime", "Prezime",
 				 							"JMBG", "Adresa", "Pol", "Broj telefona", "Plata",
 				 							"Broj clanske karte", "ID Automobila"};
-		Object[][] sadrzaj = new Object[taxi_sluzba.sviNeobrisaniDispeceri().size()][zaglavlja.length];
+		Object[][] sadrzaj = new Object[taxi_sluzba.sviNeobrisaniVozaci().size()][zaglavlja.length];
 		
-		for(int i=0; i<taxi_sluzba.sviNeobrisaniVozaci().size(); i++) {
-			Vozac vozac = taxi_sluzba.sviNeobrisaniVozaci().get(i);
+		List<Vozac> neobrisaniVozaci = taxi_sluzba.sviNeobrisaniVozaci();
+		for(int i=0; i < neobrisaniVozaci.size(); i++) {
+			Vozac vozac = neobrisaniVozaci.get(i);
 			sadrzaj[i][0] = vozac.getKorIme();
 			sadrzaj[i][1] = vozac.getIme();
 			sadrzaj[i][2] = vozac.getPrezime();
@@ -79,7 +78,6 @@ public class VozacProzor extends JFrame {
 			sadrzaj[i][7] = vozac.getPlata();
 			sadrzaj[i][8] = vozac.getClanska_karta();
 			sadrzaj[i][9] = vozac.getAutomobil();
-
 		}
 		
 		tableModel = new DefaultTableModel(sadrzaj, zaglavlja);
@@ -106,7 +104,7 @@ public class VozacProzor extends JFrame {
 				if(red == -1) {
 					JOptionPane.showMessageDialog(null, "Morate odabrati red u tabeli.", "Greska", JOptionPane.WARNING_MESSAGE);
 				}else {
-					String korIme = tableModel.getValueAt(red, 3).toString();
+					String korIme = tableModel.getValueAt(red, 0).toString();
 					Vozac vozac = taxi_sluzba.pronadjiVozaca(korIme);
 					
 					int izbor = JOptionPane.showConfirmDialog(null, 

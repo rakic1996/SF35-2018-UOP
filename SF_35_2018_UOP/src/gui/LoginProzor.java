@@ -57,8 +57,8 @@ public class LoginProzor extends JFrame {
 		add(btnCancel);
 		
 		
-//		txtKorIme.setText("petarp");
-//		pfPassword.setText("1234");
+		txtKorIme.setText("Perap");
+		pfPassword.setText("123");
 		getRootPane().setDefaultButton(btnOk);	
 		
 	}

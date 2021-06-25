@@ -1,2 +1,2 @@
-1|2020-02-03T03:05|Ravanicka 5|Modene 1|Simas|3.0|5.0|zavrsena|Petarp|false
-2|2021-05-12T08:10|Futoska 2|Mihajla Puina 5|Maram|5.5|8.0|zavrsena|Lukal|true
+1|2020-02-03T03:05|Ravanicka 5|Modene 1|Simas|3.0|5.0|zavrsena|Petarp|false|1|false
+2|2021-05-12T08:10|Futoska 2|Mihajla Puina 5|Maram|5.5|8.0|zavrsena|Lukal|true|2|true

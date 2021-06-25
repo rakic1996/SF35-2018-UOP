@@ -29,15 +29,15 @@ public class Taxi_sluzbaMain {
 	public static void main(String[] args) {
 		Taxi_sluzba taxi_sluzba = new Taxi_sluzba(1, 123, "Crveni taxi", "Fruskogorska 1", 90, 40 );
 		
-		saveData(taxi_sluzba);
+//		saveData(taxi_sluzba);
 		
 		taxi_sluzba.ucitajDispecere(DISPECER_FAJL);
+		taxi_sluzba.ucitajAutomobile(AUTOMOBILI_FAJL);
 		taxi_sluzba.ucitajMusterije(MUSTERIJA_FAJL);
 		taxi_sluzba.ucitajVoznje(VOZNJA_FAJL);
-		taxi_sluzba.ucitajAutomobile(AUTOMOBILI_FAJL);
 		taxi_sluzba.ucitajVozace(VOZAC_FAJL);
 		
-		System.out.println(taxi_sluzba.toString());  
+//		System.out.println(taxi_sluzba.toString());  
 
 		
 		
@@ -48,17 +48,17 @@ public class Taxi_sluzbaMain {
 		LoginProzor lp = new LoginProzor(taxi_sluzba);
 		lp.setVisible(true);
 		
-		DispeceriProzor dp = new DispeceriProzor(taxi_sluzba);
-		dp.setVisible(true);
-		
-		MusterijaProzor mp = new MusterijaProzor(taxi_sluzba);
-		mp.setVisible(true);
-		
-		VozacProzor vp = new VozacProzor(taxi_sluzba);
-		vp.setVisible(true);
-
-		VoznjeProzor kp = new VoznjeProzor(taxi_sluzba);
-		vp.setVisible(true);
+//		DispeceriProzor dp = new DispeceriProzor(taxi_sluzba);
+//		dp.setVisible(true);
+//		
+//		MusterijaProzor mp = new MusterijaProzor(taxi_sluzba);
+//		mp.setVisible(true);
+//		
+//		VozacProzor vp = new VozacProzor(taxi_sluzba);
+//		vp.setVisible(true);
+//
+//		VoznjeProzor kp = new VoznjeProzor(taxi_sluzba);
+//		vp.setVisible(true);
 	}
 	
 	private static void saveData(Taxi_sluzba taxi_sluzba) {
@@ -94,7 +94,7 @@ public class Taxi_sluzbaMain {
 		Vozac vozac1 = new Vozac("Petarp","abc", "Petar", "Petrovic", "534347",
 				 "Mihajla Pupina 8", Pol.MUSKI, "04231245", false, 1000.0, "1", automobil1, Uloga.VOZAC); 
 		Vozac vozac2 = new Vozac("Lukal", "567", "Luka", "Lukic", "8674634", "Bul Oslobodjenja 45",
-				Pol.MUSKI, "12054956", false, 1500.0, "1", automobil2, Uloga.VOZAC); 
+				Pol.MUSKI, "12054956", false, 1500.0, "1", null, Uloga.VOZAC); 
 		
 		taxi_sluzba.dodajVozace(vozac1); 
 		taxi_sluzba.dodajVozace(vozac2);
@@ -102,9 +102,9 @@ public class Taxi_sluzbaMain {
 		
 		
 		Voznja voznja1 = new Voznja(1, LocalDateTime.of(2020, 2, 3, 3, 5), "Ravanicka 5", "Modene 1", musterija1,
-					  vozac1, 3.0, 5.0, StatusVoznje.zavrsena, false); 
+					  vozac1, 3.0, 5.0, StatusVoznje.zavrsena, false, automobil1, false); 
 		Voznja voznja2 = new Voznja(2, LocalDateTime.of(2021, 5, 12, 8, 10), "Futoska 2", "Mihajla Puina 5",
-					  musterija2, vozac2, 5.5, 8.0, StatusVoznje.zavrsena, false);
+					  musterija2, vozac2, 5.5, 8.0, StatusVoznje.zavrsena, false, automobil2, true);
 		
 		taxi_sluzba.dodajVoznju(voznja1); 
 		taxi_sluzba.dodajVoznju(voznja2);

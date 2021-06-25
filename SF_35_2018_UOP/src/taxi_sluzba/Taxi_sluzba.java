@@ -9,10 +9,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 import automobil.Automobil;
 import automobil.VrstaAutomobila;
-import main.Taxi_sluzbaMain;
 import osobe.Dispecer;
 import osobe.Korisnik;
 import osobe.Musterija;
@@ -101,6 +101,9 @@ public class Taxi_sluzba {
 				Pol pol = Pol.valueOf(polString);
 				String brTelefona = split[5];
 				boolean obrisan = Boolean.parseBoolean(split[6]);
+				if (obrisan) {
+					continue;
+				}
 				double plata = Double.parseDouble(split[7]);
 				String telefonska_linija = split[8];
 				String odeljenjeString = split[9];
@@ -401,7 +404,13 @@ public class Taxi_sluzba {
 						+ vozac.getPrezime() + "|" + vozac.getPol() + "|" + vozac.getBrTelefona() + "|"
 						+ vozac.isObrisan() + "|" + +vozac.getPlata() + "|"
 						+ vozac.getAdresa() + "|" + vozac.getJmbg() + "|"
-						+ vozac.getClanska_karta() + "|" + vozac.getAutomobil().getId() + "|" + vozac.getUloga() + "\n";
+						+ vozac.getClanska_karta() + "|";
+				if (vozac.getAutomobil() != null) {
+					content += vozac.getAutomobil().getId();
+				} else {
+					content += "null";
+				}
+				content += "|" + vozac.getUloga() + "\n";
 			}
 			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 			writer.write(content);
@@ -417,7 +426,6 @@ public class Taxi_sluzba {
 			BufferedReader reader = new BufferedReader(new FileReader(file));
 			String line;
 			while ((line = reader.readLine()) != null) {
-
 				String[] split = line.split("\\|");
 				String korIme = split[0];
 				String lozinka = split[1];
@@ -427,13 +435,22 @@ public class Taxi_sluzba {
 				Pol pol = Pol.valueOf(polString);
 				String brTelefona = split[5];
 				Boolean obrisan = Boolean.parseBoolean(split[6]);
+				if (obrisan) {
+					continue;
+				}
 				double plata = Double.parseDouble(split[7]);
 				String adresa = split[8];
 				String jmbg = split[9];
 				String clanska_karta = split[10];
 				String idAutomobil = split[11];
-				int automobilId = Integer.parseInt(idAutomobil);
-				Automobil automobil = pronadjiAutomobil(automobilId);
+				Integer automobilId = null;
+				if (!idAutomobil.equals("null")) {
+					automobilId = Integer.parseInt(idAutomobil);
+				}
+				Automobil automobil = null;
+				if (automobilId != null) {
+					 automobil = pronadjiAutomobil(automobilId);
+				}
 				String ulogaString = split[12];
 				Uloga uloga = Uloga.valueOf(ulogaString);
 
@@ -526,7 +543,13 @@ public class Taxi_sluzba {
 				content += voznja.getId() + "|" + voznja.getDatum_porudzbine() + "|" + voznja.getAdresa_polaska() + "|"
 						+ voznja.getAdresa_destinacije() + "|" + voznja.getMusterija().getKorIme() + "|"
 						+ voznja.getPredjeni_km() + "|" + voznja.getTrajanje_voznje() + "|" + voznja.getStatus_voznje()
-						+ "|" + voznja.getVozac().getKorIme() + "|" + voznja.isObrisan() + "\n";
+						+ "|" + voznja.getVozac().getKorIme() + "|" + voznja.isObrisan() + "|";
+				if (voznja.getAuto() != null) {
+					content += voznja.getAuto().getId();
+				} else {
+					content += "null";
+				}
+				content += "|" + voznja.isKreiranaPutemTelefona() + "\n";
 			}
 			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 			writer.write(content);
@@ -566,8 +589,20 @@ public class Taxi_sluzba {
 				
 				Boolean obrisan = Boolean.parseBoolean(split[9]);
 
+				String autoIDStr = split[10].trim();
+				Integer autoId = null;
+				if (!autoIDStr.equals("null")) {
+					autoId = Integer.parseInt(autoIDStr);
+				}
+				Automobil auto = null;
+				if (autoId != null) {
+					auto = pronadjiAutomobil(autoId);
+				}
+				
+				Boolean kreianaPutemTelefona = Boolean.parseBoolean(split[11]);
+				
 				Voznja voznja = new Voznja(id, datum_por, adresa_polaska, adresa_destinacije, musterija, vozac,
-						predjeni_km, trajanje_voznje, status, obrisan);
+						predjeni_km, trajanje_voznje, status, obrisan, auto, kreianaPutemTelefona);
 				this.voznje.add(voznja);
 			}
 			reader.close();
@@ -836,5 +871,22 @@ public class Taxi_sluzba {
 //		}
 //		
 //	}
+	
+	public ArrayList<Automobil> slobodniAutomobili() {
+		ArrayList<Automobil> slobodni = new ArrayList<>();
+		for (Automobil auto : automobili) {
+			boolean slobodan = true;
+			for (Vozac vozac : vozaci) {
+				if (vozac.getAutomobil() != null && vozac.getAutomobil().getId() == auto.getId()) {
+					slobodan = false;
+					break;
+				}
+			}
+			if (slobodan) {
+				slobodni.add(auto);
+			}
+		}
+		return slobodni;
+	}
 
 }

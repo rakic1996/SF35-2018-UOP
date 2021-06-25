@@ -2,6 +2,7 @@ package gui.FormeZaDodavanjeIIzmenu;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -42,7 +43,7 @@ public class VozaciForma extends JFrame {
 	private JLabel lblClanska_karta = new JLabel("Clanska karta");
 	private JTextField txtClanska_karta = new JTextField(20); 
 	private JLabel lblAutomobil = new JLabel("Automobil");
-	private JComboBox<Automobil> cbAutomobil = new JComboBox<Automobil>();
+	private JComboBox<String> cbAutomobil = new JComboBox<String>();
 
 
 
@@ -89,8 +90,6 @@ public class VozaciForma extends JFrame {
 		add(cbPol);
 		add(lblBrTelefona);
 		add(txtBrTelefona);
-//		add(lblID);
-//		add(txtID);
 		add(lblPlata);
 		add(txtPlata);
 		add(lblAdresa);
@@ -100,6 +99,11 @@ public class VozaciForma extends JFrame {
 		add(lblClanska_karta);
 		add(txtClanska_karta);
 		add(lblAutomobil);
+
+		ArrayList<Automobil> slobodniAutomobili = taxi_sluzba.slobodniAutomobili();
+		for (Automobil auto : slobodniAutomobili) {
+			cbAutomobil.addItem("" + auto.getId());
+		}
 		add(cbAutomobil);
 		add(new JLabel());
 		add(btnOK, "split 2");
@@ -109,7 +113,6 @@ public class VozaciForma extends JFrame {
 
 	private void initActions() {
 		btnOK.addActionListener(new ActionListener() {
-			private String clanska_karta;
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -124,10 +127,11 @@ public class VozaciForma extends JFrame {
 					String brTelefona = txtBrTelefona.getText().trim();
 					double plata = Double.parseDouble(txtPlata.getText().trim());
 					String clanskaKarta = txtClanska_karta.getText().trim();
-					Automobil automobil = (Automobil)cbAutomobil.getSelectedItem();
-					
-//					String id = txtID.getText().trim();
-
+					String automobilId = (String) cbAutomobil.getSelectedItem();
+					Automobil automobil = null;
+					if (automobilId != null) {
+						automobil = taxi_sluzba.pronadjiAutomobil(Integer.parseInt(automobilId));
+					}
 					
 					
 					if (vozac == null) { // DODAVANJE:
@@ -136,7 +140,6 @@ public class VozaciForma extends JFrame {
 								
 						taxi_sluzba.dodajVozace(novi);
 					} else {
-						vozac.setKorIme(korIme);
 						vozac.setIme(ime);
 						vozac.setPrezime(prezime);
 						vozac.setJmbg(jmbg);
@@ -144,8 +147,7 @@ public class VozaciForma extends JFrame {
 						vozac.setPol(pol);
 						vozac.setBrTelefona(brTelefona);
 						vozac.setPlata(plata);
-						vozac.setPlata(plata);
-						vozac.setClanska_karta(clanska_karta);
+						vozac.setClanska_karta(clanskaKarta);
 						vozac.setAutomobil(automobil);
 					}
 					taxi_sluzba.cuvanjeVozaca(Taxi_sluzbaMain.VOZAC_FAJL);
@@ -157,7 +159,7 @@ public class VozaciForma extends JFrame {
 	};
 	
 	private void popuniPolja() {
-		txtKorIme.setText(String.valueOf(vozac.getPlata()));
+		txtKorIme.setText(String.valueOf(vozac.getKorIme()));
 		txtIme.setText(vozac.getIme());
 		txtPrezime.setText(vozac.getPrezime());
 		cbPol.setSelectedItem(vozac.getPol());
@@ -165,6 +167,7 @@ public class VozaciForma extends JFrame {
 		txtPlata.setText("" + vozac.getPlata());
 		txtAdresa.setText(vozac.getAdresa());
 		txtJmbg.setText(vozac.getAdresa());
+		txtClanska_karta.setText(vozac.getClanska_karta());
 	}
 	
 	private boolean validacija() {

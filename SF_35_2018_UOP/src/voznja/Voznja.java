@@ -2,6 +2,7 @@ package voznja;
 
 import java.time.LocalDateTime;
 
+import automobil.Automobil;
 import osobe.Musterija;
 import osobe.Vozac;
 
@@ -13,14 +14,16 @@ public class Voznja {
 	private String adresa_destinacije;
 	private Musterija musterija;
 	private Vozac vozac;
+	private Automobil auto;
 	
 	private double predjeni_km;
 	private double trajanje_voznje;
 	private StatusVoznje status_voznje;
 	private boolean obrisan;
+	private boolean kreiranaPutemTelefona;
 	
 	public Voznja(int id, LocalDateTime datum_porudzbine, String adresa_polaska, String adresa_destinacije, Musterija musterija,
-			Vozac vozac, double predjeni_km, double trajanje_voznje, StatusVoznje status_voznje, boolean obrisan) {
+			Vozac vozac, double predjeni_km, double trajanje_voznje, StatusVoznje status_voznje, boolean obrisan, Automobil auto, boolean kreiranaPutemTelefona) {
 		super();
 		this.id = id;
 		this.datum_porudzbine = datum_porudzbine;
@@ -32,6 +35,8 @@ public class Voznja {
 		this.trajanje_voznje = trajanje_voznje;
 		this.status_voznje = status_voznje;
 		this.obrisan = obrisan;
+		this.auto = auto;
+		this.kreiranaPutemTelefona = kreiranaPutemTelefona;
 	}
 
 	public long getId() {
@@ -112,6 +117,22 @@ public class Voznja {
 
 	public void setObrisan(boolean obrisan) {
 		this.obrisan = obrisan;
+	}
+
+	public Automobil getAuto() {
+		return auto;
+	}
+
+	public void setAuto(Automobil auto) {
+		this.auto = auto;
+	}
+
+	public boolean isKreiranaPutemTelefona() {
+		return kreiranaPutemTelefona;
+	}
+
+	public void setKreiranaPutemTelefona(boolean kreiranaPutemTelefona) {
+		this.kreiranaPutemTelefona = kreiranaPutemTelefona;
 	}
 
 	@Override

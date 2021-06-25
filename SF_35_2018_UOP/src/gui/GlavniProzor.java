@@ -24,6 +24,11 @@ public class GlavniProzor extends JFrame {
 
 	private JMenuBar mainMenu = new JMenuBar();
 	private JMenu korisniciMenu = new JMenu("Korisnici");
+	private JMenu zakaziVoznju = new JMenu("Zakazi voznju");
+	private JMenu pregledVoznje = new JMenu("Voznja");
+	private JMenu dodeljenaVoznja = new JMenu("Dodeljena voznja");
+	private JMenu promeniStatus = new JMenu("Status voznje");
+	private JMenu putemTelefona = new JMenu("Putem telefona");
 	private JMenuItem dispeceriItem = new JMenuItem("Dispeceri");
 	private JMenuItem musterijeItem = new JMenuItem("Musterije");
 	private JMenuItem vozaciItem = new JMenuItem("Vozaci");
@@ -40,8 +45,6 @@ public class GlavniProzor extends JFrame {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
-		initMenu();
-		initActions();
 	}
 	
 	public GlavniProzor(Taxi_sluzba taxi_sluzba, Dispecer prijavljeniKorisnik) {
@@ -58,8 +61,14 @@ public class GlavniProzor extends JFrame {
 		this.taxi_sluzba = taxi_sluzba;
 		this.prijavljenaMusterija = prijavljenaMusterija;
 		setTitle("Musterija: " + prijavljenaMusterija.getKorIme());
-		initMenu();
-		initActions();
+//		initMenu();
+//		initActions();
+		setJMenuBar(mainMenu);
+		mainMenu.add(zakaziVoznju);
+		mainMenu.add(pregledVoznje);
+		zakaziVoznju.add(putemTelefona);
+
+
 	}
 	
 	public GlavniProzor(Taxi_sluzba taxi_sluzba, Vozac prijavljenaVozac) {
@@ -67,8 +76,11 @@ public class GlavniProzor extends JFrame {
 		this.taxi_sluzba = taxi_sluzba;
 		this.prijavljeniVozac = prijavljenaVozac;
 		setTitle("Vozac: " + prijavljenaVozac.getKorIme());
-		initMenu();
-		initActions();
+//		initMenu();
+//		initActions();
+		setJMenuBar(mainMenu);
+		mainMenu.add(dodeljenaVoznja);
+		mainMenu.add(promeniStatus);
 	}
 	
 	
@@ -90,7 +102,7 @@ public class GlavniProzor extends JFrame {
 				VoznjeProzor vp = new VoznjeProzor(taxi_sluzba);
 				vp.setVisible(true);
 			}
-	});
+		});
 		
 		dispeceriItem.addActionListener(new ActionListener() {
 			@Override public void actionPerformed(ActionEvent e) {
@@ -112,8 +124,8 @@ public class GlavniProzor extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				VozacProzor vp = new VozacProzor(taxi_sluzba);
 				vp.setVisible(true);
-		}
-	});
+			}
+		});
 	
 	}		
 	

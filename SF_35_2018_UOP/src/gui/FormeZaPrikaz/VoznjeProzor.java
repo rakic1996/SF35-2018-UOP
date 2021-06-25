@@ -43,7 +43,7 @@ public class VoznjeProzor extends JFrame {
 		setSize(500, 300);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
-//		initGUI();
+		initGUI();
 //		initActions();
 		 
 	}
@@ -67,20 +67,26 @@ public class VoznjeProzor extends JFrame {
 		
 		String [] zaglavlja = new String[] {"ID", "Datum porudzbine", "Adresa polaska", "Adresa destinacije",
 											"Musterija", "Vozac", "Predjeni kilometri",
-				 							"Trajanje voznje", "Status voznje","ID Automobila"};
+				 							"Trajanje voznje", "Status voznje","ID Automobila", "Kreirana telefonom"};
 		Object[][] sadrzaj = new Object[taxi_sluzba.sveNeobrisaneVoznje().size()][zaglavlja.length];
 		
 		for(int i=0; i<taxi_sluzba.sveNeobrisaneVoznje().size(); i++) {
 			Voznja voznja = taxi_sluzba.sveNeobrisaneVoznje().get(i);
-			sadrzaj[i][0] = voznja.getDatum_porudzbine();
-			sadrzaj[i][1] = voznja.getAdresa_polaska();
-			sadrzaj[i][2] = voznja.getAdresa_destinacije();
-			sadrzaj[i][3] = voznja.getMusterija();
-			sadrzaj[i][4] = voznja.getVozac();
-			sadrzaj[i][5] = voznja.getPredjeni_km();
-			sadrzaj[i][6] = voznja.getTrajanje_voznje();
-			sadrzaj[i][7] = voznja.getStatus_voznje();;
-//			sadrzaj[i][8] = voznja.getAutomobil();///////////
+			sadrzaj[i][0] = voznja.getId();
+			sadrzaj[i][1] = voznja.getDatum_porudzbine();
+			sadrzaj[i][2] = voznja.getAdresa_polaska();
+			sadrzaj[i][3] = voznja.getAdresa_destinacije();
+			sadrzaj[i][4] = voznja.getMusterija();
+			sadrzaj[i][5] = voznja.getVozac();
+			sadrzaj[i][6] = voznja.getPredjeni_km();
+			sadrzaj[i][7] = voznja.getTrajanje_voznje();
+			sadrzaj[i][8] = voznja.getStatus_voznje();
+			if (voznja.getAuto() != null) {
+				sadrzaj[i][9] = voznja.getAuto().getId() + "";
+			} else {
+				sadrzaj[i][9] = "";
+			}
+			sadrzaj[i][10] = voznja.isKreiranaPutemTelefona();
 
 		}
 		
